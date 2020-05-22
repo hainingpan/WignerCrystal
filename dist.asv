@@ -1,0 +1,5 @@
+function re=dist(x,y)
+% re=norm(x-y);
+rel=x-y;
+(rel+L/2)=;
+end

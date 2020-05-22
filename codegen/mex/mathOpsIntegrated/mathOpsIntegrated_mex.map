@@ -1,0 +1,12 @@
+MEX {
+	global:
+		mexFunction;
+		mexfilerequiredapiversion;
+		emlrtMexFcnProperties;
+		mathOpsIntegrated;
+		mathOpsIntegrated_initialize;
+		mathOpsIntegrated_terminate;
+		mathOpsIntegrated_atexit;
+	local:
+		*;
+};
