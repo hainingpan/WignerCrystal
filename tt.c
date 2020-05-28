@@ -36,8 +36,8 @@ void printmatrix(int p[MSIZE][MSIZE] ,int dim)
 
 void main()
 {
-	n=36;
-	c=n/6;
+	n=32;
+	c=n/4;
 	int val;
 	readmatrix("p2.txt",p,n);
 	for (int i=0;i<n;i++)
