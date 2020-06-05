@@ -56,7 +56,7 @@ epsilon_z=(1+2+1/0.45)*mu_B;
 Ez=epsilon_z*parameters.B;
 parameters.Ez=Ez;
 
-
+rotate=@(x) [cos(x) -sin(x);sin(x) cos(x)];
 if parameters.nu==[1,2]
     ailist={[0,0],[-1,2]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
@@ -65,6 +65,8 @@ if parameters.nu==[1,2]
     parameters.Q=cellfun(@(x) x(1)*parameters.bM1+x(2)*parameters.bM2,Qlist,'UniformOutput',0);
     parameters.Qindex=Qlist;
     parameters.Qindexmod=cellfun(@(x) [mod(x(1),1),mod(x(2),1)],Qlist,'UniformOutput',0);
+    parameters.bm1=Qlist{2}(1)*parameters.bM1+Qlist{2}(2)*parameters.bM2;
+    parameters.bm2=Qlist{3}(1)*parameters.bM1+Qlist{3}(2)*parameters.bM2;
 end
 
 if parameters.nu==[1,3]
@@ -75,6 +77,8 @@ if parameters.nu==[1,3]
     parameters.Q=cellfun(@(x) x(1)*parameters.bM1+x(2)*parameters.bM2,Qlist,'UniformOutput',0);
     parameters.Qindex=Qlist;
     parameters.Qindexmod=cellfun(@(x) [mod(x(1),1),mod(x(2),1)],Qlist,'UniformOutput',0);
+    parameters.bm1=Qlist{2}(1)*parameters.bM1+Qlist{2}(2)*parameters.bM2;
+    parameters.bm2=Qlist{4}(1)*parameters.bM1+Qlist{4}(2)*parameters.bM2;
 end
 
 if parameters.nu==[2,3]
@@ -85,6 +89,8 @@ if parameters.nu==[2,3]
     parameters.Q=cellfun(@(x) x(1)*parameters.bM1+x(2)*parameters.bM2,Qlist,'UniformOutput',0);
     parameters.Qindex=Qlist;
     parameters.Qindexmod=cellfun(@(x) [mod(x(1),1),mod(x(2),1)],Qlist,'UniformOutput',0);
+    parameters.bm1=Qlist{3}(1)*parameters.bM1+Qlist{3}(2)*parameters.bM2;
+    parameters.bm2=parameters.bm1*rotate(pi/3);
 end
 
 if parameters.nu==[1,4]
@@ -96,6 +102,8 @@ if parameters.nu==[1,4]
     parameters.Q=cellfun(@(x) x(1)*parameters.bM1+x(2)*parameters.bM2,Qlist,'UniformOutput',0);
     parameters.Qindex=Qlist;
     parameters.Qindexmod=cellfun(@(x) [mod(x(1),1),mod(x(2),1)],Qlist,'UniformOutput',0);
+    parameters.bm1=Qlist{4}(1)*parameters.bM1+Qlist{4}(2)*parameters.bM2;
+    parameters.bm2=parameters.bm1*rotate(pi/3);
 end
 
 if parameters.nu==[3,4]
@@ -106,17 +114,21 @@ if parameters.nu==[3,4]
     parameters.Q=cellfun(@(x) x(1)*parameters.bM1+x(2)*parameters.bM2,Qlist,'UniformOutput',0);
     parameters.Qindex=Qlist;
     parameters.Qindexmod=cellfun(@(x) [mod(x(1),1),mod(x(2),1)],Qlist,'UniformOutput',0);
+    parameters.bm1=Qlist{2}(1)*parameters.bM1+Qlist{2}(2)*parameters.bM2;
+    parameters.bm2=Qlist{3}(1)*parameters.bM1+Qlist{3}(2)*parameters.bM2;
 end
 
 if parameters.nu==[1,1]
     ailist={[0,0],[-1,1],[-2,2]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     parameters.spin0={[1,0,0],[cos(2*pi/3),sin(2*pi/3),0],[cos(4*pi/3),sin(4*pi/3),0]};
-    parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
+    parameters.spin0={[1,0,0],[cos(2*pi/3),sin(2*pi/3),0],[cos(4*pi/3),sin(4*pi/3),0]};
+%     parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
     Qlist={[0,0],[-2/3,-1/3],[2/3,1/3]};
     parameters.Q=cellfun(@(x) x(1)*parameters.bM1+x(2)*parameters.bM2,Qlist,'UniformOutput',0);
     parameters.Qindex=Qlist;
     parameters.Qindexmod=cellfun(@(x) [mod(x(1),1),mod(x(2),1)],Qlist,'UniformOutput',0);
+    parameters.bm1=Qlist{3}(1)*parameters.bM1+Qlist{3}(2)*parameters.bM2;
+    parameters.bm2=parameters.bm1*rotate(pi/3);
 end
 
 end

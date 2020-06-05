@@ -4,45 +4,49 @@ Ushell=0;
 [t,neighborlist]=t_calc_func(tshell,parameters);
 U=U_calc_func(Ushell,parameters);
 
-n=10;
-counter=1;
-N=3*n^2+3*n+1;
-kx3list=zeros(N,1);
-ky3list=zeros(N,1);
-a1=-(2*parameters.bM1+parameters.bM2)/3/n;
-a2=(parameters.bM1+2*parameters.bM2)/3/n;
-a31=a1/sqrt(3)*[0,1;-1,0]; %rotate 90 deg clockwisely
-a32=a2/sqrt(3)*[0,1;-1,0];  %rotate 90 deg clockwisely
-for yindex=-n:n
-    for xindex=max(-n,-n+yindex):min(n+yindex,n)
-        k2=xindex*a31+yindex*a32;
-        kx3list(counter)=k2(1);
-        ky3list(counter)=k2(2);
-        counter=counter+1;
-    end
-end
+% n=10;
+% counter=1;
+% N=3*n^2+3*n+1;
+% kx3list=zeros(N,1);
+% ky3list=zeros(N,1);
+% a1=-(2*parameters.bM1+parameters.bM2)/3/n;
+% a2=(parameters.bM1+2*parameters.bM2)/3/n;
+% a31=a1/sqrt(3)*[0,1;-1,0]; %rotate 90 deg clockwisely
+% a32=a2/sqrt(3)*[0,1;-1,0];  %rotate 90 deg clockwisely
+% for yindex=-n:n
+%     for xindex=max(-n,-n+yindex):min(n+yindex,n)
+%         k2=xindex*a31+yindex*a32;
+%         kx3list(counter)=k2(1);
+%         ky3list(counter)=k2(2);
+%         counter=counter+1;
+%     end
+% end
+n=12;
+count
+for yindex=1:n
+    for xindex=1:n
+        ux=(2*xindex-n-1)/(2*n);
+        uy=(2*yindex-n-1)/(2*n);
+        klist=ux*parameters.bM1+uy*parameters.bM2;
+        kxlist
 
+t_bond=[neighborlist{1:tshell+1}];
+U_bond=[neighborlist{1:Ushell+1}];
+tlist=0*[t{1:tshell+1}];
+Ulist=real([U{1:Ushell+1}])/epsilon;
 
-
-% m0=[1,0,0.;cos(-2.*pi/3),sin(-2.*pi/3),0.;cos(-4.*pi/3),sin(-4.*pi/3),0.]';
-% 
-% %  m0=[1,0,0;0,1,0;0,-1,0]';
-% S0=init(m0,parameters);
-% S=S0;
-% clear mu SS m total
-% itermax=1000;
-% theta=zeros(itermax,3);
-% phi=zeros(itermax,3);
-% sm=zeros(itermax,3);
-epsilon=20;
+epsilon=1;
 clear en;
-[energyall,wfall]=energyMF_init(kx3list,ky3list,[neighborlist{1:tshell+1}],[t{1:tshell+1}],[neighborlist{1:Ushell+1}],real([U{1:Ushell+1}])/epsilon,parameters);
-for i=1:20
+[energyall,wfall]=energyMF_init_2(kx3list,ky3list,t_bond,tlist,U_bond,Ulist,parameters);
+for i=1:50
 spin=spintexture(energyall,wfall,parameters);
-en(i)=totalenergy(kx3list,ky3list,[neighborlist{1:tshell+1}],[t{1:tshell+1}],[neighborlist{1:Ushell+1}],real([U{1:Ushell+1}])/epsilon,energyall,wfall,parameters);
-[energyall,wfall]=energyMF(kx3list,ky3list,[neighborlist{1:tshell+1}],[t{1:tshell+1}],[neighborlist{1:Ushell+1}],real([U{1:Ushell+1}])/epsilon,energyall,wfall,parameters);
-energyall_o=energyall;
-wfall_o=wfall;
+[spin,angle(spin(:,2)+spin(:,3)*1i)*180/pi,angle(spin(:,4)+sqrt(spin(:,3).^2+spin(:,2).^2)*1i)*180/pi]
+en(i)=totalenergy_2(kx3list,ky3list,t_bond,tlist,U_bond,Ulist,energyall,wfall,parameters);
+plot(en);
+ylabel('energy (meV)');
+drawnow;
+[energyall,wfall]=energyMF_2(kx3list,ky3list,t_bond,tlist,U_bond,Ulist,energyall,wfall,parameters);
+
 end
 % i=0;
 % gap=0;

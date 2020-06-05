@@ -84,9 +84,5 @@ V2_expand=permute(repmat(V2,1,1,1,1,NQ,NQ),[1,2,3,5,6,4]); %{k_alpha,k_beta,q_al
 prod2=squeeze(sum(V2_expand.*ave2.data,[1,2])); %{q_alpha,q_beta,q_gamma,q_delta}
 H2=ttt(tensor(prod2),tensor(delta_tensor),[1,2,3,4],[1,2,3,4])/(N*NQ);
 tot=T+real(H1-H2)/2;
+tot=tot/(N*NQ);
 end
-
-
-
-
-
