@@ -6,8 +6,6 @@ NQ=length(Q);
 inner=parameters.inner;
 spin0=parameters.spin0;
 Nai=length(spin0);
-% Qindex=parameters.Qindex;
-% Qindexmod=parameters.Qindexmod;
 kxbasis=cell(1,NQ);
 kybasis=cell(1,NQ);
 for i=1:NQ
@@ -15,7 +13,7 @@ for i=1:NQ
     kybasis{i}=kylist+Q{i}(2);
 end
 sigma_x=[0,1;1,0];
-sigma_y=[0,1i;-1i,0];
+sigma_y=[0,-1i;1i,0];
 sigma_z=[1,0;0,-1];
 energylist=real(tb(t_bond,t,[cell2mat(kxbasis),-cell2mat(kxbasis)],[cell2mat(kybasis),-cell2mat(kybasis)],parameters));
 
@@ -28,7 +26,7 @@ Qy=cellfun(@(x)x(2),Q);
 [q_alpha_x,q_delta_x]=meshgrid(Qx,Qx);
 [q_alpha_y,q_delta_y]=meshgrid(Qy,Qy);
 
-V1=V(n_bond,U,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y); %V1_{q_alpha,q_delta}
+V1=V(n_bond,U,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
 
 % V1=zeros(NQ,NQ);    %V1_{q_alpha,q_delta}
 % for q_alpha_index=1:NQ 
@@ -97,7 +95,7 @@ prod2=ave2_tmp_expand.*delta_tensor_expand; %{q_alpha,q_beta,q_gamma,q_delta,sig
 [k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
 [k_alpha_y,k_beta_y,q_alpha_y,q_delta_y]=ndgrid(kylist,kylist,Qy,Qy);
 
-V2=V(n_bond,U,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y); %V2_{k_alpha,k_beta,q_alpha,q_delta}
+V2=V(n_bond,U,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
 
 V2_expand=permute(repmat(squeeze(sum(V2,1)),1,1,1,NQ,2,2),[1,2,4,3,5,6]); %{k_beta,q_alpha,q_beta,q_delta,sigma1,sigma2}
 prod2_expand=permute(repmat(squeeze(sum(prod2,3)),1,1,1,1,1,N),[6,1,2,3,4,5]); %{k_beta,q_alpha,q_beta,q_delta,sigma1,sigma2}

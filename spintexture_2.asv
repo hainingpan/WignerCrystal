@@ -1,4 +1,4 @@
-function [spin,gap]=spintexture(energyall,wfall,parameters)
+function [spin,gap]=spintexture_2(energyall,wfall,parameters)
 energyall_sort=sort(energyall(:));
 mu=energyall_sort(end*parameters.nu(1)/(2*parameters.nu(2)));
 occupied=(energyall<=mu);
@@ -16,16 +16,6 @@ sigma(:,:,2)=[0,1;1,0];
 sigma(:,:,3)=[0,-1i;1i,0];
 sigma(:,:,4)=[1,0;0,-1];
 
-c=reshape(wfall,N,2*NQ,NQ,2); %k,n,q,sigma
-
-occupied_expand=repmat(occupied,1,1,NQ,2); 
-c_tmp=occupied_expand.*conj(c);
-
-c2=ttt(tensor(c),tensor(sigma),[4],[2]);
-
-ave=ttt(tensor(c_tmp),c2,[1,2,4],[1,2,4]);
-
-
 expqq=zeros(Nai,NQ,NQ); %expqq_{ai,q_alpha,q_delta}
 for ai_index=1:Nai
     for q_alpha_index=1:NQ
@@ -37,8 +27,12 @@ for ai_index=1:Nai
     end
 end
 
-spin=ttt(tensor(expqq),ave,[2,3],[1,2])/(N*NQ);
-spin=real(spin.data);
+c=reshape(wfall,N,2*NQ,NQ,2); %k,n,q,sigma
+cc=ttt2(conj(c),c,[],[],[1,2],[1,2]); %k,n,q1,sigma1,q2,sigma2
+prod1=ttt(tensor(occupied),tensor(cc),[1,2],[1,2]); %q1,sigma1,q2,sigma2
+prod2=ttt(prod1,tensor(sigma),[2,4],[1,2]); %q1,q2,alpha
+spin=ttt(tensor(expqq),prod2,[1,2],[1,2])/(N*NQ); %ai,alpha
 
+spin=spin.data;
 end
 

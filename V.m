@@ -1,5 +1,6 @@
-function sum=V(nlist,Ulist,kx,ky)
+function sum=V(nlist,Ulist,kx,ky,parameters)
 sum=0;
 for i=1:length(Ulist)
-    sum=sum+Ulist(i)*exp(-1i*(kx.*nlist{i}(1)+ky.*nlist{i}(2)));
+    n=nlist{i}(1)*parameters.aM1+nlist{i}(2)*parameters.aM2;
+    sum=sum+Ulist(i)*exp(-1i*(kx.*n(1)+ky.*n(2)));
 end

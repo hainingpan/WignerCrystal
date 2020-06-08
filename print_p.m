@@ -1,4 +1,4 @@
-param=mainTri('W',4,'L',4,'a',0.1);
+param=mainTri('W',6,'L',6,'a',0.1);
 % param=mainTri('W',2,'L',ceil(2));
 param=construct_triangular(param);
 n=length(param.r);

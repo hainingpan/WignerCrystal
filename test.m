@@ -5,5 +5,14 @@
 %     end
 % end
 
-ave=average_init(parameters);
+% ave=average_init(parameters);
+
+[vec,val]=eig(h2);
+    val=real(diag(val));
+    [val,I]=sort(val);
+    vec=vec(:,I);
+    energyall2(k_beta_index,:)=val;
+    for ii=1:2*NQ
+        wfall2(k_beta_index,ii,:)=vec(:,ii);
+    end
 

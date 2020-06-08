@@ -28,6 +28,6 @@ for ai_index=1:Nai
     end
 end
 
-ave=ttt(tensor(expqq),tensor(cc,[2,2,Nai]),[1],[3]); %ave_{q_1,q_2,sigma1,sigma2}
+ave=ttt(tensor(expqq),tensor(cc),[1],[3]); %ave_{q_1,q_2,sigma1,sigma2}
 ave=ave.data/NQ;
 end

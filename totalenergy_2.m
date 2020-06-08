@@ -3,8 +3,6 @@ N=length(kxlist);
 Q=parameters.Q;
 NQ=length(Q);
 Qindex=parameters.Qindex;
-% Qindex=parameters.Qindex;
-% Qindexmod=parameters.Qindexmod;
 kxbasis=cell(1,NQ);
 kybasis=cell(1,NQ);
 for i=1:NQ
@@ -30,7 +28,7 @@ Qy=cellfun(@(x)x(2),Q);
 [q_alpha_x,q_delta_x]=meshgrid(Qx,Qx);
 [q_alpha_y,q_delta_y]=meshgrid(Qy,Qy);
 
-V1=V(n_bond,U,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y); %V1_{q_alpha,q_delta}
+V1=V(n_bond,U,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
 
 delta_tensor=zeros(NQ,NQ,NQ,NQ); %delta_tensor_{q_alpha,q_beta,q_gamma,q_delta}
 for q_alpha_index=1:NQ
@@ -57,7 +55,7 @@ H1=ttt(tensor(ave1_beta),prod2,[1,2],[1,2])/(2*N*NQ);
 [k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
 [k_alpha_y,k_beta_y,q_alpha_y,q_delta_y]=ndgrid(kylist,kylist,Qy,Qy);
 
-V2=V(n_bond,U,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y); %V2_{k_alpha,k_beta,q_alpha,q_delta}
+V2=V(n_bond,U,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
 
 ave2_alpha=ave;
 ave2_beta=ave;
