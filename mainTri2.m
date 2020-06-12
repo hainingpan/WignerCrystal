@@ -1,8 +1,12 @@
 function param=mainTri2()
 
-
+param.d=0.1;
 param.a1=[0,-1];
 param.a2=[sqrt(3)/2,-1/2];
+param.A1=[2,2];
+param.A2=[-2,4];
+% param.A1=2*param.a1+2*param.a2;
+% param.A2=-2*param.a1+4*param.a2;
 
 param.neighborlist{1}={[0,0]};
 param.neighborlist{2}={[-1,0],[0,-1],[1,-1],[1,0],[0,1],[-1,1]}; % direction on clock: 12, 10, 8, 6, 4, 2
@@ -13,5 +17,21 @@ param.neighborlist{6}={[-3,0],[0,-3],[3,-3],[3,0],[0,3],[-3,3]}; %direction on c
 for i=1:length(param.neighborlist)
     param.neighbor(i)=norm(param.neighborlist{i}{1}(1)*param.a1+param.neighborlist{i}{1}(2)*param.a2);    
 end
+param.Ulist=1./param.neighbor(2:end);
 
+param.uclist=[[0,0];[-1,0];[0,-1];[1,-1];[1,0];[0,1];[-1,1];...
+    [1,1];[0,2];[-1,2];[-2,2];[-2,1]];
+param.r=param.uclist*[param.a1;param.a2];
+Aneighbor=[[0,0];[1,0];[0,1];[-1,1];[-1,0];[0,-1];[1,-1]];
+Aneighbor2=Aneighbor*[param.A1;param.A2];
+param.Aneighbor2=Aneighbor2;
+% xindex=[];
+% yindex=[];
+% for i=1:size(Aneighbor2,1)
+%     xindex=[xindex;Aneighbor2(i,1)+param.uclist(:,1)];
+%     yindex=[yindex;Aneighbor2(i,2)+param.uclist(:,2)];    
+% end
+% param.xindex=xindex;
+% param.yindex=yindex;
+% param.rnc=[xindex,yindex]*[param.a1;param.a2];
 end

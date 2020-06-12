@@ -1,0 +1,7 @@
+param=mainTri2();
+n=size(param.r,1);
+for i=1:n
+    for j=i+1:n
+        p(i,j)=pot(param.xindex(i),param.yindex(j,:),30,param);
+    end
+end

@@ -1,18 +1,20 @@
 param=mainTri2();
-n=1;
-counter=1;
-N=3*n^2+3*n+1;
-kx3list=zeros(N,1);
-ky3list=zeros(N,1);
-a1=-(2*param.a1+param.a2)/3/n;
-a2=(param.a1+2*param.a2)/3/n;
-a31=a1/sqrt(3)*[0,1;-1,0]; %rotate 90 deg clockwisely
-a32=a2/sqrt(3)*[0,1;-1,0];  %rotate 90 deg clockwisely
-for yindex=-n:n
-    for xindex=max(-n,-n+yindex):min(n+yindex,n)
-        k2=xindex*a31+yindex*a32;
-        kx3list(counter)=k2(1);
-        ky3list(counter)=k2(2);
-        counter=counter+1;
+n=size(param.r,1);
+p=zeros(n);
+for i=1:n
+    for j=i+1:n
+        p(i,j)=pot2(param.uclist(i,:),param.uclist(j,:),param);
     end
 end
+
+p=p+p.';
+p2=diag(2*sum(p))-p;
+p2=int32(ceil(p2*1e7));
+string="";
+for i=1:n
+    string=strcat(string,"%d ");
+end
+string=strcat(string,"\n");
+file = fopen('p2.txt','w');
+fprintf(file,string,p2);
+fclose(file);
