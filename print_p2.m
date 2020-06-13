@@ -1,12 +1,12 @@
 param=mainTri2();
 n=size(param.r,1);
-% p=zeros(n);
-p=sym(zeros(n));
+p=zeros(n);
+% p=sym(zeros(n));
 
 for i=1:n
     for j=i+0:n
-%         p(i,j)=pot2(param.uclist(i,:),param.uclist(j,:),param);
-        p(i,j)=pot_symb(param.uclist(i,:),param.uclist(j,:),param);
+        p(i,j)=pot2(param.uclist(i,:),param.uclist(j,:),param);
+%         p(i,j)=pot_symb(param.uclist(i,:),param.uclist(j,:),param);
     end
 end
 
