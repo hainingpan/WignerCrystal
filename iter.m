@@ -1,8 +1,8 @@
 parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,3]);
 tshell=3;
-Ushell=1;
-[t,neighborlist]=t_calc_func(tshell,parameters);
-U=U_calc_func(Ushell,parameters);
+Ushell=3;
+% [t,neighborlist]=t_calc_func(tshell,parameters);
+% U=U_calc_func(Ushell,parameters);
 
 n=9;
 counter=1;
@@ -22,9 +22,9 @@ kylist=kylist';
 
 t_bond=[neighborlist{1:tshell+1}];
 U_bond=[neighborlist{1:Ushell+1}];
-hp=1;
-tlist=hp*[t{1:tshell+1}];
-epsilon=10;
+hp=0;
+tlist=-hp*[t{1:tshell+1}];
+epsilon=1;
 Ulist=real([U{1:Ushell+1}])/epsilon;
 % Ulist=real([U{1},U{2}(1)*[1,1,1,1,1,1]]);
 

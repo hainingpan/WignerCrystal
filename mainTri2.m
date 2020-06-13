@@ -11,7 +11,7 @@ param.neighborlist{4}={[-2,0],[0,-2],[2,-2],[2,0],[0,2],[-2,2]}; %direction on c
 param.neighborlist{5}={[-2,-1],[-1,-2],[1,-3],[2,-3],[3,-2],[3,-1],[2,1],[1,2],[-1,3],[-2,3],[-3,2],[-3,1]}; %counterclockwise from the first point in Quadrant II
 param.neighborlist{6}={[-3,0],[0,-3],[3,-3],[3,0],[0,3],[-3,3]}; %direction on clock: 12, 10, 8, 6, 4, 2
 
-n=10;
+n=8;
 counter=1;
 N=3*n^2+3*n+1;
 xlist=zeros(N,1);
@@ -50,7 +50,7 @@ param.neighbor=distsquare(logical([1;diff(distsquare)>.5]));
 %     [1,1];[0,2];[-1,2];[-2,2];[-2,1]];
 % param.r=param.uclist*[param.a1;param.a2];
 % % Aneighbor=[[0,0];[1,0];[0,1];[-1,1];[-1,0];[0,-1];[1,-1]];
-% Aneighbor=reshape([param.neighborlist{1}{:},param.neighborlist{2}{:},param.neighborlist{3}{:}],[2,13])';
+% Aneighbor=reshape([param.neighborlist{1}{:},param.neighborlist{2}{:},param.neighborlist{3}{:},param.neighborlist{4}{:},param.neighborlist{5}{:},param.neighborlist{6}{:}],[2,37])';
 %% rectangular supercell with 4 sites
 % param.A1=[-1,2];
 % param.A2=[-2,0];
@@ -59,17 +59,17 @@ param.neighbor=distsquare(logical([1;diff(distsquare)>.5]));
 % [X,Y]=meshgrid(-2:2,-2:2);
 % Aneighbor=[X(:),Y(:)];
 %% hexagonal supercell with 9 sites
-% param.A1=[0,3];
-% param.A2=[3,0];
-% param.uclist=[[0,0];[-1,0];[0,-1];[1,-1];[1,0];[0,1];[-1,1];[-1,2];[-2,1]];
-% param.r=param.uclist*[param.a1;param.a2];
-% Aneighbor=reshape([param.neighborlist{1}{:},param.neighborlist{2}{:},param.neighborlist{3}{:},param.neighborlist{4}{:}],[2,19])';
-%% hexagonal supercell with 7 sites
-param.A1=[2,1];
-param.A2=[-1,3];
-param.uclist=[[0,0];[-1,1];[0,1];[1,1];[-2,2];[-2,2];[-1,2];[0,2]];
+param.A1=[0,3];
+param.A2=[3,0];
+param.uclist=[[0,0];[-1,0];[0,-1];[1,-1];[1,0];[0,1];[-1,1];[-1,2];[-2,1]];
 param.r=param.uclist*[param.a1;param.a2];
 Aneighbor=reshape([param.neighborlist{1}{:},param.neighborlist{2}{:},param.neighborlist{3}{:},param.neighborlist{4}{:}],[2,19])';
+%% hexagonal supercell with 7 sites
+% param.A1=[2,1];
+% param.A2=[-1,3];
+% param.uclist=[[0,0];[-1,1];[0,1];[1,1];[-2,2];[-2,2];[-1,2];[0,2]];
+% param.r=param.uclist*[param.a1;param.a2];
+% Aneighbor=reshape([param.neighborlist{1}{:},param.neighborlist{2}{:},param.neighborlist{3}{:},param.neighborlist{4}{:}],[2,19])';
 
 
 

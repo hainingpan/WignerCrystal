@@ -1,6 +1,6 @@
 function sum=pot_symb(x,y,param)
 sum=0;
-nn=length(param.neighbor)-1;
+nn=10;
 U=sym('U',[1,nn]);
 for i=1:size(param.Aneighbor2,1)
     y2=y+param.Aneighbor2(i,:);
