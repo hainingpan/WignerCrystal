@@ -2,14 +2,13 @@ function [wbgrid,wtgrid]=w_rec(an,rx,ry,parameters)
 %R: center of wannier state
 %r: scalar|array real space position
 %use rectangular (skew) grid
-n=5;
+n=8;
 state=1;
 xrange=-n:n;
 yrange=-n:n;
 Nkx=length(xrange);
 Nky=length(yrange);
 Nmax=parameters.Nmax;
-% aM=parameters.aM;
 bM1=parameters.bM1;
 bM2=parameters.bM2;
 %shift to diamond

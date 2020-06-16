@@ -22,19 +22,19 @@ kylist=kylist';
 
 t_bond=[neighborlist{1:tshell+1}];
 U_bond=[neighborlist{1:Ushell+1}];
-hp=0;
+hp=1;
 tlist=-hp*[t{1:tshell+1}];
-epsilon=1;
+epsilon=10;
 Ulist=real([U{1:Ushell+1}])/epsilon;
 % Ulist=real([U{1},U{2}(1)*[1,1,1,1,1,1]]);
 
 clear spinsav en
 [energyall,wfall]=energyMF_init_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,parameters);
-for i=1:50
+for i=101:1000
 [spin,gap]=spintexture(energyall,wfall,parameters);
-fprintf("%d: gap:%0.8f eV\n",i,gap);
-disp([spin,angle(spin(:,2)+spin(:,3)*1i)*180/pi,angle(spin(:,4)+sqrt(spin(:,3).^2+spin(:,2).^2)*1i)*180/pi])
 en(i)=totalenergy_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,energyall,wfall,parameters);
+fprintf("%d: gap:%0.8feV E:%feV\n",i,gap,en(end));
+disp([spin,angle(spin(:,2)+spin(:,3)*1i)*180/pi,angle(spin(:,4)+sqrt(spin(:,3).^2+spin(:,2).^2)*1i)*180/pi])
 plot(en);
 ylabel('energy (eV)');
 drawnow;

@@ -10,19 +10,23 @@ neighborlist{6}={[-3,0],[0,-3],[3,-3],[3,0],[0,3],[-3,3]}; %direction on clock: 
 [rx,ry]=meshgrid(linspace(-(k+1)*sqrt(3)*parameters.aM,(k+1)*sqrt(3)*parameters.aM,(k+1)*100+1));
 
 
-[wbgrid,wtgrid]=w_rec([neighborlist{1:k+1}],rx,ry,parameters);
+% [wbgrid,wtgrid]=w_rec([neighborlist{1:k+1}],rx,ry,parameters);
+neighborlist2=cellfun(@(x)x{1},neighborlist,'UniformOutput',false);
+[wbgrid,wtgrid]=w_rec([neighborlist2(1:k+1)],rx,ry,parameters);
+
 counter=1;
 for i=1:k+1
     for j=1:length(neighborlist{i})
         wb{i,j}=wbgrid(:,:,counter);
         wt{i,j}=wtgrid(:,:,counter);
-        counter=counter+1;
     end
+    counter=counter+1;
 end
 U={};
 for i=1:k+1
+    Uint=hubbardU_fft(wb{1,1},wt{1,1},wb{i,1},wt{i,1},rx,ry,parameters);
     for j=1:length(neighborlist{i})
-        U{i}(j)=hubbardU_fft(wb{1,1},wt{1,1},wb{i,j},wt{i,j},rx,ry,parameters);
+        U{i}(j)=Uint;
     end
 end
 

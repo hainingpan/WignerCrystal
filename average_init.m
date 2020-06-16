@@ -30,4 +30,10 @@ end
 
 ave=ttt(tensor(expqq),tensor(cc,[2,2,Nai]),[1],[3]); %ave_{q_1,q_2,sigma1,sigma2}
 ave=ave.data/NQ;
+
+herr=max(sum(abs(ave-conj(permute(ave,[2,1,4,3]))),[2,1]),[],'all');
+assert(herr<1e-12,'init average spin hermitian error exceeds');
+fprintf("init average spin hermitian error: %e\n",herr);
+ave=1/2*(ave+conj(permute(ave,[2,1,4,3])));
+
 end
