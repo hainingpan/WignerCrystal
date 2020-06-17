@@ -3,8 +3,7 @@ N=length(kxlist);
 Q=parameters.Q;
 NQ=length(Q);
 Qindex=parameters.Qindex;
-% Qindex=parameters.Qindex;
-% Qindexmod=parameters.Qindexmod;
+Qindexmod=parameters.Qindexmod;
 kxbasis=cell(1,NQ);
 kybasis=cell(1,NQ);
 for i=1:NQ
@@ -35,12 +34,18 @@ for q_alpha_index=1:NQ
     for q_beta_index=1:NQ
         for q_gamma_index=1:NQ
             for q_delta_index=1:NQ
-                qindex_alpha=Qindex{q_alpha_index};
-                qindex_beta=Qindex{q_beta_index};
-                qindex_gamma=Qindex{q_gamma_index};
-                qindex_delta=Qindex{q_delta_index};
+%                 qindex_alpha=Qindex{q_alpha_index};
+%                 qindex_beta=Qindex{q_beta_index};
+%                 qindex_gamma=Qindex{q_gamma_index};
+%                 qindex_delta=Qindex{q_delta_index};
+%                 deltafunc=qindex_gamma+qindex_delta-qindex_alpha-qindex_beta;
+%                 delta_tensor(q_alpha_index,q_beta_index,q_delta_index,q_gamma_index)=all(deltafunc==round(deltafunc));
+                 qindex_alpha=Qindexmod{q_alpha_index};
+                qindex_beta=Qindexmod{q_beta_index};
+                qindex_gamma=Qindexmod{q_gamma_index};
+                qindex_delta=Qindexmod{q_delta_index};
                 deltafunc=qindex_gamma+qindex_delta-qindex_alpha-qindex_beta;
-                delta_tensor(q_alpha_index,q_beta_index,q_delta_index,q_gamma_index)=all(deltafunc==round(deltafunc));
+                delta_tensor(q_alpha_index,q_beta_index,q_delta_index,q_gamma_index)=all(mod(deltafunc,NQ)==0);
             end
         end
     end

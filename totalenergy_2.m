@@ -3,6 +3,7 @@ N=length(kxlist);
 Q=parameters.Q;
 NQ=length(Q);
 Qindex=parameters.Qindex;
+Qindexmod=parameters.Qindexmod;
 kxbasis=cell(1,NQ);
 kybasis=cell(1,NQ);
 for i=1:NQ
@@ -25,8 +26,8 @@ T=sum(epsilonk.*aveT,'all');
 
 Qx=cellfun(@(x)x(1),Q);
 Qy=cellfun(@(x)x(2),Q);
-[q_alpha_x,q_delta_x]=meshgrid(Qx,Qx);
-[q_alpha_y,q_delta_y]=meshgrid(Qy,Qy);
+[q_alpha_x,q_delta_x]=ndgrid(Qx,Qx);
+[q_alpha_y,q_delta_y]=ndgrid(Qy,Qy);
 
 V1=V(n_bond,U,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
 
@@ -35,12 +36,18 @@ for q_alpha_index=1:NQ
     for q_beta_index=1:NQ
         for q_gamma_index=1:NQ
             for q_delta_index=1:NQ
-                qindex_alpha=Qindex{q_alpha_index};
-                qindex_beta=Qindex{q_beta_index};
-                qindex_gamma=Qindex{q_gamma_index};
-                qindex_delta=Qindex{q_delta_index};
+%                 qindex_alpha=Qindex{q_alpha_index};
+%                 qindex_beta=Qindex{q_beta_index};
+%                 qindex_gamma=Qindex{q_gamma_index};
+%                 qindex_delta=Qindex{q_delta_index};
+%                 deltafunc=qindex_gamma+qindex_delta-qindex_alpha-qindex_beta;
+%                 delta_tensor(q_alpha_index,q_beta_index,q_delta_index,q_gamma_index)=all(deltafunc==round(deltafunc));
+                qindex_alpha=Qindexmod{q_alpha_index};
+                qindex_beta=Qindexmod{q_beta_index};
+                qindex_gamma=Qindexmod{q_gamma_index};
+                qindex_delta=Qindexmod{q_delta_index};
                 deltafunc=qindex_gamma+qindex_delta-qindex_alpha-qindex_beta;
-                delta_tensor(q_alpha_index,q_beta_index,q_delta_index,q_gamma_index)=all(deltafunc==round(deltafunc));
+                delta_tensor(q_alpha_index,q_beta_index,q_delta_index,q_gamma_index)=all(mod(deltafunc,NQ)==0);
             end
         end
     end
