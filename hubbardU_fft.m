@@ -34,7 +34,7 @@ wt2k=reshape(wt2k(end:-1:1),Nx,Ny);
 % w2=reshape(abs(wbk).^2+abs(wtk).^2,Nx,Ny);
 w2=reshape(wb1k.*wb2k+wt1k.*wt2k,Nx,Ny);
 
-F=griddedInterpolant(kxmap',kymap',w2');
+F=griddedInterpolant(kxmap',kymap',w2);
 func=@(x,y) alpha/(2*pi)*1./(sqrt(x.^2+y.^2)).*(F(x',y')');
 re=quad2d(func,kxlist(1),kxlist(end),kylist(1),kylist(end),'FailurePlot',false,'MaxFunEvals',5000);
 % Fk=alpha/(2*pi)*1./(sqrt(kxmap.^2+kymap.^2)).*reshape(abs(wbk).^2+abs(wtk).^2,Nx,Ny);
