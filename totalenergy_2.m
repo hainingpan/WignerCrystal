@@ -49,8 +49,8 @@ end
 ave1_alpha=squeeze(sum(double(contract(tensor(ave),4,5)),1)); %q_alpha,q_delta
 ave1_beta=ave1_alpha; %q_beta,q_gamma
 prod1=V1.*ave1_alpha; %q_alpha,q_delta
-prod2=ttt(tensor(delta_tensor),tensor(prod1),[1,4],[1,2]); %q_beta,q_gamma
-H1=ttt(tensor(ave1_beta),prod2,[1,2],[1,2])/(2*N*NQ);
+prod2=tprod((delta_tensor),(prod1),[1,4],[1,2],[],[]); %q_beta,q_gamma
+H1=tprod((ave1_beta),prod2,[1,2],[1,2],[],[])/(2*N*NQ);
 
 [k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
 [k_alpha_y,k_beta_y,q_alpha_y,q_delta_y]=ndgrid(kylist,kylist,Qy,Qy);
@@ -59,9 +59,9 @@ V2=V(n_bond,U,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_
 
 ave2_alpha=ave;
 ave2_beta=ave;
-prod1=ttt(tensor(ave2_alpha),tensor(ave2_beta),[4,5],[5,4]); %k_alpha,q_alpha,q_gamma,k_beta,q_beta,q_delta
-prod2=ttt2(tensor(V2),prod1,[1,2],[1,4],[3,4],[2,6]); %q_alpha,q_delta,q_gamma,q_beta
-H2=ttt(tensor(delta_tensor),tensor(prod2),[1,2,3,4],[1,4,3,2])/(2*N*NQ);
+prod1=tprod((ave2_alpha),(ave2_beta),[4,5],[5,4],[],[]); %k_alpha,q_alpha,q_gamma,k_beta,q_beta,q_delta
+prod2=tprod((V2),prod1,[1,2],[1,4],[3,4],[2,6]); %q_alpha,q_delta,q_gamma,q_beta
+H2=tprod((delta_tensor),(prod2),[1,2,3,4],[1,4,3,2],[],[])/(2*N*NQ);
 
 tot=real(T+H1-H2);
 tot=tot/(N*NQ);

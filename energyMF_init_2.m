@@ -47,11 +47,11 @@ for q_alpha_index=1:NQ
 end
 
 ave=average_init(parameters); %q_alpha,q_delta,sigma1,sigma2
-ave1=contract(tensor(ave),3,4); %,q_alpha,q_delta
+ave1=sum((ave),[3,4]); %,q_alpha,q_delta
 V1_expand=permute(repmat(V1,1,1,NQ,NQ),[1,3,4,2]); %q_alpha,q_beta,q_gamma,q_delta
 prod1=V1_expand.*delta_tensor; %q_alpha,q_beta,q_gamma,q_delta
-elem1=ttt(ave1,tensor(prod1),[1,2],[1,4]); %q_beta,q_gamma
-H1=kron(eye(2),elem1.data);
+elem1=tprod(ave1,(prod1),[1,2],[1,4],[],[]); %q_beta,q_gamma
+H1=kron(eye(2),elem1);
 H1=repmat(H1,1,1,N)/(NQ); %{q_beta+sigma,q_gamma+sigma,k_beta}
 
 [k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
@@ -61,8 +61,8 @@ V2=V(n_bond,U,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_
 
 ave2=ave; %q_alpha,q_gamma,sigma1,sigma2
 V2_reduce=squeeze(sum(V2,1)); %k_beta,q_alpha,q_delta
-prod1=ttt2(V2_reduce,ave2,[],[],[2],[1]); %q_alpha,k_beta,q_delta,q_gamma,sigma1,sigma2
-prod2=ttt2(delta_tensor,prod1,[1,3],[1,4],[4],[3]); %q_delta,q_beta,k_beta,sigma1,sigam2
+prod1=tprod(V2_reduce,ave2,[],[],[2],[1]); %q_alpha,k_beta,q_delta,q_gamma,sigma1,sigma2
+prod2=tprod(delta_tensor,prod1,[1,3],[1,4],[4],[3]); %q_delta,q_beta,k_beta,sigma1,sigam2
 H2=reshape(permute(prod2,[2,5,1,4,3]),[2*NQ,2*NQ,N])/(N*NQ); %q_beta+sigma2,q_delta+sigma1,k_beta
 
 T=zeros(2*NQ,2*NQ,N);

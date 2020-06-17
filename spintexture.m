@@ -21,9 +21,9 @@ c=reshape(wfall,N,2*NQ,NQ,2); %k,n,q,sigma
 occupied_expand=repmat(occupied,1,1,NQ,2); 
 c_tmp=occupied_expand.*conj(c);
 
-c2=ttt(tensor(c),tensor(sigma),[4],[2]);
+c2=tprod((c),(sigma),[4],[2],[],[]);
 
-ave=ttt(tensor(c_tmp),c2,[1,2,4],[1,2,4]);
+ave=tprod((c_tmp),c2,[1,2,4],[1,2,4],[],[]);
 
 
 expqq=zeros(Nai,NQ,NQ); %expqq_{ai,q_alpha,q_delta}
@@ -37,8 +37,8 @@ for ai_index=1:Nai
     end
 end
 
-spin=ttt(tensor(expqq),ave,[2,3],[1,2])/(N*NQ);
-spin=real(spin.data);
+spin=tprod((expqq),ave,[2,3],[1,2],[],[])/(N*NQ);
+spin=real(spin);
 
 end
 

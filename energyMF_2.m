@@ -48,12 +48,12 @@ for q_alpha_index=1:NQ
 end
 
 ave=average(energyall_o,wfall_o,parameters); %k_alpha,q_alpha,q_delta,sigma1,sigma2
-ave1=contract(tensor(ave),4,5); %k_alpha,q_alpha,q_delta
+ave1=sum(ave,[4,5]); %k_alpha,q_alpha,q_delta
 V1_expand=permute(repmat(V1,1,1,NQ,NQ),[1,3,4,2]); %q_alpha,q_beta,q_gamma,q_delta
 prod1=V1_expand.*delta_tensor; %q_alpha,q_beta,q_gamma,q_delta
-prod2=ttt(ave1,tensor(prod1),[2,3],[1,4]); %k_alpha,q_beta,q_gamma
-    prod2=1/2*(prod2+conj(permute(prod2.data,[1,3,2])));
-elem1=squeeze(sum(prod2.data,1)); %q_beta,q_gamma
+prod2=tprod(ave1,(prod1),[2,3],[1,4],[],[]); %k_alpha,q_beta,q_gamma
+    prod2=1/2*(prod2+conj(permute(prod2,[1,3,2])));
+elem1=squeeze(sum(prod2,1)); %q_beta,q_gamma
 H1=kron(eye(2),elem1);
 H1=repmat(H1,1,1,N)/(N*NQ); %{q_beta+sigma,q_gamma+sigma,k_beta}
 
@@ -63,8 +63,8 @@ H1=repmat(H1,1,1,N)/(N*NQ); %{q_beta+sigma,q_gamma+sigma,k_beta}
 V2=V(n_bond,U,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
 
 ave2=ave; %k_alpha,q_alpha,q_gamma,sigma1,sigma2
-prod1=ttt2(V2,ave2,[1],[1],[3],[2]); %q_alpha,k_beta,q_delta,q_gamma,sigma1,sigma2
-prod2=ttt2(delta_tensor,prod1,[1,3],[1,4],[4],[3]); %q_delta,q_beta,k_beta,sigma1,sigam2
+prod1=tprod(V2,ave2,[1],[1],[3],[2]); %q_alpha,k_beta,q_delta,q_gamma,sigma1,sigma2
+prod2=tprod(delta_tensor,prod1,[1,3],[1,4],[4],[3]); %q_delta,q_beta,k_beta,sigma1,sigam2
 H2=reshape(permute(prod2,[2,5,1,4,3]),[2*NQ,2*NQ,N])/(N*NQ); %q_beta+sigma2,q_delta+sigma1,k_beta
 
 T=zeros(2*NQ,2*NQ,N);

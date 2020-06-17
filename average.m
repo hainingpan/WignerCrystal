@@ -9,9 +9,9 @@ N=size(energyall,1);
 
 c=reshape(wfall,N,2*NQ,NQ,2); %k,n,q,sigma
     
-c_expand=ttt2(conj(c),c,[],[],[1,2],[1,2]);
+c_expand=tprod(conj(c),c,[],[],[1,2],[1,2]);
 
-ave=ttt2(tensor(c_expand),tensor(occupied),[2],[2],[1],[1]);
+ave=tprod((c_expand),(occupied),[2],[2],[1],[1]);
 ave=permute(ave,[1,2,4,3,5]); %k,q1,q2,sigma1,sigma2
 herr=max(sum(abs(ave-conj(permute(ave,[1,3,2,5,4]))),[2,3]),[],'all');
 assert(herr<1e-12,'average spin hermitian error exceeds');

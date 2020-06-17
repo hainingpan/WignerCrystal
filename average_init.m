@@ -28,8 +28,8 @@ for ai_index=1:Nai
     end
 end
 
-ave=ttt(tensor(expqq),tensor(cc,[2,2,Nai]),[1],[3]); %ave_{q_1,q_2,sigma1,sigma2}
-ave=ave.data/NQ;
+ave=tprod((expqq),cc,[1],[3],[],[]); %ave_{q_1,q_2,sigma1,sigma2}
+ave=ave/NQ;
 
 herr=max(sum(abs(ave-conj(permute(ave,[2,1,4,3]))),[2,1]),[],'all');
 assert(herr<1e-12,'init average spin hermitian error exceeds');
