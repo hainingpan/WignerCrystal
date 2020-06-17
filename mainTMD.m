@@ -73,8 +73,8 @@ end
 if parameters.nu==[1,3]
     ailist={[0,0],[-2,1],[-4,2],[-1,1],[-2,2],[-3,2],[-3,1],[-2,0],[-1,0]};    
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     parameters.spin0={[1,0,0],[cos(2*pi/3),sin(2*pi/3),0],[cos(4*pi/3),sin(4*pi/3),0]};
-    parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
+    parameters.spin0={[1,0,0],[cos(2*pi/3),sin(2*pi/3),0],[cos(4*pi/3),sin(4*pi/3),0]};
+%     parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
     Qlist={[0,0],[1/3,0],[2/3,0],[0,1/3],[1/3,1/3],[2/3,1/3],[0,2/3],[1/3,2/3],[2/3,2/3]};
     parameters.Q=cellfun(@(x) x(1)*parameters.bM1+x(2)*parameters.bM2,Qlist,'UniformOutput',0);
     parameters.Qindex=Qlist;

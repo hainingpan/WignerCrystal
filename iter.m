@@ -1,6 +1,6 @@
-parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,3]);
+parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[2,3]);
 tshell=3;
-Ushell=3;
+Ushell=6;
 % [t,neighborlist]=t_calc_func(tshell,parameters);
 % U=U_calc_func(Ushell,parameters);
 
@@ -22,15 +22,15 @@ kylist=kylist';
 
 t_bond=[neighborlist{1:tshell+1}];
 U_bond=[neighborlist{1:Ushell+1}];
-hp=1;
+hp=0;
 tlist=-hp*[t{1:tshell+1}];
-epsilon=10;
+epsilon=1;
 Ulist=real([U{1:Ushell+1}])/epsilon;
 % Ulist=real([U{1},U{2}(1)*[1,1,1,1,1,1]]);
 
 clear spinsav en
 [energyall,wfall]=energyMF_init_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,parameters);
-for i=101:1000
+for i=1:1000
 [spin,gap]=spintexture(energyall,wfall,parameters);
 en(i)=totalenergy_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,energyall,wfall,parameters);
 fprintf("%d: gap:%0.8feV E:%feV\n",i,gap,en(end));

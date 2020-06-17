@@ -5,6 +5,7 @@ neighborlist{3}={[-1,-1],[1,-2],[2,-1],[1,1],[-1,2],[-2,1]}; %directin on clock:
 neighborlist{4}={[-2,0],[0,-2],[2,-2],[2,0],[0,2],[-2,2]}; %direction on clock: 12, 10, 8, 6, 4, 2
 neighborlist{5}={[-2,-1],[-1,-2],[1,-3],[2,-3],[3,-2],[3,-1],[2,1],[1,2],[-1,3],[-2,3],[-3,2],[-3,1]}; %counterclockwise from the first point in Quadrant II
 neighborlist{6}={[-3,0],[0,-3],[3,-3],[3,0],[0,3],[-3,3]}; %direction on clock: 12, 10, 8, 6, 4, 2
+neighborlist{7}={[-4, 2], [-2, -2], [-2, 4], [2, -4], [2, 2], [4, -2]}; %direction TBD
 
 % [rx,ry]=meshgrid(linspace(-3*sqrt(3)*parameters.aM,3*sqrt(3)*parameters.aM,101));
 [rx,ry]=meshgrid(linspace(-(k+1)*sqrt(3)*parameters.aM,(k+1)*sqrt(3)*parameters.aM,(k+1)*100+1));
