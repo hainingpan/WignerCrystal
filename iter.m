@@ -1,6 +1,6 @@
 parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,2]);
 tshell=3;
-Ushell=6;
+Ushell=8;
 % [t,neighborlist]=t_calc_func(tshell,parameters);
 % U=U_calc_func(Ushell,parameters);
 
