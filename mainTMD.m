@@ -61,7 +61,7 @@ if parameters.nu==[1,2]
     ailist={[0,0],[-1,2],[-1,1],[-2,3]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
     parameters.spin0={[0,0,1],[0,0,-1]};
-%     parameters.spin0={[0,0,1],[0,cos(.9*pi),sin(.9*pi)]};
+%     parameters.spin0={[0,0,1],[0,cos(.5*pi),sin(.5*pi)]};
     Qlist={[0,0],[1/2,0],[0,1/2],[1/2,1/2]};
     parameters.Q=cellfun(@(x) x(1)*parameters.bM1+x(2)*parameters.bM2,Qlist,'UniformOutput',0);
     parameters.Qindex=Qlist;
