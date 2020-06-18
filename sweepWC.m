@@ -21,17 +21,19 @@ for xindex=1:n
 end
 kxlist=kxlist';
 kylist=kylist';
-sweepfunc=@(x,y) sweepepsilon(3,x,y,neighborlist,t,U,kxlist,kylist,parameters);
+sweepfunc=@(x,y) sweepepsilon(tshell,x,y,neighborlist,t,U,kxlist,kylist,parameters);
 epsilonlist=linspace(1,50,4);
 Nep=length(epsilonlist);
 final=zeros(1,Nep);
+gap=zeros(1,Nep);
+
 parfor i=1:Nep
     disp(i)
-[final(i),spin(:,:,i)]=sweepfunc(23,epsilonlist(i));
+[final(i),spin(:,:,i),gap(i)]=sweepfunc(Ushell,epsilonlist(i));
 end
-save('sweepWC.mat','parameters','final','spin','U','t','epsilonlist');
+save('sweepWC.mat','parameters','final','spin','U','t','epsilonlist','gap');
 
-function [final,spin]=sweepepsilon(tshell2,Ushell2,epsilon,neighborlist,t,U,kxlist,kylist,parameters)
+function [final,spin,gap]=sweepepsilon(tshell2,Ushell2,epsilon,neighborlist,t,U,kxlist,kylist,parameters)
 t_bond=[neighborlist{1:tshell2+1}];
 U_bond=[neighborlist{1:Ushell2+1}];
 hp=1;
@@ -40,7 +42,7 @@ Ulist=real([U{1:Ushell2+1}])/epsilon;
 
 [energyall,wfall]=energyMF_init_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,parameters);
 for i=1:200
-[spin,~]=spintexture(energyall,wfall,parameters);
+[spin,gap]=spintexture(energyall,wfall,parameters);
 en(i)=totalenergy_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,energyall,wfall,parameters);
 [energyall,wfall]=energyMF_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,energyall,wfall,parameters);
 if length(en)>1    
