@@ -15,6 +15,6 @@ ave=ttt2(tensor(c_expand),tensor(occupied),[2],[2],[1],[1]);
 ave=permute(ave,[1,2,4,3,5]); %k,q1,q2,sigma1,sigma2
 herr=max(sum(abs(ave-conj(permute(ave,[1,3,2,5,4]))),[2,3]),[],'all');
 assert(herr<1e-12,'average spin hermitian error exceeds');
-fprintf("average spin hermitian error: %e\n",herr);
+% fprintf("average spin hermitian error: %e\n",herr);
 ave=1/2*(ave+conj(permute(ave,[1,3,2,5,4])));
 end

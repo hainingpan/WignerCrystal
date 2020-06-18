@@ -75,7 +75,7 @@ end
 H=T+H1-H2;
 herr=max(sum(abs(H-conj(permute(H,[2,1,3]))),[1,2]));
 assert(herr<1e-12,'hermitian error exceeds');
-fprintf("hermitian error: %e\n",herr);
+% fprintf("hermitian error: %e\n",herr);
 H=1/2*(H+conj(permute(H,[2,1,3])));
 for k_beta_index=1:N
    [vec,val]=eig(H(:,:,k_beta_index));
