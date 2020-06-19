@@ -1,8 +1,10 @@
-function [spin,gap]=spintexture(energyall,wfall,parameters)
+function [spin,gap,inner]=spintexture(energyall,wfall,parameters)
 energyall_sort=sort(energyall(:));
 mu=energyall_sort(end*parameters.nu(1)/(2*parameters.nu(2)));
 occupied=(energyall<=mu);
 gap=energyall_sort(end*parameters.nu(1)/(2*parameters.nu(2))+1)-energyall_sort(end*parameters.nu(1)/(2*parameters.nu(2)));
+innergap=energyall_sort(end*parameters.nu(1)/(2*parameters.nu(2)))-energyall_sort(end*parameters.nu(1)/(2*parameters.nu(2))-1);
+
 inner=parameters.inner;
 Q=parameters.Q;
 NQ=length(Q);
