@@ -29,11 +29,11 @@ gap=zeros(1,Nep);
 innergap=zeros(1,Nep);
 parfor i=1:Nep
     disp(i)
-[final(i),spin(:,:,i),gap(i)]=sweepfunc(Ushell,epsilonlist(i));
+[final(i),spin(:,:,i),gap(i),innergap(i)]=sweepfunc(Ushell,epsilonlist(i));
 end
 save('sweepWC.mat','parameters','final','spin','U','t','epsilonlist','gap','innergap');
 
-function [final,spin,gap]=sweepepsilon(tshell2,Ushell2,epsilon,neighborlist,t,U,kxlist,kylist,parameters)
+function [final,spin,gap,innergap]=sweepepsilon(tshell2,Ushell2,epsilon,neighborlist,t,U,kxlist,kylist,parameters)
 t_bond=[neighborlist{1:tshell2+1}];
 U_bond=[neighborlist{1:Ushell2+1}];
 hp=1;
@@ -46,7 +46,7 @@ for i=1:200
 en(i)=totalenergy_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,energyall,wfall,parameters);
 [energyall,wfall]=energyMF_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,energyall,wfall,parameters);
 if length(en)>1    
-    if abs(en(end)-en(end-1))<1e-8
+    if abs(en(end)-en(end-1))<1e-7
         break
     end
 end
