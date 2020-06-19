@@ -1,5 +1,5 @@
 %Sweep for Wigner Crystal as a function epsilon and d
-dlist=linspace(10,100,40);
+dlist=linspace(10,200,10);
 Nd=length(dlist);
 epsilonlist=linspace(1,200,40);
 Nep=length(epsilonlist);
@@ -36,7 +36,7 @@ sweepfunc=@(x,y) sweepepsilon(tshell,x,y,neighborlist,t,U,kxlist,kylist,paramete
     end
 end
 
-save('sweepWC.mat','parameters','final','spin','U','t','epsilonlist','gap','innergap');
+save('sweepWC.mat','parameters','final','spin','U','t','epsilonlist','gap','innergap','dlist');
 
 
 function [final,spin,gap,innergap]=sweepepsilon(tshell2,Ushell2,epsilon,neighborlist,t,U,kxlist,kylist,parameters)
