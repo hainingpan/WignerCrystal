@@ -1,8 +1,9 @@
-parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[2,3]);
+parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[2,3],'d',1);
 tshell=3;
-Ushell=11;
-% [t,neighborlist]=t_calc_func(tshell,parameters);
-% U=U_calc_func(Ushell,parameters);
+Ushell=29;
+[t,neighborlist]=t_calc_func(tshell,parameters);
+U=U_calc_func(Ushell,parameters);
+
 
 n=15;
 counter=1;
@@ -26,7 +27,6 @@ hp=1;
 tlist=-hp*[t{1:tshell+1}];
 epsilon=50;
 Ulist=real([U{1:Ushell+1}])/epsilon;
-% Ulist=real([U{1},U{2}(1)*[1,1,1,1,1,1]]);
 
 clear spinsav en
 [energyall,wfall]=energyMF_init_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,parameters);
@@ -41,9 +41,11 @@ drawnow;
 spinsav(:,:,i)=spin;
 gapsav(i)=gap;
 [energyall,wfall]=energyMF_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,energyall,wfall,parameters);
-if length(en)>1
-    if 
+if length(en)>1    
+    if abs(en(end)-en(end-1))<1e-8
+        break
+    end
 end
 end
-
-save(sprintf('nu%d,%d_t%d_U%d_hp%d_ep%d.mat',parameters.nu(1),parameters.nu(2),tshell,Ushell,hp,epsilon),'en','spinsav','gapsav')
+final=en(end);
+% save(sprintf('nu%d,%d_t%d_U%d_hp%d_ep%d.mat',parameters.nu(1),parameters.nu(2),tshell,Ushell,hp,epsilon),'en','spinsav','gapsav')

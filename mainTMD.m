@@ -9,14 +9,16 @@ addParameter(p,'w',-8.5);
 addParameter(p,'Nmax',5);
 addParameter(p,'Vz',0);
 addParameter(p,'B',0);
+addParameter(p,'d',inf);
 addParameter(p,'nu',[1,1]);%filling factor number(#1) per site(#2); no spin degeneracy considered
 parse(p,varargin{:});
 parameters=struct('a',p.Results.a,'m',p.Results.m*0.511e6,'theta',p.Results.theta/360*2*pi,'V',p.Results.V*1e-3,'psi'...
-    ,p.Results.psi/360*2*pi,'w',p.Results.w*1e-3,'Vz',p.Results.Vz*1e-3,'Nmax',p.Results.Nmax,'B',p.Results.B,'nu',p.Results.nu);
+    ,p.Results.psi/360*2*pi,'w',p.Results.w*1e-3,'Vz',p.Results.Vz*1e-3,'Nmax',p.Results.Nmax,'B',p.Results.B,'d',p.Results.d,'nu',p.Results.nu);
 %Unit vectors
 parameters.a1=parameters.a*[1,0];
 parameters.a2=parameters.a*[1/2,sqrt(3)/2];
 parameters.aM=parameters.a/parameters.theta;
+parameters.d=parameters.d*parameters.aM; %d in the unit of a moire
 parameters.aM1=parameters.aM*[0,-1];
 parameters.aM2=parameters.aM*[sqrt(3)/2,-1/2];
 % parameters.A1=parameters.aM*sqrt(3)*[1,0];

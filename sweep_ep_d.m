@@ -1,10 +1,16 @@
-%Sweep for Wigner Crystal
+%Sweep for Wigner Crystal as a function epsilon and d
+dlist=linspace(10,100,30);
+Nd=length(dlist);
+epsilonlist=linspace(1,200,30);
+Nep=length(epsilonlist);
+final=zeros(Nd,Nep);
+gap=zeros(Nd,Nep);
+innergap=zeros(Nd,Nep);
 
-parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[2,3]);
+for di=1:Nd
+parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'d',dlist(di),'nu',[2,3]);
 tshell=3;
-Ushell=23;
-
-
+Ushell=35;
 [t,neighborlist]=t_calc_func(tshell,parameters);
 U=U_calc_func(Ushell,parameters);
 
@@ -24,15 +30,14 @@ end
 kxlist=kxlist';
 kylist=kylist';
 sweepfunc=@(x,y) sweepepsilon(tshell,x,y,neighborlist,t,U,kxlist,kylist,parameters);
-epsilonlist=linspace(1,200,50);
-Nep=length(epsilonlist);
-final=zeros(1,Nep);
-gap=zeros(1,Nep);
-innergap=zeros(1,Nep);
-parfor i=1:Nep
-[final(i),spin(:,:,i),gap(i),innergap(i)]=sweepfunc(Ushell,epsilonlist(i));
+
+    parfor epi=1:Nep
+        [final(di,epi),spin(:,:,di,epi),gap(di,epi),innergap(di,epi)]=sweepfunc(Ushell,epsilonlist(epi));
+    end
 end
+
 save('sweepWC.mat','parameters','final','spin','U','t','epsilonlist','gap','innergap');
+
 
 function [final,spin,gap,innergap]=sweepepsilon(tshell2,Ushell2,epsilon,neighborlist,t,U,kxlist,kylist,parameters)
 t_bond=[neighborlist{1:tshell2+1}];
