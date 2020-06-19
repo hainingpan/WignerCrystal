@@ -1,6 +1,6 @@
-parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[2,3],'d',inf);
+parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',inf,'Vz',20);
 tshell=3;
-Ushell=35;
+Ushell=3;
 [t,neighborlist]=t_calc_func(tshell,parameters);
 U=U_calc_func(Ushell,parameters);
 
@@ -24,8 +24,8 @@ kylist=kylist';
 t_bond=[neighborlist{1:tshell+1}];
 U_bond=[neighborlist{1:Ushell+1}];
 hp=1;
-tlist=-hp*[t{1:tshell+1}];
-epsilon=50;
+tlist=hp*[t{1:tshell+1}];
+epsilon=10;
 Ulist=real([U{1:Ushell+1}])/epsilon;
 
 clear spinsav en
@@ -33,7 +33,7 @@ clear spinsav en
 for i=1:200
 [spin,gap]=spintexture(energyall,wfall,parameters);
 en(i)=totalenergy_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,energyall,wfall,parameters);
-fprintf("%d: gap:%0.8feV E:%feV\n",i,gap,en(end));
+fprintf("%d: gap:%0.8f meV E:%f meV\n",i,1000*gap,1000*en(end));
 disp([spin,angle(spin(:,2)+spin(:,3)*1i)*180/pi,angle(spin(:,4)+sqrt(spin(:,3).^2+spin(:,2).^2)*1i)*180/pi])
 plot(en);
 ylabel('energy (eV)');
