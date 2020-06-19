@@ -22,7 +22,7 @@ end
 kxlist=kxlist';
 kylist=kylist';
 sweepfunc=@(x,y) sweepepsilon(tshell,x,y,neighborlist,t,U,kxlist,kylist,parameters);
-epsilonlist=linspace(1,100,40);
+epsilonlist=linspace(1,200,50);
 Nep=length(epsilonlist);
 final=zeros(1,Nep);
 gap=zeros(1,Nep);
