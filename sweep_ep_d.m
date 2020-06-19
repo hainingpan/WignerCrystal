@@ -1,7 +1,7 @@
 %Sweep for Wigner Crystal as a function epsilon and d
-dlist=linspace(10,100,30);
+dlist=linspace(10,100,40);
 Nd=length(dlist);
-epsilonlist=linspace(1,200,30);
+epsilonlist=linspace(1,200,40);
 Nep=length(epsilonlist);
 final=zeros(Nd,Nep);
 gap=zeros(Nd,Nep);
