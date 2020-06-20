@@ -48,7 +48,7 @@ for epi=1:length(epsilonlist)
 %     gapsav(i)=gap;
     [energyall,wfall]=energyMF_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,energyall,wfall,parameters);
     if length(en)>1    
-        if abs(en(end)-en(end-1))<1e-6
+        if abs(en(end)-en(end-1))<1e-5
             break
         end
     end
