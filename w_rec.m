@@ -2,7 +2,7 @@ function [wbgrid,wtgrid]=w_rec(an,rx,ry,parameters)
 %R: center of wannier state
 %r: scalar|array real space position
 %use rectangular (skew) grid
-n=9;
+n=12;
 state=1;
 xrange=-n:n;
 yrange=-n:n;

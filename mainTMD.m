@@ -21,8 +21,6 @@ parameters.aM=parameters.a/parameters.theta;
 parameters.d=parameters.d*parameters.aM; %d in the unit of a moire
 parameters.aM1=parameters.aM*[0,-1];
 parameters.aM2=parameters.aM*[sqrt(3)/2,-1/2];
-% parameters.A1=parameters.aM*sqrt(3)*[1,0];
-% parameters.A2=parameters.aM*sqrt(3)*[1/2,sqrt(3)/2];
 %Reciprocal lattice
 parameters.G1=[0,4*pi/(sqrt(3)*parameters.a)];
 parameters.G2=[-2*pi/parameters.a,(2*pi)/(sqrt(3)*parameters.a)];
@@ -115,8 +113,8 @@ end
 if parameters.nu==[3,4]
     ailist={[0,0],[0,1],[-1,1],[-1,2]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     parameters.spin0={[-1,0,0],[cos(-pi/3),sin(-pi/3),0],[cos(pi/3),sin(pi/3),0]};
-    parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
+    parameters.spin0={[-1,0,0],[cos(-pi/3),sin(-pi/3),0],[cos(pi/3),sin(pi/3),0]};
+%     parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
     Qlist={[0,0],[1/2,0],[0,1/2],[1/2,1/2]};
     parameters.Q=cellfun(@(x) x(1)*parameters.bM1+x(2)*parameters.bM2,Qlist,'UniformOutput',0);
     parameters.Qindex=Qlist;

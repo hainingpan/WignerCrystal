@@ -3,7 +3,7 @@ function [energyall,wfall]=energyMF_2(kxlist,kylist,t_bond,t,n_bond,U,energyall_
 N=length(kxlist);
 Q=parameters.Q;
 NQ=length(Q);
-Qindex=parameters.Qindex;
+% Qindex=parameters.Qindex;
 Qindexmod=parameters.Qindexmod;
 kxbasis=cell(1,NQ);
 kybasis=cell(1,NQ);
@@ -87,6 +87,7 @@ for k_beta_index=1:N
         wfall(k_beta_index,ii,:)=vec(:,ii);
     end
 end
+
 end
 
 

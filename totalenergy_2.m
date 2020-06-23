@@ -2,7 +2,7 @@ function tot=totalenergy_2(kxlist,kylist,t_bond,t,n_bond,U,energyall,wfall,param
 N=length(kxlist);
 Q=parameters.Q;
 NQ=length(Q);
-Qindex=parameters.Qindex;
+% Qindex=parameters.Qindex;
 Qindexmod=parameters.Qindexmod;
 kxbasis=cell(1,NQ);
 kybasis=cell(1,NQ);
@@ -64,11 +64,17 @@ H1=ttt(tensor(ave1_beta),prod2,[1,2],[1,2])/(2*N*NQ);
 
 V2=V(n_bond,U,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
 
-ave2_alpha=ave;
-ave2_beta=ave;
-prod1=ttt(tensor(ave2_alpha),tensor(ave2_beta),[4,5],[5,4]); %k_alpha,q_alpha,q_gamma,k_beta,q_beta,q_delta
-prod2=ttt2(tensor(V2),prod1,[1,2],[1,4],[3,4],[2,6]); %q_alpha,q_delta,q_gamma,q_beta
-H2=ttt(tensor(delta_tensor),tensor(prod2),[1,2,3,4],[1,4,3,2])/(2*N*NQ);
+% ave2_alpha=ave; %k_alpha,q_alpha,q_gamma,sigma1,sigma2
+% ave2_beta=ave; %%k_beta,q_beta,q_delta,sigma2,sigma1
+% prod1=ttt(tensor(ave2_alpha),tensor(ave2_beta),[4,5],[5,4]); %k_alpha,q_alpha,q_gamma,k_beta,q_beta,q_delta
+% prod2=ttt2(tensor(V2),prod1,[1,2],[1,4],[3,4],[2,6]); %q_alpha,q_delta,q_gamma,q_beta
+% H2=ttt(tensor(delta_tensor),tensor(prod2),[1,2,3,4],[1,4,3,2])/(2*N*NQ);
+
+ave2_alpha=ave; %k_alpha,q_alpha,q_gamma,sigma1,sigma2
+ave2_beta=permute(ave,[1,2,3,5,4]); %%k_beta,q_beta,q_delta,sigma2,sigma1
+prod1=ttt2(tensor(V2),tensor(ave2_alpha),[1],[1],[3],[2]); %q_alpha,k_beta,q_delta,q_gamma,sigma,sigma'
+prod2=ttt2(prod1,tensor(ave2_beta),[2,5,6],[1,5,4],[3],[3]); %q_delta,q_alpha,q_gamma,q_beta
+H2=ttt(tensor(delta_tensor),tensor(prod2),[1,2,3,4],[2,4,3,1])/(2*N*NQ);
 
 tot=real(T+H1-H2);
 tot=tot/(N*NQ);

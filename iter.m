@@ -1,11 +1,11 @@
-parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',inf,'Vz',20);
+parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,3],'d',inf,'Vz',0);
 tshell=3;
-Ushell=3;
-[t,neighborlist]=t_calc_func(tshell,parameters);
-U=U_calc_func(Ushell,parameters);
+Ushell=35;
+% [t,neighborlist]=t_calc_func(tshell,parameters);
+U=U_calc_func_2(Ushell,parameters);
 
 
-n=15;
+n=3;
 counter=1;
 clear kxlist kylist
 for xindex=1:n
@@ -23,9 +23,9 @@ kylist=kylist';
 
 t_bond=[neighborlist{1:tshell+1}];
 U_bond=[neighborlist{1:Ushell+1}];
-hp=1;
-tlist=hp*[t{1:tshell+1}];
-epsilon=10;
+hp=0;
+tlist=-hp*[t{1:tshell+1}];
+epsilon=1;
 Ulist=real([U{1:Ushell+1}])/epsilon;
 
 clear spinsav en

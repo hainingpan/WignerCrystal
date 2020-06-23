@@ -25,7 +25,7 @@ function U=U_calc_func(k,parameters)
 % neighborlist{24}={[-8,0],[-8,8],[0,-8],[0,8],[8,-8],[8,0]};
 neighborlist=generate_neighbor(20);
 
-xrange=-2*sqrt(3)*parameters.aM:parameters.aM/20:2*sqrt(3)*parameters.aM;
+xrange=-5*sqrt(3)*parameters.aM:parameters.aM/20:5*sqrt(3)*parameters.aM;
 yrange=-2*parameters.aM:parameters.aM/20:12*parameters.aM;
 [rx,ry]=meshgrid(xrange,yrange);
 

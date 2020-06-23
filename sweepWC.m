@@ -1,12 +1,12 @@
 %Sweep for Wigner Crystal
 
-parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[2,3]);
+parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[2,3],'d',inf);
 tshell=3;
-Ushell=23;
+Ushell=35;
 
 
 [t,neighborlist]=t_calc_func(tshell,parameters);
-U=U_calc_func(Ushell,parameters);
+U=U_calc_func_2(Ushell,parameters);
 
 n=15;
 counter=1;
@@ -47,7 +47,7 @@ for i=1:200
 en(i)=totalenergy_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,energyall,wfall,parameters);
 [energyall,wfall]=energyMF_2(kxlist,kylist,t_bond,tlist,U_bond,Ulist,energyall,wfall,parameters);
 if length(en)>1    
-    if abs(en(end)-en(end-1))<1e-7
+    if abs(en(end)-en(end-1))<1e-5
         break
     end
 end

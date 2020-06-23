@@ -15,8 +15,17 @@
 %     for ii=1:2*NQ
 %         wfall2(k_beta_index,ii,:)=vec(:,ii);
 %     end
+% for i=1:36
+% surf(xrange,yrange,abs(wb{i}),'edgecolor','none');view(2);title(num2str(norm(neighborlist2{i}*[0,-1;[sqrt(3)/2,-1/2]])^2))
+% end
+% for i=11:20
+%     disp(i);
+% tic;sweep_nu([1,3],10,10,length(generate_neighbor(i+4)));tt(i)=toc;
+% end
+sweep_nu([1,2],10,10);
+sweep_nu([1,3],10,10);
+sweep_nu([2,3],10,10);
+sweep_nu([1,4],10,10);
+sweep_nu([3,4],10,10);
 
-for ii=[1,2]
-   ii*ii
-end
 

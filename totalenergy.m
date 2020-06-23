@@ -27,7 +27,7 @@ Qy=cellfun(@(x)x(2),Q);
 [q_alpha_x,q_delta_x]=meshgrid(Qx,Qx);
 [q_alpha_y,q_delta_y]=meshgrid(Qy,Qy);
 
-V1=V(n_bond,U,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y); %V1_{q_alpha,q_delta}
+V1=V(n_bond,U,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
 
 delta_tensor=zeros(NQ,NQ,NQ,NQ); %delta_tensor_{q_alpha,q_beta,q_gamma,q_delta}
 for q_alpha_index=1:NQ
