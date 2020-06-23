@@ -4,7 +4,7 @@ function sweep_nu(nu,d,epsilon)
 % epsilon=10;
 parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',nu,'d',d);
 tshell=3;
-Ushell=110;
+Ushell=223;
 [t,neighborlist]=t_calc_func(tshell,parameters);
 U=U_calc_func_2(Ushell,parameters);
 
@@ -46,4 +46,4 @@ end
 final=en(end);
 [spin,gap]=spintexture(energyall,wfall,parameters);
 
-save(sprintf('nu%d,%d_d%d_ep%d_U.mat',parameters.nu(1),parameters.nu(2),d,epsilon,Ushell),'final','gap','spin','nu')
+save(sprintf('nu%d,%d_d%d_ep%d_U%d.mat',parameters.nu(1),parameters.nu(2),d,epsilon,Ushell),'final','gap','spin','nu')

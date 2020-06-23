@@ -23,7 +23,7 @@ function U=U_calc_func(k,parameters)
 % neighborlist{22}={[-8,2],[-8,6],[-6,-2],[-6,8],[-2,-6],[-2,8],[2,-8],[2,6],[6,-8],[6,2],[8,-6],[8,-2]};
 % neighborlist{23}={[-8,1],[-8,7],[-7,-1],[-7,8],[-1,-7],[-1,8],[1,-8],[1,7],[7,-8],[7,1],[8,-7],[8,-1]};
 % neighborlist{24}={[-8,0],[-8,8],[0,-8],[0,8],[8,-8],[8,0]};
-neighborlist=generate_neighbor(20);
+neighborlist=generate_neighbor(40);
 
 xrange=-5*sqrt(3)*parameters.aM:parameters.aM/20:5*sqrt(3)*parameters.aM;
 yrange=-2*parameters.aM:parameters.aM/20:12*parameters.aM;

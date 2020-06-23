@@ -22,6 +22,7 @@
 %     disp(i);
 % tic;sweep_nu([1,3],10,10,length(generate_neighbor(i+4)));tt(i)=toc;
 % end
+sweep_nu([1,1],10,10);
 sweep_nu([1,2],10,10);
 sweep_nu([1,3],10,10);
 sweep_nu([2,3],10,10);
