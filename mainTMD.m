@@ -136,6 +136,23 @@ if parameters.nu==[1,1]
     parameters.bm2=parameters.bm1*rotate(pi/3);
 end
 
+NQ=length(Qlist);
+delta_tensor=zeros(NQ,NQ,NQ,NQ); %delta_tensor_{q_alpha,q_beta,q_gamma,q_delta}
+for q_alpha_index=1:NQ
+    for q_beta_index=1:NQ
+        for q_gamma_index=1:NQ
+            for q_delta_index=1:NQ
+                qindex_alpha=Qlist{q_alpha_index};
+                qindex_beta=Qlist{q_beta_index};
+                qindex_gamma=Qlist{q_gamma_index};
+                qindex_delta=Qlist{q_delta_index};
+                deltafunc=qindex_gamma+qindex_delta-qindex_alpha-qindex_beta;
+                delta_tensor(q_alpha_index,q_beta_index,q_delta_index,q_gamma_index)=all(abs(deltafunc-round(deltafunc))<1e-10);
+            end
+        end
+    end
+end
+parameters.delta_tensor=delta_tensor;
 end
 
 

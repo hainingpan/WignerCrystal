@@ -25,27 +25,7 @@ Qy=cellfun(@(x)x(2),Q);
 
 V1=V(n_bond,U,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
 
-delta_tensor=zeros(NQ,NQ,NQ,NQ); %delta_tensor_{q_alpha,q_beta,q_gamma,q_delta}
-for q_alpha_index=1:NQ
-    for q_beta_index=1:NQ
-        for q_gamma_index=1:NQ
-            for q_delta_index=1:NQ
-%                 qindex_alpha=Qindex{q_alpha_index};
-%                 qindex_beta=Qindex{q_beta_index};
-%                 qindex_gamma=Qindex{q_gamma_index};
-%                 qindex_delta=Qindex{q_delta_index};
-%                 deltafunc=qindex_gamma+qindex_delta-qindex_alpha-qindex_beta;
-%                 delta_tensor(q_alpha_index,q_beta_index,q_delta_index,q_gamma_index)=all(deltafunc==round(deltafunc));
-                qindex_alpha=Qindexmod{q_alpha_index};
-                qindex_beta=Qindexmod{q_beta_index};
-                qindex_gamma=Qindexmod{q_gamma_index};
-                qindex_delta=Qindexmod{q_delta_index};
-                deltafunc=qindex_gamma+qindex_delta-qindex_alpha-qindex_beta;
-                delta_tensor(q_alpha_index,q_beta_index,q_delta_index,q_gamma_index)=all(mod(deltafunc,NQ)==0);
-            end
-        end
-    end
-end
+delta_tensor=parameters.delta_tensor; %delta_tensor_{q_alpha,q_beta,q_gamma,q_delta}
 
 ave=average(energyall_o,wfall_o,parameters); %k_alpha,q_alpha,q_delta,sigma1,sigma2
 ave1=contract(tensor(ave),4,5); %k_alpha,q_alpha,q_delta
