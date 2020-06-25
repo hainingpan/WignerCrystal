@@ -1,4 +1,6 @@
 function parameters=mainTMD(varargin)
+%Obsolete, use mainTMD_2 instead; for record purpose only
+
 p=inputParser;
 addParameter(p,'a',3.28e-10*5.076e6);
 addParameter(p,'m',0.45);

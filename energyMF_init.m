@@ -1,4 +1,6 @@
 function [energyall,wfall]=energyMF_init(kxlist,kylist,t_bond,t,n_bond,U,parameters)
+%Obsolete (also wrong), use energyMF_init_2 instead; for record purpose only
+
 N=length(kxlist);
 Q=parameters.Q;
 Qindex=parameters.Qindex;

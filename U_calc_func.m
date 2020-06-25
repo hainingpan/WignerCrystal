@@ -1,4 +1,6 @@
 function U=U_calc_func(k,parameters)
+%Obsolete, use U_calc_func_2 instead; for record purpose only
+
 % neighborlist{1}={[0,0]};
 % neighborlist{2}={[-1,0],[0,-1],[1,-1],[1,0],[0,1],[-1,1]}; % direction on clock: 12, 10, 8, 6, 4, 2
 % neighborlist{3}={[-1,-1],[1,-2],[2,-1],[1,1],[-1,2],[-2,1]}; %directin on clock: 11, 9, 7, 5, 4, 1

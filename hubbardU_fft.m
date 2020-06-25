@@ -1,4 +1,5 @@
 function re=hubbardU_fft(wbgrid1,wtgrid1,wbgrid2,wtgrid2,rx,ry,parameters)
+%Obsolete, hubbardU_fft_2 instead; for record purpose only
 [Nx,Ny]=size(rx);
 alpha=0.00729735; %e^2/(4*pi*epsilon0); c.f. Quicks Notes on oneNotes
 

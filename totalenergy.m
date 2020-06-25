@@ -1,4 +1,5 @@
 function tot=totalenergy(kxlist,kylist,t_bond,t,n_bond,U,energyall,wfall,parameters)
+%Obsolete, use totalenergy_2 instead; for record purpose only
 N=length(kxlist);
 Q=parameters.Q;
 NQ=length(Q);

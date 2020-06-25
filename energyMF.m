@@ -1,4 +1,5 @@
 function [energyall,wfall]=energyMF(kxlist,kylist,t_bond,t,n_bond,U,energyall_o,wfall_o,parameters)
+%Obsolete (wrong), use energyMF_2 instead; for record purpose only
 
 N=length(kxlist);
 Q=parameters.Q;
