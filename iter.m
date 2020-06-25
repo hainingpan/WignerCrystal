@@ -29,7 +29,6 @@ epsilon=1;
 Ulist=real([U{1:Ushell+1}])/epsilon;
 
 parameters.N=length(kxlist);
-
 kxbasis=cell(1,length(parameters.Q));
 kybasis=cell(1,length(parameters.Q));
 for i=1:length(parameters.Q)
@@ -37,7 +36,6 @@ for i=1:length(parameters.Q)
     kybasis{i}=kylist+parameters.Q{i}(2);
 end
 parameters.energylist=real(tb(t_bond,tlist,[cell2mat(kxbasis),-cell2mat(kxbasis)],[cell2mat(kybasis),-cell2mat(kybasis)],parameters));
-
 Qx=cellfun(@(x)x(1),parameters.Q);
 Qy=cellfun(@(x)x(2),parameters.Q);
 [q_alpha_x,q_delta_x]=meshgrid(Qx,Qx);
