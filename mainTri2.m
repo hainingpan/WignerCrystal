@@ -65,6 +65,41 @@ param.uclist=[[0,0];[-1,1];[-2,1];[-2,2];[-3,2]];
 param.r=param.uclist*[param.a1;param.a2];
 [X,Y]=meshgrid(-2:2,-2:2);
 Aneighbor=[X(:),Y(:)];
+%% rectangular supercell with 6 sites A
+% param.A1=[3,0];
+% param.A2=[0,2];
+% param.uclist=[[0,0];[1,0];[2,0];[0,1];[1,1];[2,1]];
+% param.r=param.uclist*[param.a1;param.a2];
+% [X,Y]=meshgrid(-2:2,-2:2);
+% Aneighbor=[X(:),Y(:)];
+%% rectangular supercell with 6 sites B
+% param.A1=[3,0];
+% param.A2=[1,2];
+% param.uclist=[[0,0];[1,0];[2,0];[1,1];[2,1];[3,1]];
+% param.r=param.uclist*[param.a1;param.a2];
+% [X,Y]=meshgrid(-2:2,-2:2);
+% Aneighbor=[X(:),Y(:)];
+%% supercell with 7 sites A
+% param.A1=[-1,3];
+% param.A2=[-3,2];
+% param.uclist=[[0,0];[-1,1];[-1,2];[-2,2];[-2,3];[-3,3];[-3,4]];
+% param.r=param.uclist*[param.a1;param.a2];
+% [X,Y]=meshgrid(-3:3,-3:3);
+% Aneighbor=[X(:),Y(:)];
+%% supercell with 7 sites B
+% param.A1=[4,1];
+% param.A2=[1,2];
+% param.uclist=[[0,0];[1,1];[2,1];[3,1];[2,2];[3,2];[4,2]];
+% param.r=param.uclist*[param.a1;param.a2];
+% [X,Y]=meshgrid(-2:2,-2:2);
+% Aneighbor=[X(:),Y(:)];
+%% rectangular supercell with 6 sites C
+% param.A1=[3,1];
+% param.A2=[0,2];
+% param.uclist=[[0,0];[0,1];[1,1];[2,1];[1,2];[2,2]];
+% param.r=param.uclist*[param.a1;param.a2];
+% [X,Y]=meshgrid(-2:2,-2:2);
+% Aneighbor=[X(:),Y(:)];
 %% hexagonal supercell with 9 sites
 % param.A1=[0,3];
 % param.A2=[3,0];
