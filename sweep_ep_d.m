@@ -33,7 +33,7 @@ parfor di=1:Nd
 param=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'d',dlist(di),'nu',nu);
 [t,neighborlist]=t_calc_func(tshell,param);
 U=U_calc_func_2(Ushell,param);
-sweepfunc=@(x,y) sweepepsilon(tshell,x,y,neighborlist,t,U,kxlist,kylist,parameters);
+sweepfunc=@(x,y) sweepepsilon(tshell,x,y,neighborlist,t,U,kxlist,kylist,param);
     for epi=1:Nep
         [final(di,epi),spin(:,:,di,epi),gap(di,epi),innergap(di,epi)]=sweepfunc(Ushell,epsilonlist(epi));
     end
