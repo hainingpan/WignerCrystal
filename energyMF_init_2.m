@@ -1,31 +1,14 @@
-function [energyall,wfall]=energyMF_init_2(kxlist,kylist,t_bond,t,n_bond,U,parameters)
-%use tt2
-N=length(kxlist);
+function [energyall,wfall]=energyMF_init_2(parameters)
+%use ttt2
+N=parameters.N;
 Q=parameters.Q;
 NQ=length(Q);
-% Qindex=parameters.Qindex;
-% Qindexmod=parameters.Qindexmod;
-kxbasis=cell(1,NQ);
-kybasis=cell(1,NQ);
-for i=1:NQ
-    kxbasis{i}=kxlist+Q{i}(1);
-    kybasis{i}=kylist+Q{i}(2);
-end
-
-energylist=real(tb(t_bond,t,[cell2mat(kxbasis),-cell2mat(kxbasis)],[cell2mat(kybasis),-cell2mat(kybasis)],parameters));
 
 energyall=zeros(N,2*NQ);
 wfall=zeros(N,2*NQ,2*NQ);
 
-Qx=cellfun(@(x)x(1),Q);
-Qy=cellfun(@(x)x(2),Q);
-[q_alpha_x,q_delta_x]=meshgrid(Qx,Qx);
-[q_alpha_y,q_delta_y]=meshgrid(Qy,Qy);
-
-V1=V(n_bond,U,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
-
+V1=parameters.V1; %V1_{q_alpha,q_delta}
 delta_tensor=parameters.delta_tensor; %delta_tensor_{q_alpha,q_beta,q_gamma,q_delta}
-
 ave=average_init(parameters); %q_alpha,q_delta,sigma1,sigma2
 ave1=contract(tensor(ave),3,4); %,q_alpha,q_delta
 V1_expand=permute(repmat(V1,1,1,NQ,NQ),[1,3,4,2]); %q_alpha,q_beta,q_gamma,q_delta
@@ -34,10 +17,7 @@ elem1=ttt(ave1,tensor(prod1),[1,2],[1,4]); %q_beta,q_gamma
 H1=kron(eye(2),elem1.data);
 H1=repmat(H1,1,1,N)/(NQ); %{q_beta+sigma,q_gamma+sigma,k_beta}
 
-[k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
-[k_alpha_y,k_beta_y,q_alpha_y,q_delta_y]=ndgrid(kylist,kylist,Qy,Qy);
-
-V2=V(n_bond,U,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
+V2=parameters.V2; %V2_{k_alpha,k_beta,q_alpha,q_delta}
 
 ave2=ave; %q_alpha,q_gamma,sigma1,sigma2
 V2_reduce=squeeze(sum(V2,1)); %k_beta,q_alpha,q_delta
@@ -45,6 +25,7 @@ prod1=ttt2(V2_reduce,ave2,[],[],[2],[1]); %q_alpha,k_beta,q_delta,q_gamma,sigma1
 prod2=ttt2(delta_tensor,prod1,[1,3],[1,4],[4],[3]); %q_delta,q_beta,k_beta,sigma1,sigam2
 H2=reshape(permute(prod2,[2,5,1,4,3]),[2*NQ,2*NQ,N])/(N*NQ); %q_beta+sigma2,q_delta+sigma1,k_beta
 
+energylist=parameters.energylist;
 T=zeros(2*NQ,2*NQ,N);
 for k_beta_index=1:N
     T(:,:,k_beta_index)=diag(energylist(k_beta_index,:));
