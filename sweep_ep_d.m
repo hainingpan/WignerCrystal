@@ -2,7 +2,7 @@
 function sweep_ep_d(nu)
 dlist=linspace(1,10,20);
 Nd=length(dlist);
-epsilonlist=linspace(1,60,60);
+epsilonlist=linspace(1,80,80);
 % nu=[1,3];
 Nep=length(epsilonlist);
 final=zeros(Nd,Nep);
