@@ -9,7 +9,7 @@ Ushell=110;
 U=U_calc_func_2(Ushell,parameters);
 
 
-n=15;
+n=27;
 counter=1;
 kxlist=zeros(1,n^2);
 kylist=zeros(1,n^2);
@@ -56,7 +56,7 @@ for i=1:200
 en(i)=totalenergy_2(energyall,wfall,parameters);
 [energyall,wfall]=energyMF_2(energyall,wfall,parameters);
 if length(en)>1    
-    if abs(en(end)-en(end-1))<1e-5
+    if abs(en(end)-en(end-1))<1e-8
         break
     end
 end
