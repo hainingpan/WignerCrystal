@@ -1,11 +1,10 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,5],'d',10,'Vz',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[8,16],'d',10,'Vz',0);
 tshell=3;
 Ushell=110;
-[t,neighborlist]=t_calc_func(tshell,parameters);
-U=U_calc_func_2(Ushell,parameters);
+% [t,neighborlist]=t_calc_func(tshell,parameters);
+% U=U_calc_func_2(Ushell,parameters);
 
-
-n=27;
+n=15;
 counter=1;
 clear kxlist kylist
 for xindex=1:n
@@ -60,7 +59,7 @@ spinsav(:,:,i)=spin;
 gapsav(i)=gap;
 [energyall,wfall]=energyMF_2(energyall,wfall,parameters);
 if length(en)>1    
-    if abs(en(end)-en(end-1))<1e-5
+    if abs(en(end)-en(end-1))<1e-8
         break
     end
 end
