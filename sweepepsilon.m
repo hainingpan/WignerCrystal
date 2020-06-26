@@ -11,7 +11,7 @@ parameters.V2=parameters.V2/epsilon;
 %         disp([spin,angle(spin(:,2)+spin(:,3)*1i)*180/pi,angle(spin(:,4)+sqrt(spin(:,3).^2+spin(:,2).^2)*1i)*180/pi]); 
         [energyall,wfall]=energyMF_2(energyall,wfall,parameters);
         if length(en)>1    
-            if abs(en(end)-en(end-1))<1e-5
+            if abs(en(end)-en(end-1))<1e-8
                 break
             end
         end
