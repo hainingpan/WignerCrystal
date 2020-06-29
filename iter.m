@@ -1,4 +1,5 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[8,16],'d',10,'Vz',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[2,5],'d',10,'Vz',0);
+% parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',10,'Vz',0);
 tshell=3;
 Ushell=110;
 % [t,neighborlist]=t_calc_func(tshell,parameters);
@@ -41,9 +42,14 @@ Qy=cellfun(@(x)x(2),parameters.Q);
 [q_alpha_x,q_delta_x]=meshgrid(Qx,Qx);
 [q_alpha_y,q_delta_y]=meshgrid(Qy,Qy);
 parameters.V1=V(U_bond,Ulist,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
+% parameters.V1=V1;
+% parameters.V1=zeros(length(Qx),length(Qy));
 [k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
 [k_alpha_y,k_beta_y,q_alpha_y,q_delta_y]=ndgrid(kylist,kylist,Qy,Qy);
 parameters.V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
+% parameters.V2=V2;
+% parameters.V2=zeros(length(kxlist),length(kylist),length(Qx),length(Qy));
+
 
 clear spinsav en
 [energyall,wfall]=energyMF_init_2(parameters);
