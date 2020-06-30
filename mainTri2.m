@@ -51,6 +51,20 @@ param.neighbor=distsquare(logical([1;diff(distsquare)>.5]));
 % param.r=param.uclist*[param.a1;param.a2];
 % % Aneighbor=[[0,0];[1,0];[0,1];[-1,1];[-1,0];[0,-1];[1,-1]];
 % Aneighbor=reshape([param.neighborlist{1}{:},param.neighborlist{2}{:},param.neighborlist{3}{:},param.neighborlist{4}{:},param.neighborlist{5}{:},param.neighborlist{6}{:}],[2,37])';
+%% rectangular supercell with 3 sites
+% param.A1=[-1,2];
+% param.A2=[-2,1];
+% param.uclist=[[0,0];[-1,1];[-2,2]];
+% param.r=param.uclist*[param.a1;param.a2];
+% [X,Y]=meshgrid(-4:4,-4:4);
+% Aneighbor=[X(:),Y(:)];
+%% rectangular supercell with 4 sites
+% param.A1=[-2,2];
+% param.A2=[-2,0];
+% param.uclist=[[0,0];[-1,1];[-1,0];[-2,1]];
+% param.r=param.uclist*[param.a1;param.a2];
+% [X,Y]=meshgrid(-4:4,-4:4);
+% Aneighbor=[X(:),Y(:)];
 %% rectangular supercell with 4 sites
 % param.A1=[-1,2];
 % param.A2=[-2,0];
@@ -59,18 +73,18 @@ param.neighbor=distsquare(logical([1;diff(distsquare)>.5]));
 % [X,Y]=meshgrid(-2:2,-2:2);
 % Aneighbor=[X(:),Y(:)];
 %% rectangular supercell with 5 sites
-param.A1=[-1,2];
-param.A2=[-3,1];
-param.uclist=[[0,0];[-1,1];[-2,1];[-2,2];[-3,2]];
-param.r=param.uclist*[param.a1;param.a2];
-[X,Y]=meshgrid(-2:2,-2:2);
-Aneighbor=[X(:),Y(:)];
+% param.A1=[-1,2];
+% param.A2=[-3,1];
+% param.uclist=[[0,0];[-1,1];[-2,1];[-2,2];[-3,2]];
+% param.r=param.uclist*[param.a1;param.a2];
+% [X,Y]=meshgrid(-4:4,-4:4);
+% Aneighbor=[X(:),Y(:)];
 %% rectangular supercell with 6 sites A
 % param.A1=[3,0];
 % param.A2=[0,2];
 % param.uclist=[[0,0];[1,0];[2,0];[0,1];[1,1];[2,1]];
 % param.r=param.uclist*[param.a1;param.a2];
-% [X,Y]=meshgrid(-2:2,-2:2);
+% [X,Y]=meshgrid(-4:4,-4:4);
 % Aneighbor=[X(:),Y(:)];
 %% rectangular supercell with 6 sites B
 % param.A1=[3,0];
@@ -84,7 +98,7 @@ Aneighbor=[X(:),Y(:)];
 % param.A2=[-3,2];
 % param.uclist=[[0,0];[-1,1];[-1,2];[-2,2];[-2,3];[-3,3];[-3,4]];
 % param.r=param.uclist*[param.a1;param.a2];
-% [X,Y]=meshgrid(-3:3,-3:3);
+% [X,Y]=meshgrid(-4:4,-4:4);
 % Aneighbor=[X(:),Y(:)];
 %% supercell with 7 sites B
 % param.A1=[4,1];
@@ -107,11 +121,11 @@ Aneighbor=[X(:),Y(:)];
 % param.r=param.uclist*[param.a1;param.a2];
 % Aneighbor=reshape([param.neighborlist{1}{:},param.neighborlist{2}{:},param.neighborlist{3}{:},param.neighborlist{4}{:}],[2,19])';
 %% hexagonal supercell with 7 sites
-% param.A1=[2,1];
-% param.A2=[-1,3];
-% param.uclist=[[0,0];[-1,1];[0,1];[1,1];[-2,2];[-2,2];[-1,2];[0,2]];
-% param.r=param.uclist*[param.a1;param.a2];
-% Aneighbor=reshape([param.neighborlist{1}{:},param.neighborlist{2}{:},param.neighborlist{3}{:},param.neighborlist{4}{:}],[2,19])';
+param.A1=[2,1];
+param.A2=[-1,3];
+param.uclist=[[0,0];[-1,1];[0,1];[1,1];[-2,2];[-2,2];[-1,2];[0,2]];
+param.r=param.uclist*[param.a1;param.a2];
+Aneighbor=reshape([param.neighborlist{1}{:},param.neighborlist{2}{:},param.neighborlist{3}{:},param.neighborlist{4}{:}],[2,19])';
 
 
 

@@ -8,8 +8,8 @@ Ushell=110;
 [t,neighborlist]=t_calc_func(tshell,parameters);
 U=U_calc_func_2(Ushell,parameters);
 
-
-n=27;
+%27*4
+n=(floor(200/3/length(parameters.Q)/2)*2+1)*3;
 counter=1;
 kxlist=zeros(1,n^2);
 kylist=zeros(1,n^2);

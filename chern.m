@@ -1,4 +1,4 @@
-function berrycur=chern(wfall,parameters)
+function ch=chern(wfall,parameters)
 n=sqrt(size(wfall,1));
 NL=size(wfall,2);
 % bM1=parameters.bM1;
@@ -124,6 +124,6 @@ end
 %     end
 % end
 
-% ch=sum(berrycur(:))/(2*pi);
+ch=sum(berrycur(:))/(2*pi);
 % ch=squeeze(sum(bcmap,[1,2]))/(2*pi);
 end
