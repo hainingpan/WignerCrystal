@@ -1,11 +1,11 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,3],'d',10,'Vz',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,2],'d',10,'Vz',0);
 % parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',10,'Vz',0);
 tshell=3;
 Ushell=110;
 % [t,neighborlist]=t_calc_func(tshell,parameters);
 % U=U_calc_func_2(Ushell,parameters);
 
-n=15;
+n=27;
 counter=1;
 clear kxlist kylist
 for xindex=1:n
@@ -25,7 +25,7 @@ t_bond=[neighborlist{1:tshell+1}];
 U_bond=[neighborlist{1:Ushell+1}];
 hp=1;
 tlist=-hp*[t{1:tshell+1}];
-epsilon=10;
+epsilon=80;
 Ulist=real([U{1:Ushell+1}])/epsilon;
 
 parameters.N=length(kxlist);
@@ -51,7 +51,7 @@ parameters.V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_
 % parameters.V2=zeros(length(kxlist),length(kylist),length(Qx),length(Qy));
 
 
-clear spinsav en
+clear spinsav en gapsav
 [energyall,wfall]=energyMF_init_2(parameters);
 for i=1:200
 [spin,gap]=spintexture(energyall,wfall,parameters);
@@ -65,7 +65,7 @@ spinsav(:,:,i)=spin;
 gapsav(i)=gap;
 [energyall,wfall]=energyMF_2(energyall,wfall,parameters);
 if length(en)>1    
-    if abs(en(end)-en(end-1))<1e-8
+    if abs(en(end)-en(end-1))<1e-12
         break
     end
 end
