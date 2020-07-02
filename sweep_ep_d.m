@@ -9,7 +9,7 @@ final=zeros(Nd,Nep);
 gap=zeros(Nd,Nep);
 innergap=zeros(Nd,Nep);
 
-n=99;
+n=63;
 kxlist=zeros(1,n^2);
 kylist=zeros(1,n^2);
 param=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',nu);

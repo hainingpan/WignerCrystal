@@ -128,7 +128,6 @@ if parameters.nu==[2,4]
 %     parameters.spin0={[1,1,1]/sqrt(3),[1,-1,-1]/sqrt(3),-[-1,1,-1]/sqrt(3),-[-1,-1,1]/sqrt(3)}; % two in two out
 %     parameters.spin0={[1,1,1]/sqrt(3),[1,-1,-1]/sqrt(3),[-1,1,-1]/sqrt(3),-[-1,-1,1]/sqrt(3)}; % three in one out
 
-
     parameters.spin0={[0,0,1];[0,0,-1]/3;[0,0,-1]/3;[0,0,-1]/3};
    am1index=[0,2];
    am2index=[2,0];
