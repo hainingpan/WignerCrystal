@@ -1,8 +1,8 @@
 %Sweep for Wigner Crystal as a function epsilon and d
 function sweep_ep_d(nu)
-dlist=linspace(1,10,20);
+dlist=linspace(1,10,1);
 Nd=length(dlist);
-epsilonlist=linspace(1,80,160);
+epsilonlist=linspace(1,80,4);
 % nu=[1,3];
 Nep=length(epsilonlist);
 final=zeros(Nd,Nep);
@@ -30,7 +30,7 @@ kxlist=kxlist';
 kylist=kylist';
 
 
-parfor di=1:Nd
+for di=1:Nd
     parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'d',dlist(di),'nu',nu);
     [t,neighborlist]=t_calc_func(tshell,parameters);
     U=U_calc_func_2(Ushell,parameters);
