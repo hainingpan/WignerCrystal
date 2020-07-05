@@ -1,8 +1,8 @@
-% parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[8,8],'d',10,'Vz',0);
 parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',10,'Vz',0);
+% parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',10,'Vz',0);
 tshell=3;
 Ushell=110;
-[t,neighborlist]=t_calc_func(tshell,parameters);
+% [t,neighborlist]=t_calc_func(tshell,parameters);
 % U=U_calc_func_2(Ushell,parameters);
 
 n=27;
@@ -25,7 +25,7 @@ t_bond=[neighborlist{1:tshell+1}];
 U_bond=[neighborlist{1:Ushell+1}];
 hp=1;
 tlist=-hp*[t{1:tshell+1}];
-epsilon=inf;
+epsilon=1;
 Ulist=real([U{1:Ushell+1}])/epsilon;
 
 parameters.N=length(kxlist);
@@ -41,17 +41,17 @@ Qx=cellfun(@(x)x(1),parameters.Q);
 Qy=cellfun(@(x)x(2),parameters.Q);
 [q_alpha_x,q_delta_x]=meshgrid(Qx,Qx);
 [q_alpha_y,q_delta_y]=meshgrid(Qy,Qy);
-% parameters.V1=V(U_bond,Ulist,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
+parameters.V1=V(U_bond,Ulist,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
 % parameters.V1=V1;
-parameters.V1=zeros(length(Qx),length(Qy));
+% parameters.V1=zeros(length(Qx),length(Qy));
 [k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
 [k_alpha_y,k_beta_y,q_alpha_y,q_delta_y]=ndgrid(kylist,kylist,Qy,Qy);
 parameters.V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
 % parameters.V2=V2;
-parameters.V1=zeros(length(kxlist),length(Qx),length(Qy));
+% parameters.V2=zeros(length(kxlist),length(kylist),length(Qx),length(Qy));
 
 
-clear spinsav en
+clear spinsav en gapsav
 [energyall,wfall]=energyMF_init_2(parameters);
 for i=1:200
 [spin,gap]=spintexture(energyall,wfall,parameters);
@@ -65,7 +65,7 @@ spinsav(:,:,i)=spin;
 gapsav(i)=gap;
 [energyall,wfall]=energyMF_2(energyall,wfall,parameters);
 if length(en)>1    
-    if abs(en(end)-en(end-1))<1e-8
+    if abs(en(end)-en(end-1))<1e-12
         break
     end
 end
