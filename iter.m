@@ -5,7 +5,7 @@ Ushell=110;
 % [t,neighborlist]=t_calc_func(tshell,parameters);
 % U=U_calc_func_2(Ushell,parameters);
 
-n=7;
+n=15;
 counter=1;
 clear kxlist kylist
 for xindex=1:n

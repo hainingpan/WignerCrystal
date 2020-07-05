@@ -1,6 +1,6 @@
 % figure;scatter(param.r(:,1),param.r(:,2))
 % y=[1 1 0 0 1 0 0 0 1 1 1 0]; %rectangular
-% y=[0,1,1,1,1,1,1,0,0,0,0,0]; %hexagonal
+y=[0,1,1,1,1,1,1,0,0,0,0,0]; %hexagonal
 % y=[1 1 0 1 1 0 1 1 1 1 1 0]; %kagome
 % y=[1,1,1,1,1,1,1,0,1,0,1,0]; %complementary kagome
 % y=[0,1,1,1]; %complementary rectangular
@@ -42,7 +42,7 @@
 % y=[0 0 0 1 1 0 0]; %[2,7]-A
 % y=[0 1 1 0 0 0 0]; %[2,7]-B
 
-y=[1 1 1 1 1 0 1]; %[6,7]
+% y=[1 1 1 1 1 0 1]; %[6,7]
 
 
 
