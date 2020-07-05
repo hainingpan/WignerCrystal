@@ -1,4 +1,4 @@
-function [final,spin,gap,innergap]=sweepepsilon(epsilon,parameters)
+function [final,spin,gap,energyall,wfall]=sweepepsilon(epsilon,parameters)
 parameters.V1=parameters.V1/epsilon;
 parameters.V2=parameters.V2/epsilon;
 
@@ -17,5 +17,5 @@ parameters.V2=parameters.V2/epsilon;
         end
     end
 final=en(end);
-[spin,gap,innergap]=spintexture(energyall,wfall,parameters);
+[spin,gap]=spintexture(energyall,wfall,parameters);
 end
