@@ -56,7 +56,7 @@ for i=1:200
 en(i)=totalenergy_2(energyall,wfall,parameters);
 [energyall,wfall]=energyMF_2(energyall,wfall,parameters);
 if length(en)>1    
-    if abs(en(end)-en(end-1))<1e-8
+    if abs(en(end)-en(end-1))<1e-11
         break
     end
 end

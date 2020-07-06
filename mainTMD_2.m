@@ -167,16 +167,16 @@ if parameters.nu==[4,4]
 end
 
 %For Wigner crystal
-if parameters.nu==[1,5] 
-    ailist={[0,0];[-1,1];[-2,1];[-2,2];[-3,2]};
-%     ailist={[0,0];[-1,0];[-2,0];[-3,0];[-4,0]};
-    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[0,0,1]};
-    am1index=[-1,2];
-    am2index=[-3,1];
-%     am1index=[-5,0];
-%     am2index=[-1,1];
-end
+% if parameters.nu==[1,5] 
+%     ailist={[0,0];[-1,1];[-2,1];[-2,2];[-3,2]};
+% %     ailist={[0,0];[-1,0];[-2,0];[-3,0];[-4,0]};
+%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     parameters.spin0={[0,0,1]};
+%     am1index=[-1,2];
+%     am2index=[-3,1];
+% %     am1index=[-5,0];
+% %     am2index=[-1,1];
+% end
 
 % %120 AF
 % if parameters.nu==[1,5] 
@@ -188,15 +188,15 @@ end
 %     am2index=[1,3];
 % end
 
-% %180 AF-skewed
-% if parameters.nu==[1,5] 
-%     ailist={[0,0];[-3,1];[-1,2];[-4,3];...
-%         [-1,1];[-2,1];[-2,2];[-3,2];[-4,2];[-5,2];[-2,3];[-3,3];[-5,3];[-6,3];[-3,4];[-4,4];[-5,4];[-6,4];[-6,5];[-7,5]};
-%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     parameters.spin0={[0,0,1],[0,0,-1],[0,0,-1],[0,0,1]};
-%     am1index=[-2,4];
-%     am2index=[-6,2];
-% end
+%180 AF-skewed
+if parameters.nu==[1,5] 
+    ailist={[0,0];[-3,1];[-1,2];[-4,3];...
+        [-1,1];[-2,1];[-2,2];[-3,2];[-4,2];[-5,2];[-2,3];[-3,3];[-5,3];[-6,3];[-3,4];[-4,4];[-5,4];[-6,4];[-6,5];[-7,5]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1],[0,0,-1],[0,0,-1],[0,0,1]};
+    am1index=[-2,4];
+    am2index=[-6,2];
+end
 
 
 % %180 AF-rectangular
@@ -226,7 +226,7 @@ if parameters.nu==[8,8]
     am2index=[-2,3];
 end
 % 
-% %Wigner crystal
+% %Wigner crystal-AF
 % if parameters.nu==[2,5] 
 %     ailist={[-1,1];[-2,1];[-2,2];[-3,2];[0,0]};
 %     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
@@ -235,15 +235,24 @@ end
 %     am2index=[-3,1];
 % end
 
-% AF for 10 unit cell
+% %Wigner crystal-F
 % if parameters.nu==[2,5] 
-%     ailist={[0,0];[-1,2];[-2,1];[-3,3];...
-%             [-1,1];[-2,3];[-2,2];[-3,4];[-3,2];[-4,4]};
+%     ailist={[-1,1];[-2,1];[-2,2];[-3,2];[0,0]};
 %     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     parameters.spin0={[0,0,1],[0,0,-1],[0,0,-1],[0,0,1]};
-%     am1index=[-2,4];
+%     parameters.spin0={[0,0,1],[0,0,1]};
+%     am1index=[-1,2];
 %     am2index=[-3,1];
 % end
+
+% 180 AF for 10 unit cell
+if parameters.nu==[2,5] 
+    ailist={[0,0];[-1,2];[-2,1];[-3,3];...
+            [-1,1];[-2,3];[-2,2];[-3,4];[-3,2];[-4,4]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1],[0,0,-1],[0,0,-1],[0,0,1]};
+    am1index=[-2,4];
+    am2index=[-3,1];
+end
 
 % 120 AF for 30 unit cell
 % if parameters.nu==[2,5] 
