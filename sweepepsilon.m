@@ -1,10 +1,10 @@
-function [final,spin,gap,energyall,wfall]=sweepepsilon(epsilon,parameters)
+function [final,spin,gap,innergap]=sweepepsilon(epsilon,parameters)
 parameters.V1=parameters.V1/epsilon;
 parameters.V2=parameters.V2/epsilon;
 
 
 [energyall,wfall]=energyMF_init_2(parameters);
-    for i=1:200
+    for i=1:500
         en(i)=totalenergy_2(energyall,wfall,parameters);
 %         [spin,gap]=spintexture(energyall,wfall,parameters);
 %         fprintf("%d: gap:%0.8f meV E:%f meV\n",i,1000*gap,1000*en(end));
@@ -17,5 +17,5 @@ parameters.V2=parameters.V2/epsilon;
         end
     end
 final=en(end);
-[spin,gap]=spintexture(energyall,wfall,parameters);
+[spin,gap,innergap]=spintexture(energyall,wfall,parameters);
 end

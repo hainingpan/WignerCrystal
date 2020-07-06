@@ -1,11 +1,11 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[6,7],'d',10,'Vz',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[2,4],'d',10,'Vz',0);
 % parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',10,'Vz',0);
 tshell=3;
 Ushell=110;
 % [t,neighborlist]=t_calc_func(tshell,parameters);
 % U=U_calc_func_2(Ushell,parameters);
 
-n=15;
+n=21;
 counter=1;
 clear kxlist kylist
 for xindex=1:n
@@ -54,9 +54,9 @@ parameters.V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_
 clear spinsav en gapsav
 [energyall,wfall]=energyMF_init_2(parameters);
 for i=1:1000
-[spin,gap]=spintexture(energyall,wfall,parameters);
+[spin,gap,innergap]=spintexture(energyall,wfall,parameters);
 en(i)=totalenergy_2(energyall,wfall,parameters);
-fprintf("%d: gap:%0.8f meV E:%f meV\n",i,1000*gap,1000*en(end));
+fprintf("%d: gap:%0.8f meV E:%f meV innergap: %0.8f\n",i,1000*gap,1000*en(end),1000*innergap);
 disp([spin,angle(spin(:,2)+spin(:,3)*1i)*180/pi,angle(spin(:,4)+sqrt(spin(:,3).^2+spin(:,2).^2)*1i)*180/pi])
 plot(en);
 ylabel('energy (eV)');
