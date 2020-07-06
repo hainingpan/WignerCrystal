@@ -64,4 +64,4 @@ end
 final=en(end);
 [spin,gap]=spintexture(energyall,wfall,parameters);
 
-save(sprintf('nu%d,%d_d%d_ep%d_U%d.mat',parameters.nu(1),parameters.nu(2),d,epsilon,Ushell),'final','gap','spin','nu')
+save(sprintf('nu%d,%d_d%d_ep%d_U%d.mat',parameters.nu(1),parameters.nu(2),d,epsilon,Ushell),'final','gap','spin','nu','parameters')
