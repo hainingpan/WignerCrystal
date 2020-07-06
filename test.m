@@ -22,16 +22,16 @@
 %     disp(i);
 % tic;sweep_nu([1,3],10,10,length(generate_neighbor(i+4)));tt(i)=toc;
 % end
-% sweep_nu([1,1],10,10);
-% sweep_nu([1,2],10,10);
-% sweep_nu([1,3],10,10);
-% sweep_nu([2,3],10,10);
-% sweep_nu([1,4],10,10);
-% sweep_nu([3,4],10,10);
-sweep_nu([1,5],10,10);
-sweep_nu([2,5],10,10);
-sweep_nu([3,5],10,10);
-sweep_nu([4,5],10,10);
+% sweep_nu([1,1],5,10);
+% sweep_nu([1,2],5,10);
+% sweep_nu([1,3],5,10);
+% sweep_nu([2,3],5,10);
+sweep_nu([1,4],5,10);
+sweep_nu([3,4],5,10);
+sweep_nu([1,5],5,10);
+sweep_nu([2,5],5,10);
+sweep_nu([3,5],5,10);
+sweep_nu([4,5],5,10);
 
 % sweep_nu([1,7],10,10);
 

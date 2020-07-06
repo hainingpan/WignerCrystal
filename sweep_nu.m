@@ -9,7 +9,8 @@ Ushell=110;
 U=U_calc_func_2(Ushell,parameters);
 
 %27*4
-n=(floor(200/3/length(parameters.Q)/2)*2+1)*3;
+% n=(floor(200/3/length(parameters.Q)/2)*2+1)*3;
+n=21*(length(parameters.Q)<=8)+15*(length(parameters.Q)>8);
 counter=1;
 kxlist=zeros(1,n^2);
 kylist=zeros(1,n^2);
