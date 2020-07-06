@@ -1,5 +1,6 @@
 %Sweep for Wigner Crystal as a function epsilon and d
-function sweep_ep_d(nu)
+function timsav=sweep_ep_d(nu)
+tic;
 dlist=linspace(1,10,20);
 Nd=length(dlist);
 epsilonlist=linspace(1,80,160);
@@ -58,9 +59,10 @@ for di=1:Nd
     [k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
     [k_alpha_y,k_beta_y,q_alpha_y,q_delta_y]=ndgrid(kylist,kylist,Qy,Qy);
     parameters.V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
-
+    timsav(1)=toc;
     for epi=1:Nep
         [final(di,epi),spin(:,:,di,epi),gap(di,epi),innergap(di,epi)]=sweepepsilon(epsilonlist(epi),parameters);
+        timsav(epi+1)=toc;
     end
 end
 save(sprintf('nu%d,%d_U%d.mat',param.nu(1),param.nu(2),Ushell),'nu','final','spin','epsilonlist','gap','innergap','dlist');
