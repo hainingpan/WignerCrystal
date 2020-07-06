@@ -188,14 +188,24 @@ end
 %     am2index=[1,3];
 % end
 
-%180 AF
+%180 AF-skewed
 if parameters.nu==[1,5] 
-    ailist={[0,0];[-2,1];[-1,1];[-2,1];[-2,2];[-3,2];[-4,2];[-5,2];[-5,3];[-6,3]};
+    ailist={[0,0];[-3,1];[-1,2];[-4,3];...
+        [-1,1];[-2,1];[-2,2];[-3,2];[-4,2];[-5,2];[-2,3];[-3,3];[-5,3];[-6,3];[-3,4];[-4,4];[-5,4];[-6,4];[-6,5];[-7,5]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[0,0,1],[0,0,-1]};
-    am1index=[-1,2];
+    parameters.spin0={[0,0,1],[0,0,-1],[0,0,-1],[0,0,1]};
+    am1index=[-2,4];
     am2index=[-6,2];
 end
+
+% %180 AF-rectangular
+% if parameters.nu==[1,5] 
+%     ailist={[0,0];[-3,1];[-1,0];[-2,0];[-3,0];[-4,0];[-1,1];[-2,1];[-4,1];[-5,1]};
+%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     parameters.spin0={};
+%     am1index=[-1,2];
+%     am2index=[-6,2];
+% end
 
 
 % For spin texture
