@@ -109,6 +109,14 @@ if parameters.nu==[1,3]
    am2index=[-3,0];
 end
 
+if parameters.nu==[3,9]
+    ailist={[0,0],[-2,1],[-4,2],[-1,1],[-2,2],[-3,2],[-3,1],[-2,0],[-1,0]};    
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
+   am1index=[-3,3];
+   am2index=[-3,0];
+end
+
 % %For tetrahedron spin
 % if parameters.nu==[4,12]
 %     ailist={[0,0],[-1,2],[-2,1],[-3,3],[-2,2],[-4,4],[-2,3],[-3,4],[-1,1],[-5,5],[-3,2],[-4,3]}; 
