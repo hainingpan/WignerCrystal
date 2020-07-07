@@ -1,6 +1,6 @@
 %Sweep for Wigner Crystal as a function epsilon and d
 function sweep_ep_d(nu,epsilonlist,dlist)
-tic;
+% tic;
 % dlist=linspace(1,10,20);
 Nd=length(dlist);
 % epsilonlist=linspace(1,80,160);
