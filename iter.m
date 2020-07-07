@@ -1,11 +1,11 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[2,4],'d',10,'Vz',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,3],'d',10,'Vz',0);
 % parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',10,'Vz',0);
 tshell=3;
 Ushell=110;
 % [t,neighborlist]=t_calc_func(tshell,parameters);
 % U=U_calc_func_2(Ushell,parameters);
 
-n=21;
+n=27;
 counter=1;
 clear kxlist kylist
 for xindex=1:n
