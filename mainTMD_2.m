@@ -126,6 +126,13 @@ if parameters.nu==[2,3]
    am2index=[-2,1];
 end
 
+if parameters.nu==[6,9]
+    ailist={[0,0],[-2,2],[-1,1]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1],[0,0,1]};
+   am1index=[-1,2];
+   am2index=[-2,1];
+end
 if parameters.nu==[1,4]
     ailist={[0,0],[-2,2],[-4,4],[-1,2],[-2,3],[-3,4],[-1,1],[-3,3],[-5,5],[-2,1],[-3,2],[-4,3]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
