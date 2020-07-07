@@ -167,6 +167,15 @@ if parameters.nu==[3,12]
    am2index=[-4,2];
 end
 
+% For kagome lattice AF
+if parameters.nu==[4,16]
+    ailist={[0,0],[-1,2],[-2,1],[-1,1],[-2,2],[-3,3],[-4,4],[-5,5],[-3,2],[-4,3],[-2,3],[-3,4]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+   parameters.spin0={[cos(-5*pi/6),sin(-5*pi/6),0],[cos(-pi/6),sin(-pi/6),0],[cos(pi/2),sin(pi/2),0]};
+   am1index=[-2,4];
+   am2index=[-4,2];
+end
+
 %For tetrahedron spin
 if parameters.nu==[2,4] 
     ailist={[0,0],[-1,0],[-1,1],[-2,1]};
