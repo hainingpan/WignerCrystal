@@ -167,7 +167,7 @@ if parameters.nu==[3,12]
    am2index=[-4,2];
 end
 
-% For kagome lattice AF
+% For kagome lattice F
 if parameters.nu==[4,16]
     ailist={[0,0],[-1,2],[-2,1],[-1,1],[-2,2],[-3,3],[-4,4],[-5,5],[-3,2],[-4,3],[-2,3],[-3,4]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
