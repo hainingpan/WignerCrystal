@@ -127,15 +127,15 @@ if parameters.nu==[3,9]
    am1index=[-3,3];
    am2index=[-3,0];
 end
-
-% For 1/3 120 AF
+%canted AF as ansatz
 if parameters.nu==[4,12]
-    ailist={[0,0],[-1,1],[-2,2]};
+    ailist={[0,0],[-2,1],[-4,2],[-1,1],[-2,2],[-3,2],[-3,1],[-2,0],[-1,0]};    
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[1,0,0],[cos(-2*pi/3),sin(-2*pi/3),0],[cos(-4*pi/3),sin(-4*pi/3),0]};
-   am1index=[-1,2];
-   am2index=[-2,1];
+    parameters.spin0={[1,0,cos(pi/4)],[cos(2*pi/3),sin(2*pi/3),cos(pi/4)],[cos(4*pi/3),sin(4*pi/3),cos(pi/4)]};
+   am1index=[-3,3];
+   am2index=[-3,0];
 end
+
 
 % %For tetrahedron spin
 % if parameters.nu==[4,12]
@@ -170,6 +170,15 @@ if parameters.nu==[8,12]
    am2index=[-2,1];
 end
 
+%canted AF as ansatz
+if parameters.nu==[4,6]
+    ailist={[0,0],[-2,2],[-1,1]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[cos(pi/4),0,1],[cos(pi/4),0,-1]};
+   am1index=[-1,2];
+   am2index=[-2,1];
+end
+
 if parameters.nu==[1,4]
     ailist={[0,0],[-2,2],[-4,4],[-1,2],[-2,3],[-3,4],[-1,1],[-3,3],[-5,5],[-2,1],[-3,2],[-4,3]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
@@ -187,23 +196,31 @@ if parameters.nu==[2,8]
    am2index=[-4,2];
 end
 
-% For kagome lattice AF
+% %canted AF as ansatz
 if parameters.nu==[3,12]
-    ailist={[0,0],[-1,2],[-2,1],[-1,1],[-2,2],[-3,3],[-4,4],[-5,5],[-3,2],[-4,3],[-2,3],[-3,4]};
+    ailist={[0,0],[-2,2],[-4,4],[-1,2],[-2,3],[-3,4],[-1,1],[-3,3],[-5,5],[-2,1],[-3,2],[-4,3]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-   parameters.spin0={[cos(-5*pi/6),sin(-5*pi/6),0],[cos(-pi/6),sin(-pi/6),0],[cos(pi/2),sin(pi/2),0]};
+    parameters.spin0={[1,0,cos(pi/4)],[cos(2*pi/3),sin(2*pi/3),cos(pi/4)],[cos(4*pi/3),sin(4*pi/3),cos(pi/4)]};
    am1index=[-2,4];
    am2index=[-4,2];
 end
-
-% For kagome lattice F
-if parameters.nu==[4,16]
-    ailist={[0,0],[-1,2],[-2,1],[-1,1],[-2,2],[-3,3],[-4,4],[-5,5],[-3,2],[-4,3],[-2,3],[-3,4]};
-    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-   parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
-   am1index=[-2,4];
-   am2index=[-4,2];
-end
+% % For kagome lattice AF
+% if parameters.nu==[3,12]
+%     ailist={[0,0],[-1,2],[-2,1],[-1,1],[-2,2],[-3,3],[-4,4],[-5,5],[-3,2],[-4,3],[-2,3],[-3,4]};
+%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%    parameters.spin0={[cos(-5*pi/6),sin(-5*pi/6),0],[cos(-pi/6),sin(-pi/6),0],[cos(pi/2),sin(pi/2),0]};
+%    am1index=[-2,4];
+%    am2index=[-4,2];
+% end
+% 
+% % For kagome lattice F
+% if parameters.nu==[4,16]
+%     ailist={[0,0],[-1,2],[-2,1],[-1,1],[-2,2],[-3,3],[-4,4],[-5,5],[-3,2],[-4,3],[-2,3],[-3,4]};
+%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%    parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
+%    am1index=[-2,4];
+%    am2index=[-4,2];
+% end
 
 %For tetrahedron spin
 if parameters.nu==[2,4] 
