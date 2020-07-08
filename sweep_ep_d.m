@@ -11,7 +11,7 @@ gap=zeros(Nd,Nep);
 innergap=zeros(Nd,Nep);
 
 param=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',nu);
-n=21*(length(param.Q)<=8)+15*(length(param.Q)>8);
+n=21*(length(param.Q)<=8)+15*(length(param.Q)>8 & length(param.Q)<=21)+9*(length(param.Q)>21);
 kxlist=zeros(1,n^2);
 kylist=zeros(1,n^2);
 tshell=3;
