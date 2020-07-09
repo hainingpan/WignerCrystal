@@ -1,4 +1,4 @@
-function [tot,ave]=totalenergy_2(energyall,wfall,parameters)
+function [tot,ave,V2ave]=totalenergy_2(energyall,wfall,parameters)
 N=parameters.N;
 Q=parameters.Q;
 NQ=length(Q);
@@ -28,14 +28,18 @@ H1=ttt(tensor(ave1_beta),prod2,[1,2],[1,2])/(2*N*NQ);
 V2=parameters.V2; %V2_{k_alpha,k_beta,q_alpha,q_delta}
 ave2_alpha=ave; %k_alpha,q_alpha,q_gamma,sigma1,sigma2
 ave2_beta=permute(ave,[1,2,3,5,4]); %%k_beta,q_beta,q_delta,sigma2,sigma1
-prod1=ttt2(tensor(V2),tensor(ave2_alpha),[1],[1],[3],[2]); %q_alpha,k_beta,q_delta,q_gamma,sigma,sigma'
-prod2=ttt2(prod1,tensor(ave2_beta),[2,5,6],[1,5,4],[3],[3]); %q_delta,q_alpha,q_gamma,q_beta
+
+% deltaave=ttt2(delta_tensor,ave2_alpha,[3],[3],[1],[2]); %q_alpha,q_beta,q_delta,k_alpha,sigma1,sigma2
+% V2deltaave=ttt2(V2,deltaave,[1,3],[4,1],[4],[2]); %q_beta,k_beta,q_delta,sigma1,sigma2
+% H2=ttt(tensor(ave2_beta),tensor(V2deltaave),[1,2,3,4,5],[2,1,3,5,4])/(2*N*NQ);
+ 
+V2ave=ttt2(tensor(V2),tensor(ave2_alpha),[1],[1],[3],[2]); %q_alpha,k_beta,q_delta,q_gamma,sigma,sigma'
+prod2=ttt2(V2ave,tensor(ave2_beta),[2,5,6],[1,5,4],[3],[3]); %q_delta,q_alpha,q_gamma,q_beta
 H2=ttt(tensor(delta_tensor),tensor(prod2),[1,2,3,4],[2,4,3,1])/(2*N*NQ);
 
 tot=real(T+H1-H2);
 tot=tot/(N*NQ);
 end
-
 
 
 

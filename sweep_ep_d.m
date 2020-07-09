@@ -30,7 +30,10 @@ end
 kxlist=kxlist';
 kylist=kylist';
 
-
+final=zeros(Nd,Nep);
+gap=zeros(Nd,Nep);
+innergap=zeros(Nd,Nep);
+finali=zeros(Nd,Nep);
 parfor di=1:Nd
     parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'d',dlist(di),'nu',nu);
     [t,neighborlist]=t_calc_func(tshell,parameters);
@@ -60,9 +63,9 @@ parfor di=1:Nd
     [k_alpha_y,k_beta_y,q_alpha_y,q_delta_y]=ndgrid(kylist,kylist,Qy,Qy);
     parameters.V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
     for epi=1:Nep
-        [final(di,epi),spin(:,:,di,epi),gap(di,epi),innergap(di,epi)]=sweepepsilon(epsilonlist(epi),parameters);
+        [final(di,epi),spin(:,:,di,epi),gap(di,epi),innergap(di,epi),finali(di,epi)]=sweepepsilon(epsilonlist(epi),parameters);
     end
 end
-save(sprintf('nu%d,%d_U%d.mat',param.nu(1),param.nu(2),Ushell),'nu','final','spin','epsilonlist','gap','innergap','dlist');
+save(sprintf('nu%d,%d_U%d.mat',param.nu(1),param.nu(2),Ushell),'nu','final','spin','epsilonlist','gap','innergap','dlist','finali');
 end
 

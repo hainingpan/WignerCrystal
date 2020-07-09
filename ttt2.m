@@ -36,8 +36,10 @@ preserve_size=xsize(k);
 x_mat=reshape(x.data,[prod(preserve_size),prod(xsize(remdims_x))]);
 y_mat=reshape(y.data,[prod(preserve_size),prod(ysize(remdims_y))]);
 
-ind_x=find(ismember(remdims_x,i));
-ind_y=find(ismember(remdims_y,j));
+% ind_x=find(ismember(remdims_x,i));
+% ind_y=find(ismember(remdims_y,j));
+ind_x=arrayfun(@(xx) find(remdims_x==xx) ,i);
+ind_y=arrayfun(@(xx) find(remdims_y==xx) ,j);
 tenprodsize=[xsize(setdiff(remdims_x,i)),ysize(setdiff(remdims_y,j))];
 
 z=zeros([prod(preserve_size),prod(tenprodsize)]);
