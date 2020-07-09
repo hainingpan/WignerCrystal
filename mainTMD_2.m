@@ -407,85 +407,85 @@ end
 
 
 
-if parameters.nu==[1,6] 
-%     ailist={[0,0];[1,0];[2,0];[0,1];[1,1];[2,1]};
-%     ailist={[0,0];[1,0];[2,0];[1,1];[2,1];[3,1]};
-    ailist={[0,0];[0,1];[1,1];[2,1];[1,2];[2,2]};
-    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[0,0,1]};
-%     am1index=[3,0];
-%     am2index=[0,2];
-    
-%     am1index=[3,0];
-%     am2index=[1,2];
-    
-    am1index=[3,1];
-    am2index=[0,2];
-end
-
-if parameters.nu==[2,6] 
-%     ailist={[0,0];[1,0];[2,0];[0,1];[1,1];[2,1]};
-    ailist={[1,1];[2,1];[0,0];[1,0];[2,0];[3,1]};
-%     ailist={[0,0];[1,1];[0,1];[2,1];[1,2];[2,2]};
-    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[0,0,1],[[0,0,-1]]};
-%     am1index=[3,0];
-%     am2index=[0,2];
-    
-    am1index=[3,0];
-    am2index=[1,2];
-    
+% if parameters.nu==[1,6] 
+% %     ailist={[0,0];[1,0];[2,0];[0,1];[1,1];[2,1]};
+% %     ailist={[0,0];[1,0];[2,0];[1,1];[2,1];[3,1]};
+%     ailist={[0,0];[0,1];[1,1];[2,1];[1,2];[2,2]};
+%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     parameters.spin0={[0,0,1]};
+% %     am1index=[3,0];
+% %     am2index=[0,2];
+%     
+% %     am1index=[3,0];
+% %     am2index=[1,2];
+%     
 %     am1index=[3,1];
 %     am2index=[0,2];
-end
+% end
 
-if parameters.nu==[3,6] 
-%     ailist={[0,0];[1,0];[2,0];[0,1];[1,1];[2,1]};
-%     ailist={[0,0];[1,0];[2,0];[1,1];[2,1];[3,1]};
-    ailist={[0,1];[2,1];[1,2];[0,0];[1,1];[2,2]};
-    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
-%     am1index=[3,0];
-%     am2index=[0,2];
-    
+% if parameters.nu==[2,6] 
+% %     ailist={[0,0];[1,0];[2,0];[0,1];[1,1];[2,1]};
+%     ailist={[1,1];[2,1];[0,0];[1,0];[2,0];[3,1]};
+% %     ailist={[0,0];[1,1];[0,1];[2,1];[1,2];[2,2]};
+%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     parameters.spin0={[0,0,1],[[0,0,-1]]};
+% %     am1index=[3,0];
+% %     am2index=[0,2];
+%     
 %     am1index=[3,0];
 %     am2index=[1,2];
-    
-    am1index=[3,1];
-    am2index=[0,2];
-end
+%     
+% %     am1index=[3,1];
+% %     am2index=[0,2];
+% end
 
-if parameters.nu==[4,6] 
-%     ailist={[1,0];[0,1];[1,1];[2,1];[0,0];[2,0]};
-%     ailist={[1,0];[2,0];[1,1];[2,1];[3,1];[0,0]};
-    ailist={[0,0];[0,1];[1,1];[2,1];[1,2];[2,2]};
-    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[0,0,1],[0,0,1],[0,0,1],[0,0,1]};
-%     am1index=[3,0];
+% if parameters.nu==[3,6] 
+% %     ailist={[0,0];[1,0];[2,0];[0,1];[1,1];[2,1]};
+% %     ailist={[0,0];[1,0];[2,0];[1,1];[2,1];[3,1]};
+%     ailist={[0,1];[2,1];[1,2];[0,0];[1,1];[2,2]};
+%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
+% %     am1index=[3,0];
+% %     am2index=[0,2];
+%     
+% %     am1index=[3,0];
+% %     am2index=[1,2];
+%     
+%     am1index=[3,1];
 %     am2index=[0,2];
-    
-%     am1index=[3,0];
-%     am2index=[1,2];
-    
-    am1index=[3,1];
-    am2index=[0,2];
-end
+% end
 
-if parameters.nu==[5,6] 
-%     ailist={[0,0];[1,0];[0,1];[1,1];[2,1];[2,0]};
-%     ailist={[1,0];[2,0];[1,1];[2,1];[3,1];[0,0]};
-    ailist={[0,0];[0,1];[1,1];[2,1];[1,2];[2,2]};
-    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1]};
-%     am1index=[3,0];
+% if parameters.nu==[4,6] 
+% %     ailist={[1,0];[0,1];[1,1];[2,1];[0,0];[2,0]};
+% %     ailist={[1,0];[2,0];[1,1];[2,1];[3,1];[0,0]};
+%     ailist={[0,0];[0,1];[1,1];[2,1];[1,2];[2,2]};
+%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     parameters.spin0={[0,0,1],[0,0,1],[0,0,1],[0,0,1]};
+% %     am1index=[3,0];
+% %     am2index=[0,2];
+%     
+% %     am1index=[3,0];
+% %     am2index=[1,2];
+%     
+%     am1index=[3,1];
 %     am2index=[0,2];
-    
-%     am1index=[3,0];
-%     am2index=[1,2];
-    
-    am1index=[3,1];
-    am2index=[0,2];
-end
+% end
+
+% if parameters.nu==[5,6] 
+% %     ailist={[0,0];[1,0];[0,1];[1,1];[2,1];[2,0]};
+% %     ailist={[1,0];[2,0];[1,1];[2,1];[3,1];[0,0]};
+%     ailist={[0,0];[0,1];[1,1];[2,1];[1,2];[2,2]};
+%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     parameters.spin0={[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1]};
+% %     am1index=[3,0];
+% %     am2index=[0,2];
+%     
+% %     am1index=[3,0];
+% %     am2index=[1,2];
+%     
+%     am1index=[3,1];
+%     am2index=[0,2];
+% end
 
 % % For Wigner Crystal
 % if parameters.nu==[1,7] 
