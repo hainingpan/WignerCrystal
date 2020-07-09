@@ -175,6 +175,7 @@ if parameters.nu==[4,6]
     ailist={[0,0],[-2,2],[-1,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
     parameters.spin0={[cos(pi/4),0,1],[cos(pi/4),0,-1]};
+%     parameters.spin0={[sin(0.01),0,1],[-sin(0.01),0,1]};
    am1index=[-1,2];
    am2index=[-2,1];
 end
