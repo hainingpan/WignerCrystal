@@ -1,11 +1,11 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',10,'Vz',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[4,6],'d',10,'Vz',0);
 % parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',10,'Vz',0);
-tshell=35;
-Ushell=length(generate_neighbor(15));
+tshell=3;
+Ushell=110;
 % [t,neighborlist]=t_calc_func(tshell,parameters);
 % U=U_calc_func_2(Ushell,parameters);
 
-n=27;
+n=15;
 counter=1;
 clear kxlist kylist
 for xindex=1:n
@@ -25,7 +25,7 @@ t_bond=[neighborlist{1:tshell+1}];
 U_bond=[neighborlist{1:Ushell+1}];
 hp=1;
 tlist=-hp*[t{1:tshell+1}];
-epsilon=10;
+epsilon=5;
 Ulist=real([U{1:Ushell+1}])/epsilon;
 
 parameters.N=length(kxlist);
@@ -41,7 +41,9 @@ Qx=cellfun(@(x)x(1),parameters.Q);
 Qy=cellfun(@(x)x(2),parameters.Q);
 [q_alpha_x,q_delta_x]=meshgrid(Qx,Qx);
 [q_alpha_y,q_delta_y]=meshgrid(Qy,Qy);
+% cutoff=norm(neighborlist{Ushell+2}{1}*[parameters.aM1;parameters.aM2]);
 parameters.V1=V(U_bond,Ulist,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
+% Vint(cutoff,epsilon,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters);
 % parameters.V1=V1;
 % parameters.V1=zeros(length(Qx),length(Qy));
 [k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
