@@ -1,4 +1,4 @@
-function [energyall,wfall]=energyMF_2(energyall_o,wfall_o,parameters)
+function [energyall,wfall]=energyMF_2(ave,parameters)
 %use ttt2
 N=parameters.N;
 Q=parameters.Q;
@@ -9,7 +9,7 @@ wfall=zeros(N,2*NQ,2*NQ);
 
 V1=parameters.V1; %V1_{q_alpha,q_delta}
 delta_tensor=parameters.delta_tensor; %delta_tensor_{q_alpha,q_beta,q_gamma,q_delta}
-ave=average(energyall_o,wfall_o,parameters); %k_alpha,q_alpha,q_delta,sigma1,sigma2
+% ave=average(energyall_o,wfall_o,parameters); %k_alpha,q_alpha,q_delta,sigma1,sigma2
 ave1=contract(tensor(ave),4,5); %k_alpha,q_alpha,q_delta
 V1_expand=permute(repmat(V1,1,1,NQ,NQ),[1,3,4,2]); %q_alpha,q_beta,q_gamma,q_delta
 prod1=V1_expand.*delta_tensor; %q_alpha,q_beta,q_gamma,q_delta
@@ -34,7 +34,7 @@ end
 
 H=T+H1-H2;
 herr=max(sum(abs(H-conj(permute(H,[2,1,3]))),[1,2]));
-assert(herr<1e-12,'hermitian error exceeds');
+% assert(herr<1e-12,'hermitian error exceeds');
 % fprintf("hermitian error: %e\n",herr);
 H=1/2*(H+conj(permute(H,[2,1,3])));
 for k_beta_index=1:N

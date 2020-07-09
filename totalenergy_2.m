@@ -1,4 +1,4 @@
-function tot=totalenergy_2(energyall,wfall,parameters)
+function [tot,ave]=totalenergy_2(energyall,wfall,parameters)
 N=parameters.N;
 Q=parameters.Q;
 NQ=length(Q);
