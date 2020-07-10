@@ -1,4 +1,4 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[12,16],'d',10,'Vz',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[15,20],'d',10,'Vz',0);
 % parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',10,'Vz',0);
 tshell=3;
 Ushell=length(generate_neighbor(30));
@@ -67,7 +67,7 @@ spinsav(:,:,i)=spin;
 plot(squeeze(angle(spinsav(1,4,:)+sqrt(spinsav(1,3,:).^2+spinsav(1,2,:).^2)*1i)*180/pi));
 gapsav(i)=gap;
 if length(en)>1    
-    if abs(en(end)-en(end-1))<1e-11
+    if abs(en(end)-en(end-1))<1e-15
         break
     end
 end
