@@ -4,7 +4,7 @@ parameters.V2=parameters.V2/epsilon;
 
 
 [energyall,wfall]=energyMF_init_2(parameters);
-    for i=1:10000
+    for i=1:500
        [en(i),ave,V2deltaave]=totalenergy_2(energyall,wfall,parameters);
 
         if length(en)>1    
