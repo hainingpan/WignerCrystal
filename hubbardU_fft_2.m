@@ -8,14 +8,18 @@ Ly=ry(end,1)-ry(1,1);
 kxlist=2*pi/Lx*(-floor(Nx/2):floor((Nx-1)/2));
 kylist=2*pi/Ly*(-floor(Ny/2):floor((Ny-1)/2));
 
-wb1k=fftshift(fft2(abs(wbgrid1).^2))*Lx*Ly/(Nx*Ny);
-wt1k=fftshift(fft2(abs(wtgrid1).^2))*Lx*Ly/(Nx*Ny);
+% wb1k=fftshift(fft2(abs(wbgrid1).^2))*Lx*Ly/(Nx*Ny);
+% wt1k=fftshift(fft2(abs(wtgrid1).^2))*Lx*Ly/(Nx*Ny);
+% 
+% wb2k=reshape(wb1k(end:-1:1),Nx,Ny);
+% wt2k=reshape(wt1k(end:-1:1),Nx,Ny);
 
-wb2k=reshape(wb1k(end:-1:1),Nx,Ny);
-wt2k=reshape(wt1k(end:-1:1),Nx,Ny);
+Mq=fftshift(fft2(abs(wbgrid1).^2)+fft2(abs(wtgrid1).^2))*Lx*Ly/((Nx-1)*(Nx-1));
+
 
 [kxmap,kymap]=meshgrid(kxlist,kylist);
-w2=reshape(wb1k.*wb2k+wt1k.*wt2k,Nx,Ny);
+% w2=reshape(wb1k.*wb2k+wt1k.*wt2k,Nx,Ny);
+w2=abs(Mq).^2;
 
 re=zeros(1,length(neighborlist));
 F=griddedInterpolant(kxmap',kymap',w2);

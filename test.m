@@ -26,14 +26,23 @@
 % sweep_nu([1,2],5,10);
 % sweep_nu([1,3],5,10);
 % sweep_nu([2,3],5,10);
-sweep_nu([1,4],5,10);
-sweep_nu([3,4],5,10);
-sweep_nu([1,5],5,10);
-sweep_nu([2,5],5,10);
-sweep_nu([3,5],5,10);
-sweep_nu([4,5],5,10);
+% sweep_nu([1,4],5,10);
+% sweep_nu([3,4],5,10);
+% sweep_nu([1,5],5,10);
+% sweep_nu([2,5],5,10);
+% sweep_nu([3,5],5,10);
+% sweep_nu([4,5],5,10);
 
 % sweep_nu([1,7],10,10);
+shelllist=10:40;
+clear vv
+for i=1:length(shelllist)
+    Ushell=length(generate_neighbor(shelllist(i)));
+    U_bond=[neighborlist{1:Ushell+1}];
+    Ulist=real([U{1:Ushell+1}]);
+    vv(i)=V(U_bond,Ulist,0,0,parameters);
+end
+figure;plot(shelllist,vv)
 
 
 
