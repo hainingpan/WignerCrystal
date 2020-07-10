@@ -1,11 +1,11 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[15,20],'d',10,'Vz',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,3],'d',10,'Vz',0);
 % parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',10,'Vz',0);
 tshell=3;
-Ushell=length(generate_neighbor(30));
+Ushell=22;
 % [t,neighborlist]=t_calc_func(tshell,parameters);
 % U=U_calc_func_2(Ushell,parameters);
 
-n=15;
+n=21;
 counter=1;
 clear kxlist kylist
 for xindex=1:n
@@ -23,9 +23,9 @@ kylist=kylist';
 
 t_bond=[neighborlist{1:tshell+1}];
 U_bond=[neighborlist{1:Ushell+1}];
-hp=1;
+hp=0;
 tlist=-hp*[t{1:tshell+1}];
-epsilon=10;
+epsilon=1;
 Ulist=real([U{1:Ushell+1}])/epsilon;
 
 parameters.N=length(kxlist);
@@ -64,7 +64,8 @@ disp([spin,angle(spin(:,2)+spin(:,3)*1i)*180/pi,angle(spin(:,4)+sqrt(spin(:,3).^
 ylabel('energy (eV)');
 drawnow;
 spinsav(:,:,i)=spin;
-plot(squeeze(angle(spinsav(1,4,:)+sqrt(spinsav(1,3,:).^2+spinsav(1,2,:).^2)*1i)*180/pi));
+% plot(squeeze(angle(spinsav(1,4,:)+sqrt(spinsav(1,3,:).^2+spinsav(1,2,:).^2)*1i)*180/pi));
+plot(en);
 gapsav(i)=gap;
 if length(en)>1    
     if abs(en(end)-en(end-1))<1e-15

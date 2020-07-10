@@ -27,7 +27,7 @@ H1=ttt(tensor(ave1_beta),prod2,[1,2],[1,2])/(2*N*NQ);
 
 V2=parameters.V2; %V2_{k_alpha,k_beta,q_alpha,q_delta}
 ave2_alpha=ave; %k_alpha,q_alpha,q_gamma,sigma1,sigma2
-ave2_beta=permute(ave,[1,2,3,5,4]); %%k_beta,q_beta,q_delta,sigma2,sigma1
+ave2_beta=ave; %%k_beta,q_beta,q_delta,sigma1,sigma2
 
 % deltaave=ttt2(delta_tensor,ave2_alpha,[3],[3],[1],[2]); %q_alpha,q_beta,q_delta,k_alpha,sigma1,sigma2
 % V2deltaave=ttt2(V2,deltaave,[1,3],[4,1],[4],[2]); %q_beta,k_beta,q_delta,sigma1,sigma2
