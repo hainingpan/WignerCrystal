@@ -15,7 +15,7 @@ n=21*(length(param.Q)<=8)+15*(length(param.Q)>8 & length(param.Q)<=21)+9*(length
 kxlist=zeros(1,n^2);
 kylist=zeros(1,n^2);
 tshell=3;
-Ushell=110;
+Ushell=373;
 counter=1;
 for xindex=1:n
     for yindex=1:n
