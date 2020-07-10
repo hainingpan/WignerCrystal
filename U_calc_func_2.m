@@ -1,6 +1,6 @@
 function U=U_calc_func_2(k,parameters)
 %use shifted wannier state
-neighborlist=generate_neighbor(100);
+neighborlist=generate_neighbor(101);
 
 xrange=-3*parameters.aM:parameters.aM/20:3*parameters.aM;
 yrange=-3*parameters.aM:parameters.aM/20:3*parameters.aM;
