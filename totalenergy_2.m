@@ -2,13 +2,14 @@ function [tot,ave,V2ave]=totalenergy_2(energyall,wfall,parameters)
 N=parameters.N;
 Q=parameters.Q;
 NQ=length(Q);
+Ez=parameters.Ez;
 
 energylist=parameters.energylist;
 
-epsilonk=reshape(energylist,[N,NQ,2]);
+epsilonk=reshape(energylist+repmat(Ez*[ones(1,NQ),-ones(1,NQ)],[N,1]),[N,NQ,2]); %k_alpha,q_alpha,sigma1
 
 ave=average(energyall,wfall,parameters); %k_alpha,q_alpha,q_delta,sigma1,sigma2
-aveT=zeros(N,NQ,2);
+aveT=zeros(N,NQ,2); %k_alpha,q_alpha,sigma1
 for q_alpha_index=1:NQ
     for sigma_index=1:2
         aveT(:,q_alpha_index,sigma_index)=ave(:,q_alpha_index,q_alpha_index,sigma_index,sigma_index);

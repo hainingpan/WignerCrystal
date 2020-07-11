@@ -60,5 +60,6 @@ for epi=1:length(epsilonlist)
     end
     [energyall,wfall]=energyMF_2(ave,V2deltaave,parameters);
     end
-    re(epi)=en(i);
+    [spin,gap,~]=spintexture(energyall,wfall,parameters);
+    re(epi)=1000*gap;
 end

@@ -11,7 +11,6 @@ isconverge=zeros(NVz,Nangle,length(epsilonlist));
 parfor i=1:NVz
     for j=1:Nangle
         gap(i,j,:)=phasediagram(anglelist(j),Vzlist(i),epsilonlist);
-        disp(j);
     end
 end
 

@@ -3,6 +3,7 @@ function [energyall,wfall]=energyMF_2(ave,V2ave,parameters)
 N=parameters.N;
 Q=parameters.Q;
 NQ=length(Q);
+Ez=parameters.Ez;
 
 energyall=zeros(N,2*NQ);
 wfall=zeros(N,2*NQ,2*NQ);
@@ -29,7 +30,7 @@ H2=reshape(permute(prod2,[2,5,1,4,3]),[2*NQ,2*NQ,N])/(N*NQ); %q_beta+sigma2,q_de
 %q_beta,k_beta,q_delta,sigma1,sigma2
 % H2=reshape(permute(V2deltaave,[1,5,3,4,2]),[2*NQ,2*NQ,N])/(N*NQ); %q_beta+sigma2,q_delta+sigma1,k_beta
 
-energylist=parameters.energylist;
+energylist=parameters.energylist+repmat(Ez*[ones(1,NQ),-ones(1,NQ)],[N,1]);
 T=zeros(2*NQ,2*NQ,N);
 for k_beta_index=1:N
     T(:,:,k_beta_index)=diag(energylist(k_beta_index,:));

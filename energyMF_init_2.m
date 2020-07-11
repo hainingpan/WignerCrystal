@@ -3,6 +3,7 @@ function [energyall,wfall]=energyMF_init_2(parameters)
 N=parameters.N;
 Q=parameters.Q;
 NQ=length(Q);
+Ez=parameters.Ez;
 
 energyall=zeros(N,2*NQ);
 wfall=zeros(N,2*NQ,2*NQ);
@@ -25,7 +26,7 @@ prod1=ttt2(V2_reduce,ave2,[],[],[2],[1]); %q_alpha,k_beta,q_delta,q_gamma,sigma1
 prod2=ttt2(delta_tensor,prod1,[1,3],[1,4],[4],[3]); %q_delta,q_beta,k_beta,sigma1,sigam2
 H2=reshape(permute(prod2,[2,5,1,4,3]),[2*NQ,2*NQ,N])/(N*NQ); %q_beta+sigma2,q_delta+sigma1,k_beta
 
-energylist=parameters.energylist;
+energylist=parameters.energylist+repmat(Ez*[ones(1,NQ),-ones(1,NQ)],[N,1]);
 T=zeros(2*NQ,2*NQ,N);
 for k_beta_index=1:N
     T(:,:,k_beta_index)=diag(energylist(k_beta_index,:));
