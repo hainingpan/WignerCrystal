@@ -6,7 +6,7 @@ NB=41;
 Ezlist=linspace(0,9e-3,NB);
 
 gapmap=zeros(NVz,NB);
-szmap=zeros(NVz,NB,3);
+szmap=zeros(NVz,NB);
 isconverge=zeros(NVz,NB);
 
 parfor Vzindex=1:NVz    
@@ -54,12 +54,12 @@ V1=V(U_bond,Ulist,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_al
 V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
     for Bindex=1:NB
         parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',theta,'Vz',Vzlist(Vzindex),'Ez',Ezlist(Bindex));
-        parameters.V1=V1;
-        parameters.V2=V2;
+        parameters.V1=V1/epsilon;
+        parameters.V2=V2/epsilon;
         parameters.N=N;
         parameters.energylist=energylist;
         [energyall,wfall]=energyMF_init_2(parameters);
-        en=zeros(1000,1);
+        en=[];
         for i=1:1000
         [en(i),ave,V2deltaave]=totalenergy_2(energyall,wfall,parameters);
         if length(en)>1    
