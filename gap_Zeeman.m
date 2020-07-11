@@ -52,7 +52,6 @@ V1=V(U_bond,Ulist,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_al
 [k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
 [k_alpha_y,k_beta_y,q_alpha_y,q_delta_y]=ndgrid(kylist,kylist,Qy,Qy);
 V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
-
     for Bindex=1:NB
         parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',theta,'Vz',Vzlist(Vzindex),'Ez',Ezlist(Bindex));
         parameters.V1=V1;
@@ -60,6 +59,7 @@ V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_al
         parameters.N=N;
         parameters.energylist=energylist;
         [energyall,wfall]=energyMF_init_2(parameters);
+        en=zeros(1000,1);
         for i=1:1000
         [en(i),ave,V2deltaave]=totalenergy_2(energyall,wfall,parameters);
         if length(en)>1    
