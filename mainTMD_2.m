@@ -8,12 +8,12 @@ addParameter(p,'psi',-89.6);
 addParameter(p,'w',-8.5);
 addParameter(p,'Nmax',5);
 addParameter(p,'Vz',0);
-addParameter(p,'B',0);
+addParameter(p,'Ez',0);
 addParameter(p,'d',inf);
 addParameter(p,'nu',[1,1]);%filling factor number(#1) per site(#2); no spin degeneracy considered
 parse(p,varargin{:});
 parameters=struct('a',p.Results.a,'m',p.Results.m*0.511e6,'theta',p.Results.theta/360*2*pi,'V',p.Results.V*1e-3,'psi'...
-    ,p.Results.psi/360*2*pi,'w',p.Results.w*1e-3,'Vz',p.Results.Vz*1e-3,'Nmax',p.Results.Nmax,'B',p.Results.B,'d',p.Results.d,'nu',p.Results.nu);
+    ,p.Results.psi/360*2*pi,'w',p.Results.w*1e-3,'Vz',p.Results.Vz*1e-3,'Nmax',p.Results.Nmax,'Ez',p.Results.Ez,'d',p.Results.d,'nu',p.Results.nu);
 %Unit vectors
 parameters.a1=parameters.a*[1,0];
 parameters.a2=parameters.a*[1/2,sqrt(3)/2];
@@ -51,10 +51,10 @@ parameters.Deltatmat=reshape(arrayfun(@(h1,h2) Deltal(h1,h2,-1,parameters),h1mat
 parameters.Deltabmat=reshape(arrayfun(@(h1,h2) Deltal(h1,h2,1,parameters),h1mat(:),h2mat(:)),(2*parameters.Nmax+1)^2,(2*parameters.Nmax+1)^2);
 
 %Zeeman field
-mu_B=5.778e-5;
-epsilon_z=(1+2+1/0.45)*mu_B;
-Ez=epsilon_z*parameters.B;
-parameters.Ez=Ez;
+% mu_B=5.778e-5;
+% epsilon_z=(1+2+1/0.45)*mu_B;
+% Ez=epsilon_z*parameters.B;
+% parameters.Ez=Ez;
 
 rotate=@(x) [cos(x) -sin(x);sin(x) cos(x)]; %rotate anticlockwise
 if parameters.nu==[1,2] 

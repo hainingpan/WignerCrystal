@@ -1,8 +1,8 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,2],'d',10,'Vz',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',inf,'Vz',0,'B',0);
 % parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',10,'Vz',0);
 tshell=3;
-Ushell=length(generate_neighbor(40));
-% [t,neighborlist]=t_calc_func(tshell,parameters);
+Ushell=0;
+[t,neighborlist]=t_calc_func(tshell,parameters);
 % U=U_calc_func_2(Ushell,parameters);
 
 n=15;
@@ -25,7 +25,7 @@ t_bond=[neighborlist{1:tshell+1}];
 U_bond=[neighborlist{1:Ushell+1}];
 hp=1;
 tlist=-hp*[t{1:tshell+1}];
-epsilon=35;
+epsilon=10;
 Ulist=real([U{1:Ushell+1}])/epsilon;
 
 parameters.N=length(kxlist);
