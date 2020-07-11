@@ -3,7 +3,7 @@ function gap_Zeeman(epsilon,theta)
 NVz=51;
 Vzlist=linspace(0,50,NVz);
 NB=41;
-Ezlist=linspace(0,9e-3,NB);
+Ezlist=linspace(0,2e-3,NB);
 
 gapmap=zeros(NVz,NB);
 szmap=zeros(NVz,NB);
