@@ -27,29 +27,30 @@ U_bond=[neighborlist{1:Ushell+1}];
 hp=1;
 tlist=hp*[t{1:tshell+1}];
 re=zeros(1,length(epsilonlist));
+Ulist=real([U{1:Ushell+1}]);
+parameters.N=length(kxlist);
+kxbasis=cell(1,length(parameters.Q));
+kybasis=cell(1,length(parameters.Q));
+for i=1:length(parameters.Q)
+    kxbasis{i}=kxlist+parameters.Q{i}(1);
+    kybasis{i}=kylist+parameters.Q{i}(2);
+end
+parameters.energylist=real(tb(t_bond,tlist,[cell2mat(kxbasis),-cell2mat(kxbasis)],[cell2mat(kybasis),-cell2mat(kybasis)],parameters));
+Qx=cellfun(@(x)x(1),parameters.Q);
+Qy=cellfun(@(x)x(2),parameters.Q);
+[q_alpha_x,q_delta_x]=meshgrid(Qx,Qx);
+[q_alpha_y,q_delta_y]=meshgrid(Qy,Qy);
+V1=V(U_bond,Ulist,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
+[k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
+[k_alpha_y,k_beta_y,q_alpha_y,q_delta_y]=ndgrid(kylist,kylist,Qy,Qy);
+V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
 
 for epi=1:length(epsilonlist)
 
     epsilon=epsilonlist(epi);
-    Ulist=real([U{1:Ushell+1}])/epsilon;
-    parameters.N=length(kxlist);
-    kxbasis=cell(1,length(parameters.Q));
-    kybasis=cell(1,length(parameters.Q));
-    for i=1:length(parameters.Q)
-        kxbasis{i}=kxlist+parameters.Q{i}(1);
-        kybasis{i}=kylist+parameters.Q{i}(2);
-    end
-    parameters.energylist=real(tb(t_bond,tlist,[cell2mat(kxbasis),-cell2mat(kxbasis)],[cell2mat(kybasis),-cell2mat(kybasis)],parameters));
+    parameters.V1=V1/epsilon;
+    parameters.V2=V2/epsilon;
     
-    Qx=cellfun(@(x)x(1),parameters.Q);
-    Qy=cellfun(@(x)x(2),parameters.Q);
-    [q_alpha_x,q_delta_x]=meshgrid(Qx,Qx);
-    [q_alpha_y,q_delta_y]=meshgrid(Qy,Qy);
-    parameters.V1=V(U_bond,Ulist,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
-    [k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
-    [k_alpha_y,k_beta_y,q_alpha_y,q_delta_y]=ndgrid(kylist,kylist,Qy,Qy);
-    parameters.V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
-
     [energyall,wfall]=energyMF_init_2(parameters);
     for i=1:100
     [en(i),ave,V2deltaave]=totalenergy_2(energyall,wfall,parameters);
