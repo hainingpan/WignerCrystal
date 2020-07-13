@@ -91,21 +91,22 @@ end
 [energyall,wfall]=energyMF_2(ave,V2deltaave,param);
 end
 final=en(end);
-ang=[0,0,0];
-for ind=2:4
+ang=[0];
+for ind=2:size(spin,2)
     ang(ind-1)=spin(ind,2:4)*spin(1,2:4)'/(norm(spin(ind,2:4))*norm(spin(1,2:4)));
 end
 exist=0;
+op=[spin(:,1)',ang];
 for ind=1:length(angstore)
-    if all(abs(ang-angstore{ind})<ones(1,3)*1e-2)
+    if all(abs(op-angstore{ind})<ones(1,length(op))*1e-2)
         exist=1;
         break;
     end
 end
 
 if exist==0
-    disp([i,spin(:,1)',ang]);
-    angstore={angstore{:},ang};
+    disp(op);
+    angstore={angstore{:},op};
     spinstore={spinstore{:},spin};
 end
 end
