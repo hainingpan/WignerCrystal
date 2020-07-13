@@ -51,18 +51,19 @@ angstore={};
 spinstore={};
 
 while 1
+nor=rand(1,3);
 theta=rand(1,3)*2*pi;
 phi=rand(1,3)*pi;
 % theta=[0,0,0];
 % phi=[1,0,0]*pi;
 
-ansatz={[sin(phi(1))*cos(theta(1)),sin(phi(1))*sin(theta(1)),cos(phi(1))],...
-    [sin(phi(2))*cos(theta(2)),sin(phi(2))*sin(theta(2)),cos(phi(2))],...
-    [sin(phi(3))*cos(theta(3)),sin(phi(3))*sin(theta(3)),cos(phi(3))]};
+ansatz={nor(1)*[sin(phi(1))*cos(theta(1)),sin(phi(1))*sin(theta(1)),cos(phi(1))],...
+    nor(2)*[sin(phi(2))*cos(theta(2)),sin(phi(2))*sin(theta(2)),cos(phi(2))],...
+    nor(3)*[sin(phi(3))*cos(theta(3)),sin(phi(3))*sin(theta(3)),cos(phi(3))]};
 
 Nsite=randi(3);
 ansatz=ansatz(1:Nsite);
-% param=mainTMD_spin('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'nu',[1,2],'d',10,'spin_init',ansatz);
+param=mainTMD_spin('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'nu',[1,2],'d',10,'spin_init',ansatz);
 param.spin0={[0,0,1],ansatz{:}};
 param.N=parameters.N;
 param.energylist=parameters.energylist;
@@ -71,7 +72,7 @@ param.V2=parameters.V2;
 
 clear spinsav en gapsav
 [energyall,wfall]=energyMF_init_2(param);
-for i=1:999
+for i=1:10000
 [spin,gap,innergap]=spintexture(energyall,wfall,param);
 [en(i),ave,V2deltaave]=totalenergy_2(energyall,wfall,param);
 % fprintf("%d: gap:%0.8f meV E:%f meV innergap: %0.8f\n",i,1000*gap,1000*en(end),1000*innergap);
@@ -92,7 +93,7 @@ end
 end
 final=en(end);
 ang=[0];
-for ind=2:size(spin,2)
+for ind=2:size(spin,1)
     ang(ind-1)=spin(ind,2:4)*spin(1,2:4)'/(norm(spin(ind,2:4))*norm(spin(1,2:4)));
 end
 exist=0;
@@ -105,6 +106,7 @@ for ind=1:length(angstore)
 end
 
 if exist==0
+    fprintf("%d:",i);
     disp(op);
     angstore={angstore{:},op};
     spinstore={spinstore{:},spin};
