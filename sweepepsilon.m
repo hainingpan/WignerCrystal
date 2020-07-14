@@ -4,11 +4,11 @@ parameters.V2=parameters.V2/epsilon;
 
 
 [energyall,wfall]=energyMF_init_2(parameters);
-    for i=1:500
+    for i=1:10000
        [en(i),ave,V2deltaave]=totalenergy_2(energyall,wfall,parameters);
 
         if length(en)>1    
-            if abs(en(end)-en(end-1))<1e-11
+            if abs(en(end)-en(end-1))<1e-15
                 break
             end
         end
