@@ -10,7 +10,7 @@ final=zeros(Nd,Nep);
 gap=zeros(Nd,Nep);
 innergap=zeros(Nd,Nep);
 
-param=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',nu);
+param=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'nu',nu);
 % n=21*(length(param.Q)<=8)+15*(length(param.Q)>8 & length(param.Q)<=21)+9*(length(param.Q)>21);
 n=15;
 kxlist=zeros(1,n^2);
