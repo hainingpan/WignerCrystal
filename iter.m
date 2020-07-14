@@ -1,9 +1,10 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',inf,'Vz',0,'Ez',9e-3);
-% parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1],'d',10,'Vz',0);
-tshell=3;
-Ushell=0;
-[t,neighborlist]=t_calc_func(tshell,parameters);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'nu',[15,20],'d',10,'Vz',0,'Ez',0);
+% tshell=3;
+% Ushell=length(generate_neighbor(100));
+% [t,neighborlist]=t_calc_func(tshell,parameters);
 % U=U_calc_func_2(Ushell,parameters);
+
+epsilon=10;
 
 n=15;
 counter=1;
@@ -25,8 +26,7 @@ t_bond=[neighborlist{1:tshell+1}];
 U_bond=[neighborlist{1:Ushell+1}];
 hp=1;
 tlist=-hp*[t{1:tshell+1}];
-epsilon=30;
-Ulist=real([U{1:Ushell+1}])/epsilon;
+Ulist=real([U{1:Ushell+1}])/1;
 
 parameters.N=length(kxlist);
 kxbasis=cell(1,length(parameters.Q));
@@ -41,15 +41,13 @@ Qx=cellfun(@(x)x(1),parameters.Q);
 Qy=cellfun(@(x)x(2),parameters.Q);
 [q_alpha_x,q_delta_x]=meshgrid(Qx,Qx);
 [q_alpha_y,q_delta_y]=meshgrid(Qy,Qy);
-% cutoff=norm(neighborlist{Ushell+2}{1}*[parameters.aM1;parameters.aM2]);
-parameters.V1=V(U_bond,Ulist,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
-% Vint(cutoff,epsilon,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters);
-% parameters.V1=V1;
+V1=V(U_bond,Ulist,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
+parameters.V1=V1/epsilon;
 % parameters.V1=zeros(length(Qx),length(Qy));
 [k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
 [k_alpha_y,k_beta_y,q_alpha_y,q_delta_y]=ndgrid(kylist,kylist,Qy,Qy);
-parameters.V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
-% parameters.V2=V2;
+V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
+parameters.V2=V2/epsilon;
 % parameters.V2=zeros(length(kxlist),length(kylist),length(Qx),length(Qy));
 
 
@@ -62,12 +60,13 @@ fprintf("%d: gap:%0.8f meV E:%f meV innergap: %0.8f\n",i,1000*gap,1000*en(end),1
 disp([spin,angle(spin(:,2)+spin(:,3)*1i)*180/pi,angle(spin(:,4)+sqrt(spin(:,3).^2+spin(:,2).^2)*1i)*180/pi])
 % plot(en);
 ylabel('energy (eV)');
+% plotband;
 drawnow;
 spinsav(:,:,i)=spin;
 % plot(squeeze(angle(spinsav(1,4,:)+sqrt(spinsav(1,3,:).^2+spinsav(1,2,:).^2)*1i)*180/pi));
-plot(en);
+% plot(en);
 gapsav(i)=gap;
-if length(en)>1    
+if length(en)>1     
     if abs(en(end)-en(end-1))<1e-15
         break
     end
@@ -75,4 +74,5 @@ end
 [energyall,wfall]=energyMF_2(ave,V2deltaave,parameters);
 end
 final=en(end);
+plotband;
 % save(sprintf('nu%d,%d_t%d_U%d_hp%d_ep%d.mat',parameters.nu(1),parameters.nu(2),tshell,Ushell,hp,epsilon),'en','spinsav','gapsav')
