@@ -44,13 +44,13 @@ param.neighbor=distsquare(logical([1;diff(distsquare)>.5]));
 % param.Ulist=1./param.neighbor(2:end);
 
 %% hexgonal supercell with 12 sites
-param.A1=[2,2];
-param.A2=[-2,4];
-param.uclist=[[0,0];[-1,0];[0,-1];[1,-1];[1,0];[0,1];[-1,1];...
-    [1,1];[0,2];[-1,2];[-2,2];[-2,1]];
-param.r=param.uclist*[param.a1;param.a2];
-% Aneighbor=[[0,0];[1,0];[0,1];[-1,1];[-1,0];[0,-1];[1,-1]];
-Aneighbor=reshape([param.neighborlist{1}{:},param.neighborlist{2}{:},param.neighborlist{3}{:},param.neighborlist{4}{:},param.neighborlist{5}{:},param.neighborlist{6}{:}],[2,37])';
+% param.A1=[2,2];
+% param.A2=[-2,4];
+% param.uclist=[[0,0];[-1,0];[0,-1];[1,-1];[1,0];[0,1];[-1,1];...
+%     [1,1];[0,2];[-1,2];[-2,2];[-2,1]];
+% param.r=param.uclist*[param.a1;param.a2];
+% % Aneighbor=[[0,0];[1,0];[0,1];[-1,1];[-1,0];[0,-1];[1,-1]];
+% Aneighbor=reshape([param.neighborlist{1}{:},param.neighborlist{2}{:},param.neighborlist{3}{:},param.neighborlist{4}{:},param.neighborlist{5}{:},param.neighborlist{6}{:}],[2,37])';
 %% rectangular supercell with 3 sites
 % param.A1=[-1,2];
 % param.A2=[-2,1];
@@ -59,12 +59,12 @@ Aneighbor=reshape([param.neighborlist{1}{:},param.neighborlist{2}{:},param.neigh
 % [X,Y]=meshgrid(-4:4,-4:4);
 % Aneighbor=[X(:),Y(:)];
 %% rectangular supercell with 4 sites
-% param.A1=[-2,2];
-% param.A2=[-2,0];
-% param.uclist=[[0,0];[-1,1];[-1,0];[-2,1]];
-% param.r=param.uclist*[param.a1;param.a2];
-% [X,Y]=meshgrid(-4:4,-4:4);
-% Aneighbor=[X(:),Y(:)];
+param.A1=[-2,2];
+param.A2=[-2,0];
+param.uclist=[[0,0];[-1,1];[-1,0];[-2,1]];
+param.r=param.uclist*[param.a1;param.a2];
+[X,Y]=meshgrid(-4:4,-4:4);
+Aneighbor=[X(:),Y(:)];
 %% rectangular supercell with 4 sites
 % param.A1=[-1,2];
 % param.A2=[-2,0];
