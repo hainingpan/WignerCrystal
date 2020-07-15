@@ -57,10 +57,11 @@ parameters.Deltabmat=reshape(arrayfun(@(h1,h2) Deltal(h1,h2,1,parameters),h1mat(
 % parameters.Ez=Ez;
 
 rotate=@(x) [cos(x) -sin(x);sin(x) cos(x)]; %rotate anticlockwise
+%For AF
 if parameters.nu==[1,2] 
     ailist={[0,0],[-1,0],[-1,1],[-2,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[0,0,1],[0,0,1]};
+    parameters.spin0={[0,0,1],[0,0,-1]};
 %     parameters.spin0={[1,1,1]/sqrt(3),[1,-1,-1]/sqrt(3),[-1,1,-1]/sqrt(3),[-1,-1,1]/sqrt(3)};
    am1index=[0,2];
    am2index=[2,0];
@@ -70,7 +71,7 @@ end
 if parameters.nu==[3,6] 
     ailist={[0,0],[-1,0],[-1,1],[-2,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[0,0,1],[0,0,-1]};
+    parameters.spin0={[0,0,1],[0,0,1]};
    am1index=[0,2];
    am2index=[2,0];
 end
