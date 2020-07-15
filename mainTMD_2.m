@@ -348,29 +348,29 @@ if parameters.nu==[4,4]
 end
 
 %For Wigner crystal
-% if parameters.nu==[1,5] 
-%     ailist={[0,0];[-1,1];[-2,1];[-2,2];[-3,2]};
-% %     ailist={[0,0];[-1,0];[-2,0];[-3,0];[-4,0]};
-%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     parameters.spin0={[0,0,1]};
-%     am1index=[-1,2];
-%     am2index=[-3,1];
-% %     am1index=[-5,0];
-% %     am2index=[-1,1];
-% end
+if parameters.nu==[1,5] 
+    ailist={[0,0];[-1,1];[-2,1];[-2,2];[-3,2]};
+%     ailist={[0,0];[-1,0];[-2,0];[-3,0];[-4,0]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1]};
+    am1index=[-1,2];
+    am2index=[-3,1];
+%     am1index=[-5,0];
+%     am2index=[-1,1];
+end
 
-% %120 AF
-% if parameters.nu==[1,5] 
-%     ailist={[0,0];[-1,2];[-2,4];...
-%             [-1,1];[0,1];[-2,2];[0,2];[-3,3];[-2,3];[-1,3];[0,3];[-3,4];[-1,4];[-3,5];[-2,5]};
-%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     parameters.spin0={[1,0,0];[cos(2*pi/3),sin(2*pi/3),0];[cos(4*pi/3),sin(4*pi/3),0]};
-%     am1index=[-4,3];
-%     am2index=[1,3];
-% end
+%120 AF
+if parameters.nu==[2,10] 
+    ailist={[0,0];[-1,2];[-2,4];...
+            [-1,1];[0,1];[-2,2];[0,2];[-3,3];[-2,3];[-1,3];[0,3];[-3,4];[-1,4];[-3,5];[-2,5]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[1,0,0];[cos(2*pi/3),sin(2*pi/3),0];[cos(4*pi/3),sin(4*pi/3),0]};
+    am1index=[-4,3];
+    am2index=[1,3];
+end
 
 %180 AF-skewed
-if parameters.nu==[1,5] 
+if parameters.nu==[3,15] 
     ailist={[0,0];[-3,1];[-1,2];[-4,3];...
         [-1,1];[-2,1];[-2,2];[-3,2];[-4,2];[-5,2];[-2,3];[-3,3];[-5,3];[-6,3];[-3,4];[-4,4];[-5,4];[-6,4];[-6,5];[-7,5]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
@@ -380,15 +380,15 @@ if parameters.nu==[1,5]
 end
 
 
-% %180 AF-rectangular
-% if parameters.nu==[1,5] 
-%     ailist={[0,0];[-3,1];[-1,2];[-4,3];...
-%         [-1,0];[-2,0];[-3,0];[-4,0];[-1,1];[-2,1];[-4,1];[-5,1];[-2,2];[-3,2];[-4,2];[-5,2];[-2,3];[-3,3];[-5,3];[-6,3]};
-%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     parameters.spin0={[0,0,1],[0,0,-1],[0,0,-1],[0,0,1]};
-%     am1index=[-2,4];
-%     am2index=[-5,0];
-% end
+%180 AF-rectangular
+if parameters.nu==[4,20] 
+    ailist={[0,0];[-3,1];[-1,2];[-4,3];...
+        [-1,0];[-2,0];[-3,0];[-4,0];[-1,1];[-2,1];[-4,1];[-5,1];[-2,2];[-3,2];[-4,2];[-5,2];[-2,3];[-3,3];[-5,3];[-6,3]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1],[0,0,-1],[0,0,-1],[0,0,1]};
+    am1index=[-2,4];
+    am2index=[-5,0];
+end
 
 
 
@@ -670,7 +670,8 @@ end
 if parameters.nu==[1,1]
     ailist={[0,0],[-1,1],[-2,2]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[1,0,0],[cos(-2*pi/3),sin(-2*pi/3),0],[cos(-4*pi/3),sin(-4*pi/3),0]};
+%     parameters.spin0={[1,0,0],[cos(-2*pi/3),sin(-2*pi/3),0],[cos(-4*pi/3),sin(-4*pi/3),0]};
+    parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
    am1index=[-1,2];
    am2index=[-2,1];
 end
