@@ -22,4 +22,5 @@ for i=1:n
         eiv(i,:)=angle(eigval)/(pi);
     end
 end
+figure;plot(eiv,'.');
 end
