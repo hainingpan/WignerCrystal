@@ -61,7 +61,7 @@ for di=1:Nd
     [k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
     [k_alpha_y,k_beta_y,q_alpha_y,q_delta_y]=ndgrid(kylist,kylist,Qy,Qy);
     parameters.V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
-    for epi=1:Nep
+    parfor epi=1:Nep
         [final(di,epi),spin(:,:,di,epi),gap(di,epi),innergap(di,epi),finali(di,epi)]=sweepepsilon(epsilonlist(epi),parameters);
     end
 end
