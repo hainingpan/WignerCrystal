@@ -6,7 +6,8 @@ Nep=length(epsilonlist);
 
 
 n=15;
-
+tshell=3;
+Ushell=length(generate_neighbor(100));
 final=zeros(Ntheta,Nep);
 gap=zeros(Ntheta,Nep);
 innergap=zeros(Ntheta,Nep);
@@ -18,14 +19,12 @@ for thetai=1:Ntheta
     
     kxlist=zeros(1,n^2);
     kylist=zeros(1,n^2);
-    tshell=3;
-    Ushell=length(generate_neighbor(100));
     counter=1;
     for xindex=1:n
         for yindex=1:n
             ux=(2*xindex-n-1)/(2*n);
             uy=(2*yindex-n-1)/(2*n);
-            klist=ux*param.bm1+uy*param.bm2;
+            klist=ux*parameters.bm1+uy*parameters.bm2;
             kxlist(counter)=klist(1);
             kylist(counter)=klist(2);
             counter=counter+1;
@@ -61,6 +60,6 @@ for thetai=1:Ntheta
         [final(thetai,epi),spin(:,:,thetai,epi),gap(thetai,epi),innergap(thetai,epi),finali(thetai,epi)]=sweepepsilon(epsilonlist(epi),parameters);
     end
 end
-save(sprintf('phase%d,%d_U%d.mat',param.nu(1),param.nu(2),Ushell),'nu','final','spin','epsilonlist','gap','innergap','thetalist','finali');
+save(sprintf('phase%d,%d_U%d.mat',nu(1),nu(2),Ushell),'nu','final','spin','epsilonlist','gap','innergap','thetalist','finali');
 end
 
