@@ -6,11 +6,9 @@ Nd=length(dlist);
 % epsilonlist=linspace(1,80,160);
 % nu=[1,3];
 Nep=length(epsilonlist);
-final=zeros(Nd,Nep);
-gap=zeros(Nd,Nep);
-innergap=zeros(Nd,Nep);
 
-param=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'nu',nu);
+
+param=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',5,'nu',nu);
 % n=21*(length(param.Q)<=8)+15*(length(param.Q)>8 & length(param.Q)<=21)+9*(length(param.Q)>21);
 n=15;
 kxlist=zeros(1,n^2);
@@ -35,8 +33,8 @@ final=zeros(Nd,Nep);
 gap=zeros(Nd,Nep);
 innergap=zeros(Nd,Nep);
 finali=zeros(Nd,Nep);
-parfor di=1:Nd
-    parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'d',dlist(di),'nu',nu);
+for di=1:Nd
+    parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',5,'d',dlist(di),'nu',nu);
     [t,neighborlist]=t_calc_func(tshell,parameters);
     U=U_calc_func_2(Ushell,parameters);
 
