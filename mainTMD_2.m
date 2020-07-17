@@ -80,7 +80,19 @@ end
 if parameters.nu==[4,8] 
     ailist={[0,0],[-1,0],[-1,1],[-2,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
+    parameters.spin0={[0,0,1]*2/3,[0,0,1]*2/3,[0,0,1]*2/3};
+%     parameters.spin0={[0,0,1]/2,[0,0,1]/2,[0,0,1]/2};
+
+   am1index=[0,2];
+   am2index=[2,0];
+end
+
+%For no Wigner Crystal
+if parameters.nu==[5,10] 
+    ailist={[0,0],[-1,0],[-1,1],[-2,1]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1]/2,[0,0,1]/2,[0,0,1]/2,[0,0,1]/2};
+
    am1index=[0,2];
    am2index=[2,0];
 end

@@ -1,12 +1,15 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'nu',[9,12],'d',10,'Vz',0,'Ez',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[4,8],'d',60e-9*5.076e6,'Vz',0,'Ez',0);
 % tshell=3;
 % Ushell=length(generate_neighbor(100));
 % [t,neighborlist]=t_calc_func(tshell,parameters);
 % U=U_calc_func_2(Ushell,parameters);
+% 
+% t=cellfun(@(x) mean(x)*ones(1,length(x)),t,'UniformOutput',false);
 
-epsilon=10;
 
-n=15;
+epsilon=20;
+
+n=21;
 counter=1;
 clear kxlist kylist
 for xindex=1:n
@@ -53,18 +56,19 @@ parameters.V2=V2/epsilon;
 
 clear spinsav en gapsav
 [energyall,wfall]=energyMF_init_2(parameters);
+fig1=figure;
+fig2=figure;
 for i=1:10000
 [spin,gap,innergap]=spintexture(energyall,wfall,parameters);
 [en(i),ave,V2deltaave]=totalenergy_2(energyall,wfall,parameters);
 fprintf("%d: gap:%0.8f meV E:%f meV innergap: %0.8f\n",i,1000*gap,1000*en(end),1000*innergap);
 disp([spin,angle(spin(:,2)+spin(:,3)*1i)*180/pi,angle(spin(:,4)+sqrt(spin(:,3).^2+spin(:,2).^2)*1i)*180/pi])
-% plot(en);
+figure(fig1);plot(en);
 ylabel('energy (eV)');
 % plotband;
 drawnow;
 spinsav(:,:,i)=spin;
 % plot(squeeze(angle(spinsav(1,4,:)+sqrt(spinsav(1,3,:).^2+spinsav(1,2,:).^2)*1i)*180/pi));
-% plot(en);
 gapsav(i)=gap;
 if length(en)>1     
     if abs(en(end)-en(end-1))<1e-15
