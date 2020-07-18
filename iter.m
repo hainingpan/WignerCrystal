@@ -1,15 +1,14 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[4,8],'d',60e-9*5.076e6,'Vz',0,'Ez',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'nu',[5,10],'d',60e-9*5.076e6,'Vz',0,'Ez',0);
 % tshell=3;
 % Ushell=length(generate_neighbor(100));
 % [t,neighborlist]=t_calc_func(tshell,parameters);
 % U=U_calc_func_2(Ushell,parameters);
-% 
+
 % t=cellfun(@(x) mean(x)*ones(1,length(x)),t,'UniformOutput',false);
 
+epsilon=41;
 
-epsilon=20;
-
-n=21;
+n=27;
 counter=1;
 clear kxlist kylist
 for xindex=1:n
@@ -40,6 +39,7 @@ for i=1:length(parameters.Q)
 end
 parameters.energylist=real(tb(t_bond,tlist,[cell2mat(kxbasis),-cell2mat(kxbasis)],[cell2mat(kybasis),-cell2mat(kybasis)],parameters));
 
+
 Qx=cellfun(@(x)x(1),parameters.Q);
 Qy=cellfun(@(x)x(2),parameters.Q);
 [q_alpha_x,q_delta_x]=meshgrid(Qx,Qx);
@@ -54,8 +54,14 @@ parameters.V2=V2/epsilon;
 % parameters.V2=zeros(length(kxlist),length(kylist),length(Qx),length(Qy));
 
 
+
 clear spinsav en gapsav
-[energyall,wfall]=energyMF_init_2(parameters);
+if parameters.nu==[4,8] | parameters.nu==[5,10]
+    [ave,V2ave]=average_kagome(parameters.phi,parameters.s1,kxlist,kylist,parameters);
+    [energyall,wfall]=energyMF_2(ave,V2ave,parameters);
+else
+    [energyall,wfall]=energyMF_init_2(parameters);
+end
 fig1=figure;
 fig2=figure;
 for i=1:10000

@@ -23,4 +23,6 @@ for i=1:n
     end
 end
 figure;plot(eiv,'.');
+ylabel('\phi/\pi');
+xlim([1,sqrt(size(wfall,1))]);
 end

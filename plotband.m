@@ -4,7 +4,8 @@ mu=energyall_sort(end*parameters.nu(1)/(2*parameters.nu(2)));
 figure;
 hold on;
 surf(2*kxq/norm(parameters.bm1),2*kyq/norm(parameters.bm2),1000*mu*ones(100),'edgecolor','none','FaceAlpha',0.2);
-for i=1:size(energyall,2)
+% for i=1:size(energyall,2)
+for i=2:3
     vq=griddata(kxlist,kylist,1000*energyall(:,i),kxq,kyq);
     mesh(kxq/norm(parameters.bm1),kyq/norm(parameters.bm1),vq);
 end
