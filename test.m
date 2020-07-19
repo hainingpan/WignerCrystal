@@ -34,7 +34,7 @@
 % sweep_nu([4,5],5,10);
 
 % sweep_nu([1,7],10,10);
-shelllist=10:90;
+shelllist=10:100;
 clear vv
 for i=1:length(shelllist)
     Ushell=length(generate_neighbor(shelllist(i)));
