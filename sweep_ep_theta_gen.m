@@ -57,6 +57,6 @@ for thetai=1:Ntheta
     V2{thetai}=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
 
 end
-save(sprintf('phase%d,%d_theta(%d,%d,%d).mat',nu(1),nu(2),thetalist(1),thetalist(end),Ntheta),'V1','V2','energylist');
+save(sprintf('phase%d,%d_theta(%0.2f,%0.2f,%d).mat',nu(1),nu(2),thetalist(1),thetalist(end),Ntheta),'V1','V2','energylist');
 end
 
