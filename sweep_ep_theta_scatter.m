@@ -17,12 +17,12 @@ reg3=@(x) 598/3 - (110*x)/3;
 reg4=@(x) 249 - 45*x;
 reg5=@(x) 650/3 - (100*x)/3;
 reg6=@(x) 305 - 50*x;
-for thetai=1:Ntheta
+parfor thetai=1:Ntheta
     theta=thetalist(thetai);
-    seg1=0:0.1:8;
-    seg2=reg1(theta):0.1:reg2(theta);
-    seg3=reg3(theta):0.1:reg4(theta);
-    seg4=reg5(theta):0.1:reg6(theta);    
+    seg1=1:.1:8;
+    seg2=reg1(theta):.1:reg2(theta);
+    seg3=reg3(theta):.1:reg4(theta);
+    seg4=reg5(theta):.1:reg6(theta);    
     seg=unique(sort([seg1,seg2,seg3,seg4]));
     seg=seg(seg<=60);
     epsilonlist{thetai}=seg;
@@ -62,6 +62,6 @@ for thetai=1:Ntheta
     end
 end
 
-save(sprintf('phase%d,%d.mat',nu(1),nu(2)),'nu','final','spin','epsilonlist','gap','innergap','thetalist','finali');
+save(sprintf('phase%d,%d_scatter.mat',nu(1),nu(2)),'nu','final','spin','epsilonlist','gap','innergap','thetalist','finali');
 end
 
