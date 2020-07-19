@@ -41,7 +41,7 @@ parfor thetai=1:Ntheta
     parameters.V1=V1{thetai};
     parameters.V2=V2{thetai};
     for epi=1:Nep
-        disp(epi);
+%         disp(epi);
         [final(thetai,epi),spin(:,:,thetai,epi),gap(thetai,epi),innergap(thetai,epi),finali(thetai,epi)]=sweepepsilon(epsilonlist(epi),kxlist,kylist,parameters);
     end
 end
