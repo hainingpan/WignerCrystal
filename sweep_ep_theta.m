@@ -4,14 +4,14 @@ function sweep_ep_theta(nu,epsilonlist,thetalist)
 Ntheta=length(thetalist);
 Nep=length(epsilonlist);
 
-load(sprintf('phase1,2_theta(%d,%d,%d).mat',thetalist(1),thetalist(end),Ntheta));
+load(sprintf('phase1,2_theta(%.2f,%.2f,%d).mat',thetalist(1),thetalist(end),Ntheta));
 
 n=27;
 final=zeros(Ntheta,Nep);
 gap=zeros(Ntheta,Nep);
 innergap=zeros(Ntheta,Nep);
 finali=zeros(Ntheta,Nep);
-for thetai=1:Ntheta
+parfor thetai=1:Ntheta
     parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',thetalist(thetai),'d',10e-9*5.076e6,'nu',nu);
     kxlist=zeros(1,n^2);
     kylist=zeros(1,n^2);
@@ -41,6 +41,7 @@ for thetai=1:Ntheta
     parameters.V1=V1{thetai};
     parameters.V2=V2{thetai};
     for epi=1:Nep
+        disp(epi);
         [final(thetai,epi),spin(:,:,thetai,epi),gap(thetai,epi),innergap(thetai,epi),finali(thetai,epi)]=sweepepsilon(epsilonlist(epi),kxlist,kylist,parameters);
     end
 end
