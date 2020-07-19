@@ -1,4 +1,4 @@
-function [final,spin,gap,innergap,i]=sweepepsilon(epsilon,kxlist,kylist,parameters)
+function [final,spin,gap,innergap,i,ch]=sweepepsilon(epsilon,kxlist,kylist,parameters)
 parameters.V1=parameters.V1/epsilon;
 parameters.V2=parameters.V2/epsilon;
 
@@ -22,4 +22,5 @@ end
     end
 final=en(end);
 [spin,gap,innergap]=spintexture(energyall,wfall,parameters);
+ch=chern(wfall,parameters);
 end

@@ -11,6 +11,7 @@ final=zeros(Ntheta,Nep);
 gap=zeros(Ntheta,Nep);
 innergap=zeros(Ntheta,Nep);
 finali=zeros(Ntheta,Nep);
+ch=zeros(Ntheta,Nep);
 parfor thetai=1:Ntheta
     parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',thetalist(thetai),'d',60e-9*5.076e6,'nu',nu);
     kxlist=zeros(1,n^2);
@@ -41,10 +42,9 @@ parfor thetai=1:Ntheta
     parameters.V1=V1{thetai};
     parameters.V2=V2{thetai};
     for epi=1:Nep
-%         disp(epi);
-        [final(thetai,epi),spin(:,:,thetai,epi),gap(thetai,epi),innergap(thetai,epi),finali(thetai,epi)]=sweepepsilon(epsilonlist(epi),kxlist,kylist,parameters);
+        [final(thetai,epi),spin(:,:,thetai,epi),gap(thetai,epi),innergap(thetai,epi),finali(thetai,epi),ch(thetai,epi)]=sweepepsilon(epsilonlist(epi),kxlist,kylist,parameters);
     end
 end
-save(sprintf('phase%d,%d.mat',nu(1),nu(2)),'nu','final','spin','epsilonlist','gap','innergap','thetalist','finali');
+save(sprintf('phase%d,%d.mat',nu(1),nu(2)),'nu','final','spin','epsilonlist','gap','innergap','thetalist','finali','ch');
 end
 
