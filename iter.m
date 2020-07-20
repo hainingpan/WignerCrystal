@@ -27,7 +27,7 @@ kylist=kylist';
 
 t_bond=[neighborlist{1:tshell+1}];
 U_bond=[neighborlist{1:Ushell+1}];
-hp=0;
+hp=1;
 tlist=-hp*[t{1:tshell+1}];
 Ulist=real([U{1:Ushell+1}])/1;
 
