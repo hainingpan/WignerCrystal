@@ -173,13 +173,14 @@ if parameters.nu==[3,9]
    am1index=[-3,3];
    am2index=[-3,0];
 end
-%canted AF as ansatz
+
+%Half honeycomb
 if parameters.nu==[4,12]
-    ailist={[0,0],[-2,1],[-4,2],[-1,1],[-2,2],[-3,2],[-3,1],[-2,0],[-1,0]};    
+    ailist={[0,0],[-2,2],[-1,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[1,0,cos(pi/4)],[cos(2*pi/3),sin(2*pi/3),cos(pi/4)],[cos(4*pi/3),sin(4*pi/3),cos(pi/4)]};
-   am1index=[-3,3];
-   am2index=[-3,0];
+%     parameters.spin0={[0,0,1]/2,[0,0,1]/2};
+   am1index=[-1,2];
+   am2index=[-2,1];
 end
 
 
@@ -220,7 +221,7 @@ end
 if parameters.nu==[4,6]
     ailist={[0,0],[-2,2],[-1,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[cos(pi/4),0,1],[cos(pi/4),0,-1]};
+%     parameters.spin0={[cos(pi/4),0,1],[cos(pi/4),0,-1]};
 %     parameters.spin0={[sin(0.01),0,1],[-sin(0.01),0,1]};
    am1index=[-1,2];
    am2index=[-2,1];
@@ -735,8 +736,29 @@ while 1  %Very ugly code
 end
 parameters.Qindex=Qlist;
 parameters.Q=cellfun(@(x) x(1)*parameters.bM1+x(2)*parameters.bM2,Qlist,'UniformOutput',0);
-parameters.bm1=2*pi/(length(ailist)*sqrt(3)/2*parameters.aM^2)*am1*rotate(-pi/2);
-parameters.bm2=2*pi/(length(ailist)*sqrt(3)/2*parameters.aM^2)*am2*rotate(pi/2);
+
+% basis transformation for Chern number
+Qlistmat=cell2mat(Qlist');
+Qshift1=mod(Qlistmat+qindex(1,:),1);
+Qshift2=mod(Qlistmat+qindex(2,:),1);
+
+Qshift1=mod(Qshift1,1);
+Qshift2=mod(Qshift2,1);
+
+perm1=zeros(size(Qshift1,1));
+for i=1:length(Qshift1)
+    j=find(abs(sum(abs(Qlistmat(i,:)-Qshift1).^2,2))<1e-5);
+    perm1(i,j)=1;
+end
+
+perm2=zeros(size(Qshift2,1));
+for i=1:length(Qshift2)
+    j=find(abs(sum(abs(Qlistmat(i,:)-Qshift2).^2,2))<1e-5);
+    perm2(i,j)=1;
+end 
+
+parameters.perm1=perm1;
+parameters.perm2=perm2;
 
 NQ=length(Qlist);
 delta_tensor=zeros(NQ,NQ,NQ,NQ); %delta_tensor_{q_alpha,q_beta,q_gamma,q_delta}

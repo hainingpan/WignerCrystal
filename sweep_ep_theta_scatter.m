@@ -3,7 +3,7 @@ function sweep_ep_theta_scatter(nu,thetalist)
 
 Ntheta=length(thetalist);
 
-load(sprintf('phase1,2_theta(%.2f,%.2f,%d)_d10.mat',thetalist(1),thetalist(end),Ntheta));
+load(sprintf('phase1,2_theta(%.2f,%.2f,%d)_d60.mat',thetalist(1),thetalist(end),Ntheta));
 
 n=27;
 final={};

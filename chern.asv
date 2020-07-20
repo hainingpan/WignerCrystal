@@ -9,13 +9,14 @@ berrycur=zeros(n-1);
 for i=1:n
     for j=1:n
         u1=squeeze(umap(i,j,:,:));        
-        u2=squeeze(umap(mod(i,n)+1,j,:,:))*((i+1>n)*kron(eye(4),[0,1;1,0])+(i+1<=n)*eye(8));        
-        u3=squeeze(umap(mod(i,n)+1,mod(j,n)+1,:,:))*((i+1>n)*kron(eye(4),[0,1;1,0])+(i+1<=n)*eye(8))*...
-            ((j+1>n)*kron(eye(2),kron([0,1;1,0],eye(2)))+(j+1<=n)*eye(8));        
-        u4=squeeze(umap(i,mod(j,n)+1,:,:))*((j+1>n)*kron(eye(2),kron([0,1;1,0],eye(2)))+(j+1<=n)*eye(8));
-%         u2=squeeze(umap(mod(i,n)+1,j,:,:));        
-%         u3=squeeze(umap(mod(i,n)+1,mod(j,n)+1,:,:));   
-%         u4=squeeze(umap(i,mod(j,n)+1,:,:));
+%         u2=squeeze(umap(mod(i,n)+1,j,:,:))*((i+1>n)*kron(eye(4),[0,1;1,0])+(i+1<=n)*eye(8));        
+%         u3=squeeze(umap(mod(i,n)+1,mod(j,n)+1,:,:))*((i+1>n)*kron(eye(4),[0,1;1,0])+(i+1<=n)*eye(8))*...
+%             ((j+1>n)*kron(eye(2),kron([0,1;1,0],eye(2)))+(j+1<=n)*eye(8));        
+%         u4=squeeze(umap(i,mod(j,n)+1,:,:))*((j+1>n)*kron(eye(2),kron([0,1;1,0],eye(2)))+(j+1<=n)*eye(8));
+        u2=reshape(umap(mod(i,n)+1,j,:,:),[level,NL])*((i+1>n)*kron(eye(2),parameters.perm1)+(i+1<=n)*eye(NL));        
+        u3=reshape(umap(mod(i,n)+1,mod(j,n)+1,:,:),[level,NL])*((i+1>n)*kron(eye(2),parameters.perm1)+(i+1<=n)*eye(NL))*...
+            ((j+1>n)*kron(eye(2),parameters.perm2)+(j+1<=n)*eye(8)); 
+        u4=reshape(umap(i,mod(j,n)+1,:,:),[level,NL])*((j+1>n)*kron(eye(2),parameters.perm2)+(j+1<=n)*eye(NL));
 
         U12=conj(u1)*u2.';
         U23=conj(u2)*u3.';

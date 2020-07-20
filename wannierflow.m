@@ -12,10 +12,10 @@ for i=1:n
     for j=1:n
         
         if (j+1)~=n+1
-            prod=prod*squeeze(conj(umap(i,j,:,:)))*squeeze(umap(i,j+1,:,:)).';
+            prod=prod*reshape(conj(umap(i,j,:,:)),[level(end),NL])*reshape(umap(i,j+1,:,:),[level(end),NL]).';
         else
-            check=squeeze(conj(umap(i,j,:,:)))*kron(eye(4),[0,1;1,0])*squeeze(umap(i,1,:,:)).';
-            disp(check);
+%             check=squeeze(conj(umap(i,j,:,:)))*kron(eye(4),[0,1;1,0])*squeeze(umap(i,1,:,:)).';
+            check=reshape(conj(umap(i,j,:,:)),[level(end),NL])*kron(eye(2),parameters.perm1)*reshape(umap(i,1,:,:),[level(end),NL]).';
             prod=prod*check;
         end
         eigval=eig(prod);

@@ -1,4 +1,5 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'nu',[5,10],'d',60e-9*5.076e6,'Vz',0,'Ez',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'nu',[4,6],'d',60e-9*5.076e6,'Vz',0,'Ez',0);
+% parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'nu',[5,10],'d',10,'Vz',0,'Ez',0);
 % tshell=3;
 % Ushell=length(generate_neighbor(100));
 % [t,neighborlist]=t_calc_func(tshell,parameters);
@@ -6,7 +7,7 @@ parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',
 
 % t=cellfun(@(x) mean(x)*ones(1,length(x)),t,'UniformOutput',false);
 
-epsilon=41;
+epsilon=20;
 
 n=27;
 counter=1;
@@ -26,7 +27,7 @@ kylist=kylist';
 
 t_bond=[neighborlist{1:tshell+1}];
 U_bond=[neighborlist{1:Ushell+1}];
-hp=1;
+hp=0;
 tlist=-hp*[t{1:tshell+1}];
 Ulist=real([U{1:Ushell+1}])/1;
 
@@ -53,23 +54,25 @@ parameters.V1=V1/epsilon;
 parameters.V2=V2/epsilon;
 % parameters.V2=zeros(length(kxlist),length(kylist),length(Qx),length(Qy));
 
-
-
 clear spinsav en gapsav
 if parameters.nu==[4,8] | parameters.nu==[5,10]
     [ave,V2ave]=average_kagome(parameters.phi,parameters.s1,kxlist,kylist,parameters);
+    [energyall,wfall]=energyMF_2(ave,V2ave,parameters);
+elseif parameters.nu==[4,12] | parameters.nu==[4,6]
+    [ave,V2ave]=average_honeycomb(kxlist,kylist,parameters);
     [energyall,wfall]=energyMF_2(ave,V2ave,parameters);
 else
     [energyall,wfall]=energyMF_init_2(parameters);
 end
 fig1=figure;
-fig2=figure;
+% fig2=figure;
 for i=1:10000
 [spin,gap,innergap]=spintexture(energyall,wfall,parameters);
 [en(i),ave,V2deltaave]=totalenergy_2(energyall,wfall,parameters);
 fprintf("%d: gap:%0.8f meV E:%f meV innergap: %0.8f\n",i,1000*gap,1000*en(end),1000*innergap);
 disp([spin,angle(spin(:,2)+spin(:,3)*1i)*180/pi,angle(spin(:,4)+sqrt(spin(:,3).^2+spin(:,2).^2)*1i)*180/pi])
-figure(fig1);plot(en);
+% figure(fig1);
+plot(en);
 ylabel('energy (eV)');
 % plotband;
 drawnow;
