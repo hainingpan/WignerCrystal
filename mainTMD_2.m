@@ -724,6 +724,14 @@ if parameters.nu==[4,4]
    am2index=[2,0];
 end
 
+%Haldane
+if parameters.nu==[6,6] 
+    ailist={[0,0],[-2,2],[-1,1]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+   am1index=[-1,2];
+   am2index=[-2,1];
+end
+
 am1=am1index*[parameters.aM1;parameters.aM2];
 am2=am2index*[parameters.aM1;parameters.aM2];
 parameters.bm1=2*pi/abs(length(ailist)*parameters.aM^2*sqrt(3)/2)*am1*rotate(-pi/2);

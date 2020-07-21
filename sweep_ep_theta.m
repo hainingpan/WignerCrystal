@@ -4,7 +4,7 @@ function sweep_ep_theta(nu,epsilonlist,thetalist,filename)
 Ntheta=length(thetalist);
 Nep=length(epsilonlist);
 
-% filename='phase4,12_theta(3.00,5.00,51)';
+% filename='phase4,12_theta(3.00,5.00,51).mat';
 load(filename);
 % load(sprintf('phase1,2_theta(%.2f,%.2f,%d)_d60.mat',thetalist(1),thetalist(end),Ntheta));
 
