@@ -1,4 +1,4 @@
-wfstore=zeros(8,8);
+wfstore=zeros(size(wfall,3));
 for i=1:size(energyall,2)
     wftmp=abs(squeeze(wfall(43,i,:))).^2;
     wfstore(:,i)=wftmp;

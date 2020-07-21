@@ -169,7 +169,6 @@ if parameters.nu==[3,9]
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
 %     parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
     parameters.spin0={[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3};
-
    am1index=[-3,3];
    am2index=[-3,0];
 end
@@ -178,7 +177,6 @@ end
 if parameters.nu==[4,12]
     ailist={[0,0],[-2,2],[-1,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     parameters.spin0={[0,0,1]/2,[0,0,1]/2};
    am1index=[-1,2];
    am2index=[-2,1];
 end
@@ -217,12 +215,11 @@ if parameters.nu==[8,12]
    am2index=[-2,1];
 end
 
-%canted AF as ansatz
+%
 if parameters.nu==[4,6]
     ailist={[0,0],[-2,2],[-1,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     parameters.spin0={[cos(pi/4),0,1],[cos(pi/4),0,-1]};
-%     parameters.spin0={[sin(0.01),0,1],[-sin(0.01),0,1]};
+
    am1index=[-1,2];
    am2index=[-2,1];
 end
@@ -701,6 +698,30 @@ if parameters.nu==[1,1]
     parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
    am1index=[-1,2];
    am2index=[-2,1];
+end
+
+%Kagome-C2
+if parameters.nu==[2,2] 
+    ailist={[0,0],[-1,0],[-1,1],[-2,1]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     parameters.spin0={[0,0,1]*2/3,[0,0,1]*2/3,[0,0,1]*2/3};
+%     parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
+    parameters.phi=0;
+    parameters.s1=0.5;
+   am1index=[0,2];
+   am2index=[2,0];
+end
+
+%Kagome-T
+if parameters.nu==[4,4] 
+    ailist={[0,0],[-1,0],[-1,1],[-2,1]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     parameters.spin0={[0,0,1]*2/3,[0,0,1]*2/3,[0,0,1]*2/3};
+%     parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
+    parameters.phi=pi/6;
+    parameters.s1=1;
+   am1index=[0,2];
+   am2index=[2,0];
 end
 
 am1=am1index*[parameters.aM1;parameters.aM2];

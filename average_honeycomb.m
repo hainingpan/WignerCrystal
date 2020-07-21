@@ -27,18 +27,18 @@ prod2=ttt(tensor(permute(prod1,[1,3,2])),tensor(expalphaQ),[3],[1]);
 
 ave2=permute(prod2,[1,3,2])/3; %k,q1,q2
 
-ave3=zeros([size(ave2),2,2]);
+ave3=zeros([size(ave2),2,2]); 
 ave3(:,:,:,1,1)=ave2;
 if parameters.nu==[4,6]
-    for kindex=1:Nk
-        kx=kxlist(kindex);
-        ky=kylist(kindex);
-        [ave(:,:,kindex),wf(kindex,:,:)]=honeycomb_h(pi/2,[kx,ky],parameters);
-    end
-    prod1=ttt(tensor(permute(ave,[3,1,2])),tensor(expalphaQ2),[3],[1]);
-    prod2=ttt(tensor(permute(prod1,[1,3,2])),tensor(expalphaQ),[3],[1]);
-
-    ave2=permute(prod2,[1,3,2])/3; %k,q1,q2
+%     for kindex=1:Nk
+%         kx=kxlist(kindex);
+%         ky=kylist(kindex);
+%         [ave(:,:,kindex),wf(kindex,:,:)]=honeycomb_h2(-pi/2,[kx,ky],parameters);
+%     end
+%     prod1=ttt(tensor(permute(ave,[3,1,2])),tensor(expalphaQ2),[3],[1]);
+%     prod2=ttt(tensor(permute(prod1,[1,3,2])),tensor(expalphaQ),[3],[1]);
+% 
+%     ave2=permute(prod2,[1,3,2])/3; %k,q1,q2
     ave3(:,:,:,2,2)=ave2;
 end
 
