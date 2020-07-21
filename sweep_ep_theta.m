@@ -1,10 +1,12 @@
 %Sweep for Wigner Crystal as a function epsilon and theta
-function sweep_ep_theta(nu,epsilonlist,thetalist)
+function sweep_ep_theta(nu,epsilonlist,thetalist,filename)
 
 Ntheta=length(thetalist);
 Nep=length(epsilonlist);
 
-load(sprintf('phase1,2_theta(%.2f,%.2f,%d)_d60.mat',thetalist(1),thetalist(end),Ntheta));
+% filename='phase4,12_theta(3.00,5.00,51)';
+load(filename);
+% load(sprintf('phase1,2_theta(%.2f,%.2f,%d)_d60.mat',thetalist(1),thetalist(end),Ntheta));
 
 n=27;
 final=zeros(Ntheta,Nep);
@@ -12,7 +14,7 @@ gap=zeros(Ntheta,Nep);
 innergap=zeros(Ntheta,Nep);
 finali=zeros(Ntheta,Nep);
 ch=zeros(Ntheta,Nep);
-for thetai=1:Ntheta
+parfor thetai=1:Ntheta
     parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',thetalist(thetai),'d',60e-9*5.076e6,'nu',nu);
     kxlist=zeros(1,n^2);
     kylist=zeros(1,n^2);
