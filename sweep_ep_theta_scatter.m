@@ -14,6 +14,7 @@ gap={};
 innergap={};
 finali={};
 epsilonlist={};
+ch={};
 reg1=@(x) 52-9*x;
 reg2=@(x) 101-17*x;
 reg3=@(x) 598/3 - (110*x)/3;
@@ -61,10 +62,10 @@ parfor thetai=1:Ntheta
     parameters.V2=V2{thetai};
     Nepi=length(epsilonlist{thetai});
     for epi=1:Nepi        
-        [final{thetai}(epi),spin{thetai}(:,:,epi),gap{thetai}(epi),innergap{thetai}(epi),finali{thetai}(epi)]=sweepepsilon(epsilonlist{thetai}(epi),kxlist,kylist,parameters);
+        [final{thetai}(epi),spin{thetai}(:,:,epi),gap{thetai}(epi),innergap{thetai}(epi),finali{thetai}(epi),ch{thetai}(epi)]=sweepepsilon(epsilonlist{thetai}(epi),kxlist,kylist,parameters);
     end
 end
 
-save(sprintf('phase%d,%d_scatter.mat',nu(1),nu(2)),'nu','final','spin','epsilonlist','gap','innergap','thetalist','finali');
+save(sprintf('phase%d,%d_scatter.mat',nu(1),nu(2)),'nu','final','spin','epsilonlist','gap','innergap','thetalist','finali','ch');
 end
 
