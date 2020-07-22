@@ -163,14 +163,22 @@ if parameters.nu==[1,3]
    am1index=[-3,3];
    am2index=[-3,0];
 end
-
+%FM with 9 unit cells
+% if parameters.nu==[3,9]
+%     ailist={[0,0],[-2,1],[-4,2],[-1,1],[-2,2],[-3,2],[-3,1],[-2,0],[-1,0]};    
+%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+% %     parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
+% %     parameters.spin0={[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3};
+%    am1index=[-3,3];
+%    am2index=[-3,0];
+% end
+%FM with 3 unit cells
 if parameters.nu==[3,9]
-    ailist={[0,0],[-2,1],[-4,2],[-1,1],[-2,2],[-3,2],[-3,1],[-2,0],[-1,0]};    
+    ailist={[0,0],[-2,2],[-1,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
-    parameters.spin0={[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3,[0,0,1]/3};
-   am1index=[-3,3];
-   am2index=[-3,0];
+    parameters.spin0={[1,0,0]};
+   am1index=[-1,2];
+   am2index=[-2,1];
 end
 
 %Half honeycomb
