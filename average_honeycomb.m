@@ -39,7 +39,7 @@ if parameters.nu==[4,6]
 %     prod2=ttt(tensor(permute(prod1,[1,3,2])),tensor(expalphaQ),[3],[1]);
 % 
 %     ave2=permute(prod2,[1,3,2])/3; %k,q1,q2
-    ave3(:,:,:,2,2)=ave2;
+%     ave3(:,:,:,2,2)=ave2;
 end
 
 V2=parameters.V2;

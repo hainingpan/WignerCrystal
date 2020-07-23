@@ -296,6 +296,27 @@ if parameters.nu==[6,24]
    am2index=[-4,0];
 end
 
+%For kagome-C2
+if parameters.nu==[7,28] 
+    ailist={[0,0],[-1,0],[-1,1],[-2,1]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     parameters.spin0={[0,0,1]*2/3,[0,0,1]*2/3,[0,0,1]*2/3};
+%     parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
+    parameters.phi=0;
+    parameters.s1=0.5;
+   am1index=[0,2];
+   am2index=[2,0];
+end
+
+if parameters.nu==[8,32] 
+    ailist={[0,0],[-1,0],[-1,1],[-2,1]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.phi=pi/6;
+    parameters.s1=1;
+   am1index=[0,2];
+   am2index=[2,0];
+end
+
 %For tetrahedron spin
 if parameters.nu==[2,4] 
     ailist={[0,0],[-1,0],[-1,1],[-2,1]};

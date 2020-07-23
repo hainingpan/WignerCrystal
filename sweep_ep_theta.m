@@ -8,7 +8,7 @@ Nep=length(epsilonlist);
 load(filename);
 % load(sprintf('phase1,2_theta(%.2f,%.2f,%d)_d60.mat',thetalist(1),thetalist(end),Ntheta));
 
-n=27;
+n=27*(length(param.Q)<=8)+15*(length(param.Q)>8;
 final=zeros(Ntheta,Nep);
 gap=zeros(Ntheta,Nep);
 innergap=zeros(Ntheta,Nep);
