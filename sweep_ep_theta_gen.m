@@ -5,7 +5,7 @@ Ntheta=length(thetalist);
 Nep=length(epsilonlist);
 
 % n=27;
-n=27*(length(param.Q)<=8)+15*(length(param.Q)>8;
+n=27*(length(param.Q)<=8)+15*(length(param.Q)>8);
 tshell=3;
 Ushell=length(generate_neighbor(100));
 V1={};
