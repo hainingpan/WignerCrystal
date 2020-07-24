@@ -176,7 +176,7 @@ end
 if parameters.nu==[3,9]
     ailist={[0,0],[-2,2],[-1,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    parameters.spin0={[1,0,0]};
+    parameters.spin0={[0,0,1]};
    am1index=[-1,2];
    am2index=[-2,1];
 end
