@@ -236,7 +236,6 @@ if parameters.nu==[1,4]
     ailist={[0,0],[-2,2],[-4,4],[-1,2],[-2,3],[-3,4],[-1,1],[-3,3],[-5,5],[-2,1],[-3,2],[-4,3]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
     parameters.spin0={[1,0,0],[cos(2*pi/3),sin(2*pi/3),0],[cos(4*pi/3),sin(4*pi/3),0]};
-%    parameters.spin0={[0,0,1],[0,0,1],[0,0,1]};
    am1index=[-2,4];
    am2index=[-4,2];
 end
@@ -289,7 +288,7 @@ end
 if parameters.nu==[6,24]
     ailist={[0,0];[-1,2];[-1,1];[-2,2];[-3,3];[-2,3];[-3,4];[-4,5]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-   parameters.spin0={[0,0,1],[0,0,11]};
+   parameters.spin0={[0,0,1],[0,0,1]};
    am1index=[-2,4];
    am2index=[-3,2];
 end
