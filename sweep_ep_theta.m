@@ -8,7 +8,7 @@ Nep=length(epsilonlist);
 load(filename);
 % load(sprintf('phase1,2_theta(%.2f,%.2f,%d)_d60.mat',thetalist(1),thetalist(end),Ntheta));
 param=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'d',60e-9*5.076e6,'nu',nu);
-n=27*(length(param.Q)<=8)+15*(length(param.Q)>8);
+n=27*(length(param.Q)<8)+15*(length(param.Q)>=8);
 final=zeros(Ntheta,Nep);
 gap=zeros(Ntheta,Nep);
 innergap=zeros(Ntheta,Nep);

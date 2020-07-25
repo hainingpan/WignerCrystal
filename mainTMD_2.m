@@ -278,22 +278,20 @@ end
 
 % For stripe AF
 if parameters.nu==[5,20]
-    ailist={[0,0];[-2,0];[-1,2];[-3,2];...
-            [-1,0];[-3,0];[-1,1];[-2,1];[-3,1];[-4,1];[-2,2];[-4,2];[-2,3];[-3,3];[-4,3];[-5,3]};
+    ailist={[0,0];[-1,2];[-1,1];[-2,2];[-3,3];[-2,3];[-3,4];[-4,5]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-   parameters.spin0={[0,0,1],[0,0,-1],[0,0,-1],[0,0,1]};
+   parameters.spin0={[0,0,1],[0,0,-1]};
    am1index=[-2,4];
-   am2index=[-4,0];
+   am2index=[-3,2];
 end
 
 % % For stripe F
 if parameters.nu==[6,24]
-    ailist={[0,0];[-2,0];[-1,2];[-3,2];...
-            [-1,0];[-3,0];[-1,1];[-2,1];[-3,1];[-4,1];[-2,2];[-4,2];[-2,3];[-3,3];[-4,3];[-5,3]};
+    ailist={[0,0];[-1,2];[-1,1];[-2,2];[-3,3];[-2,3];[-3,4];[-4,5]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-   parameters.spin0={[0,0,1],[0,0,1],[0,0,1],[0,0,1]};
+   parameters.spin0={[0,0,1],[0,0,11]};
    am1index=[-2,4];
-   am2index=[-4,0];
+   am2index=[-3,2];
 end
 
 %For kagome-C2
