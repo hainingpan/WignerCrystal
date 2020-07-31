@@ -31,7 +31,7 @@ ch={};
 for thetai=1:Ntheta
     theta=thetalist(thetai);
     if theta>4
-    seg=1:.2:14;
+    seg=1:.1:14;
     epsilonlist{thetai}=seg;
     thetalist2{thetai}=theta*ones(1,length(seg));
     end

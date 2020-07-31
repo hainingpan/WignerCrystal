@@ -6,7 +6,7 @@ level=1:NL*parameters.nu(1)/(2*parameters.nu(2));
 wfmap=reshape(wfall,[n,n,size(wfall,2),size(wfall,3)]); %Nkx,Nky,level index, wf component
 umap=(wfmap(:,:,level,:));
 
-eiv=zeros(n,2);
+eiv=zeros(n,length(level));
 for i=1:n
     prod=eye(length(level));
     for j=1:n
