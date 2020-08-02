@@ -349,8 +349,6 @@ if parameters.nu==[9,12]
     ailist={[-1,1],[-2,2],[-3,3],[-4,4],[-5,5],[-3,2],[-4,3],[-2,3],[-3,4],...
         [0,0],[-1,2],[-2,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     spin0=[1,0,0];spin1=[cos(2*pi/3),sin(2*pi/3),0];spin2=[cos(4*pi/3),sin(4*pi/3),0];
-%    parameters.spin0={spin2,spin0,spin1,spin2,spin0,spin2,spin0,spin2,spin0};
     spinup=[0,0,1];spindown=[0,0,-1];
     parameters.spin0={spinup,spindown,spinup,spindown,spinup,spindown,spindown,spindown,spindown,spindown,spindown,spindown};  
 
@@ -369,27 +367,27 @@ if parameters.nu==[12,16]
 end
 
 % For complimentary-stripe AF
-% if parameters.nu==[15,20]
-%     ailist={[-1,0];[-3,0];[-5,0];[-1,1];[-2,1];[-3,1];[-4,1];[-5,1];[-6,1];...
-%             [0,0];[-2,0];[-4,0]};
-%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     spin0=[1,0,0];spin1=[cos(2*pi/3),sin(2*pi/3),0];spin2=[cos(4*pi/3),sin(4*pi/3),0];
-%    parameters.spin0={spin2,spin0,spin1,spin1,spin0,spin2,spin1,spin0,spin2};
-%    am1index=[-1,2];
-%    am2index=[-6,0];
-% end
-
 if parameters.nu==[15,20]
     ailist={[-1,0];[-3,0];[-5,0];[-1,1];[-2,1];[-3,1];[-4,1];[-5,1];[-6,1];...
             [0,0];[-2,0];[-4,0]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    
-    spin1=arrayfun(@(x)[cos(x*pi/3),sin(x*pi/3),0],0:5,'UniformOutput',false);
-    spin2=arrayfun(@(x)[cos(x*pi/3+pi/2),sin(x*pi/3+pi/2),0],0:5,'UniformOutput',false);    
-   parameters.spin0={spin1{5},spin1{1},spin1{3},spin2{3},spin2{4},spin2{5},spin2{6},spin2{1},spin2{2},spin1{4},spin1{6},spin1{2}};
+    spin0=[1,0,0];spin1=[cos(2*pi/3),sin(2*pi/3),0];spin2=[cos(4*pi/3),sin(4*pi/3),0];
+   parameters.spin0={spin2,spin0,spin1,spin1,spin0,spin2,spin1,spin0,spin2};
    am1index=[-1,2];
    am2index=[-6,0];
 end
+
+% if parameters.nu==[15,20]
+%     ailist={[-1,0];[-3,0];[-5,0];[-1,1];[-2,1];[-3,1];[-4,1];[-5,1];[-6,1];...
+%             [0,0];[-2,0];[-4,0]};
+%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     
+%     spin1=arrayfun(@(x)[cos(x*pi/3),sin(x*pi/3),0],0:5,'UniformOutput',false);
+%     spin2=arrayfun(@(x)[cos(x*pi/3+pi/2),sin(x*pi/3+pi/2),0],0:5,'UniformOutput',false);    
+%    parameters.spin0={spin1{5},spin1{1},spin1{3},spin2{3},spin2{4},spin2{5},spin2{6},spin2{1},spin2{2},spin1{4},spin1{6},spin1{2}};
+%    am1index=[-1,2];
+%    am2index=[-6,0];
+% end
 
 % For complimentary-stripe F
 if parameters.nu==[18,24]
