@@ -4,6 +4,7 @@ function tU_ep_theta_gen(thetalist)
 Ntheta=length(thetalist);
 
 tshell=3;
+Ushell=0;
 Ushell=length(generate_neighbor(100));
 
 t={};
