@@ -1,13 +1,13 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',5,'nu',[15,20],'d',60e-9*5.076e6,'Vz',0,'Ez',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',5,'nu',[18,24],'d',60e-9*5.076e6,'Vz',0,'Ez',0);
 % parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'nu',[5,10],'d',10,'Vz',0,'Ez',0);
-tshell=3;
-Ushell=length(generate_neighbor(100));
-[t,neighborlist]=t_calc_func(tshell,parameters);
-U=U_calc_func_2(Ushell,parameters);
+% tshell=3;
+% Ushell=length(generate_neighbor(100));
+% [t,neighborlist]=t_calc_func(tshell,parameters);
+% U=U_calc_func_2(Ushell,parameters);
+% 
+% t=cellfun(@(x) mean(x)*ones(1,length(x)),t,'UniformOutput',false);
 
-t=cellfun(@(x) mean(x)*ones(1,length(x)),t,'UniformOutput',false);
-
-epsilon=2;
+epsilon=5;
 
 n=15;
 counter=1;
@@ -25,11 +25,11 @@ end
 kxlist=kxlist';
 kylist=kylist';
 
-% t_bond=[neighborlist{1:tshell+1}];
-% U_bond=[neighborlist{1:Ushell+1}];
-% hp=1;
-% tlist=-hp*[t{1:tshell+1}];
-% Ulist=real([U{1:Ushell+1}])/1;
+t_bond=[neighborlist{1:tshell+1}];
+U_bond=[neighborlist{1:Ushell+1}];
+hp=1;
+tlist=-hp*[t{1:tshell+1}];
+Ulist=real([U{1:Ushell+1}])/1;
 
 parameters.N=length(kxlist);
 kxbasis=cell(1,length(parameters.Q));
@@ -38,8 +38,8 @@ for i=1:length(parameters.Q)
     kxbasis{i}=kxlist+parameters.Q{i}(1);
     kybasis{i}=kylist+parameters.Q{i}(2);
 end
-% parameters.energylist=real(tb(t_bond,tlist,[cell2mat(kxbasis),-cell2mat(kxbasis)],[cell2mat(kybasis),-cell2mat(kybasis)],parameters));
-parameters.energylist=energylist;
+parameters.energylist=real(tb(t_bond,tlist,[cell2mat(kxbasis),-cell2mat(kxbasis)],[cell2mat(kybasis),-cell2mat(kybasis)],parameters));
+% parameters.energylist=energylist;
 
 Qx=cellfun(@(x)x(1),parameters.Q);
 Qy=cellfun(@(x)x(2),parameters.Q);
