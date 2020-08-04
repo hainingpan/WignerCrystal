@@ -30,6 +30,24 @@ ave2=permute(prod2,[1,3,2])/4; %k,q1,q2
 ave3=zeros([size(ave2),2,2]);
 ave3(:,:,:,1,1)=ave2;
 
+if parameters.nu==[21,28] | parameters.nu==[24,32] 
+    ave=zeros(4,4,Nk);
+    ave(4,4,:)=ones(1,1,Nk);
+    expalphaQ=zeros(4,NQ); %alpha',q1
+    for alphaindex=1:4
+        for Qindex=1:NQ
+            expalphaQ(alphaindex,Qindex)=exp(1i*r{alphaindex}*Q{Qindex}');
+        end
+    end
+    expalphaQ2=conj(expalphaQ);
+
+    prod1=ttt(tensor(permute(ave,[3,1,2])),tensor(expalphaQ2),[3],[1]);
+    prod2=ttt(tensor(permute(prod1,[1,3,2])),tensor(expalphaQ),[3],[1]);
+
+    ave2=permute(prod2,[1,3,2])/4; %k,q1,q2
+    ave3(:,:,:,2,2)=ave2;
+end
+
 V2=parameters.V2;
 V2ave=ttt2(tensor(V2),tensor(ave3),[1],[1],[3],[2]); %q_alpha,k_beta,q_delta,q_gamma,sigma,sigma'
 

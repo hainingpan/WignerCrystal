@@ -345,24 +345,16 @@ if parameters.nu==[6,8]
 end
 
 % For complimentary-kagome lattice AF
-% if parameters.nu==[9,12]
-%     ailist={[-1,1],[-2,2],[-3,3],[-4,4],[-5,5],[-3,2],[-4,3],[-2,3],[-3,4],...
-%         [0,0],[-1,2],[-2,1]};
-%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     spinup=[0,0,1];spindown=[0,0,-1];
-%     parameters.spin0={spinup,spindown,spinup,spindown,spinup,spindown,spindown,spindown,spindown,spindown,spindown,spindown};
-%     am1index=[-2,4];
-%    am2index=[-4,2];
-% end
-
 if parameters.nu==[9,12]
-    ailist={[0,0],[0,1],[-1,1],[-1,2]};
+    ailist={[-1,1],[-2,2],[-3,3],[-4,4],[-5,5],[-3,2],[-4,3],[-2,3],[-3,4],...
+        [0,0],[-1,2],[-2,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
     spinup=[0,0,1];spindown=[0,0,-1];
-    parameters.spin0={spinup,spindown,spindown,spindown};
-    am1index=[0,2];
-   am2index=[-2,2];
+    parameters.spin0={spinup,spindown,spinup,spindown,spinup,spindown,spindown,spindown,spindown,spindown,spindown,spindown};
+    am1index=[-2,4];
+   am2index=[-4,2];
 end
+
 
 % For complimentary-kagome lattice F
 if parameters.nu==[12,16]
@@ -440,13 +432,13 @@ if parameters.nu==[18,24]
 end
 
 %For kagome-C2
-if parameters.nu==[21,28] 
+if parameters.nu==[21,28]
     ailist={[0,0],[-1,0],[-1,1],[-2,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
     parameters.phi=0;
     parameters.s1=0.5;
-   am1index=[0,2];
-   am2index=[2,0];
+    am1index=[0,2];
+   am2index=[-2,2];
 end
 
 %For kagome-T
@@ -455,8 +447,8 @@ if parameters.nu==[24,32]
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
     parameters.phi=pi/6;
     parameters.s1=1;
-   am1index=[0,2];
-   am2index=[2,0];
+    am1index=[0,2];
+   am2index=[-2,2];
 end
 
 %For tetrahedron spin
