@@ -393,26 +393,25 @@ end
 %    am2index=[-3,2];
 % end
 
-% if parameters.nu==[15,20]
-%     ailist={[0,0],[-2,0],[-1,1],[-2,1],[-3,1],[-4,1],[-1,0],[-3,0]};
-%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     spinfunc=@(x) [cos(x*pi/180),sin(x*pi/180),0];
-%    parameters.spin0={spinfunc(0),spinfunc(180),spinfunc(240),spinfunc(60),spinfunc(-60),spinfunc(-240)};
-% %    parameters.spin0={spinfunc(0),spinfunc(180),spinfunc(-90),spinfunc(90),spinfunc(-90),spinfunc(90)};
-%    am1index=[-1,2];
-%    am2index=[-4,0];
-% end
-
-
 if parameters.nu==[15,20]
-    ailist={[0,0],[-2,0],[-1,1],[-2,1],[-3,1],[-4,1],[-1,2],[-3,2],[-2,3],[-3,3],[-4,3],[-5,3],...
-        [-1,0],[-3,0],[-2,2],[-4,2]};
+    ailist={[0,0],[-2,0],[-1,1],[-2,1],[-3,1],[-4,1],[-1,0],[-3,0]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-    spin1=[1,1,1]/sqrt(3);spin2=[1,-1,-1]/sqrt(3);spin3=[-1,1,-1]/sqrt(3);spin4=[-1,-1,1]/sqrt(3);
-   parameters.spin0={spin1,-spin1,spin2,-spin2,-spin4,spin4,spin3,-spin3,spin4,-spin4,-spin2,spin2};
-   am1index=[-4,0];
-   am2index=[-2,4];
+    spinfunc=@(x) [cos(x*pi/180),sin(x*pi/180),0];
+   parameters.spin0={spinfunc(0),spinfunc(180),spinfunc(240),spinfunc(60),spinfunc(-60),spinfunc(-240)};
+   am1index=[-1,2];
+   am2index=[-4,0];
 end
+
+
+% if parameters.nu==[15,20]
+%     ailist={[0,0],[-2,0],[-1,1],[-2,1],[-3,1],[-4,1],[-1,2],[-3,2],[-2,3],[-3,3],[-4,3],[-5,3],...
+%         [-1,0],[-3,0],[-2,2],[-4,2]};
+%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     spin1=[1,1,1]/sqrt(3);spin2=[1,-1,-1]/sqrt(3);spin3=[-1,1,-1]/sqrt(3);spin4=[-1,-1,1]/sqrt(3);
+%    parameters.spin0={spin1,-spin1,spin2,-spin2,-spin4,spin4,spin3,-spin3,spin4,-spin4,-spin2,spin2};
+%    am1index=[-4,0];
+%    am2index=[-2,4];
+% end
 
 % For complimentary-stripe F
 % if parameters.nu==[18,24]
