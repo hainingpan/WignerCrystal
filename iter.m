@@ -1,4 +1,4 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',5,'nu',[18,24],'d',60e-9*5.076e6,'Vz',0,'Ez',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',5,'nu',[15,20],'d',60e-9*5.076e6,'Vz',0,'Ez',0);
 % parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'nu',[5,10],'d',10,'Vz',0,'Ez',0);
 % tshell=3;
 % Ushell=length(generate_neighbor(100));
@@ -7,7 +7,7 @@ parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',
 % 
 % t=cellfun(@(x) mean(x)*ones(1,length(x)),t,'UniformOutput',false);
 
-epsilon=5;
+epsilon=2;
 
 n=15;
 counter=1;
@@ -45,12 +45,12 @@ Qx=cellfun(@(x)x(1),parameters.Q);
 Qy=cellfun(@(x)x(2),parameters.Q);
 [q_alpha_x,q_delta_x]=meshgrid(Qx,Qx);
 [q_alpha_y,q_delta_y]=meshgrid(Qy,Qy);
-V1=V(U_bond,Ulist,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
+% V1=V(U_bond,Ulist,q_alpha_x-q_delta_x,q_alpha_y-q_delta_y,parameters); %V1_{q_alpha,q_delta}
 parameters.V1=V1/epsilon;
 % parameters.V1=zeros(length(Qx),length(Qy));
 [k_alpha_x,k_beta_x,q_alpha_x,q_delta_x]=ndgrid(kxlist,kxlist,Qx,Qx);
 [k_alpha_y,k_beta_y,q_alpha_y,q_delta_y]=ndgrid(kylist,kylist,Qy,Qy);
-V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
+% V2=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
 parameters.V2=V2/epsilon;
 % parameters.V2=zeros(length(kxlist),length(kylist),length(Qx),length(Qy));
 
@@ -74,7 +74,7 @@ end
 
 fig1=figure;
 % fig2=figure;
-for i=1:10000
+for i=1:100000
 [spin,gap,innergap]=spintexture(energyall,wfall,parameters);
 [en(i),ave,V2deltaave]=totalenergy_2(energyall,wfall,parameters);
 chsav(i)=chern(wfall,parameters);

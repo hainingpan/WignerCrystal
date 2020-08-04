@@ -345,15 +345,23 @@ if parameters.nu==[6,8]
 end
 
 % For complimentary-kagome lattice AF
+% if parameters.nu==[9,12]
+%     ailist={[-1,1],[-2,2],[-3,3],[-4,4],[-5,5],[-3,2],[-4,3],[-2,3],[-3,4],...
+%         [0,0],[-1,2],[-2,1]};
+%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     spinup=[0,0,1];spindown=[0,0,-1];
+%     parameters.spin0={spinup,spindown,spinup,spindown,spinup,spindown,spindown,spindown,spindown,spindown,spindown,spindown};
+%     am1index=[-2,4];
+%    am2index=[-4,2];
+% end
+
 if parameters.nu==[9,12]
-    ailist={[-1,1],[-2,2],[-3,3],[-4,4],[-5,5],[-3,2],[-4,3],[-2,3],[-3,4],...
-        [0,0],[-1,2],[-2,1]};
+    ailist={[0,0],[0,1],[-1,1],[-1,2]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
     spinup=[0,0,1];spindown=[0,0,-1];
-    parameters.spin0={spinup,spindown,spinup,spindown,spinup,spindown,spindown,spindown,spindown,spindown,spindown,spindown};  
-
-    am1index=[-2,4];
-   am2index=[-4,2];
+    parameters.spin0={spinup,spindown,spindown,spindown};
+    am1index=[0,2];
+   am2index=[-2,2];
 end
 
 % For complimentary-kagome lattice F
@@ -376,22 +384,32 @@ end
 %     spinup=[0,0,1];spindown=[0,0,-1];
 % %    parameters.spin0={spin2,spin0,spin1,spin1,spin0,spin2,spin1,spin0,spin2};
 % %     x=rand(1,3)*360;
-%     x=[120,0,240];
-%     parameters.spin0={spinfunc(240),spinfunc(0),spinfunc(120),spinfunc(x(1)),spinfunc(x(2)),spinfunc(x(3)),spinfunc(-x(3)),spinfunc(-x(2)),spinfunc(-x(1))};
+% %     x=[120,0,240];
+% %     parameters.spin0={spinfunc(0),spinfunc(180),spinfunc(0),spinfunc(120),spinfunc(240),spinfunc(60),spinfunc(-60),spinfunc(-240),spinfunc(-120)};
 % %     parameters.spin0={spinup,spinup,spinup,spindown,spindown,spindown,spindown,spindown,spindown};
 %    am1index=[-1,2];
 %    am2index=[-6,0];
 % end
+ 
+
+% if parameters.nu==[15,20]
+%     ailist={[-1,1],[-2,2],[-3,3],[-2,3],[-3,4],[-4,5],[0,0],[-1,2]};
+%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     spinfunc=@(x) [cos(x*pi/180),sin(x*pi/180),0];
+%     parameters.spin0={spinfunc(-90),spinfunc(180),spinfunc(-90),spinfunc(90),spinfunc(0),spinfunc(90)};
+%    am1index=[-2,4];
+%    am2index=[-3,2];
+% end
 
 if parameters.nu==[15,20]
-    ailist={[-1,1],[-2,2],[-3,3],[-2,3],[-3,4],[-4,5],[0,0],[-1,2]};
+    ailist={[0,0],[-2,0],[-1,1],[-2,1],[-3,1],[-4,1],[-1,0],[-3,0]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
     spinfunc=@(x) [cos(x*pi/180),sin(x*pi/180),0];
-    parameters.spin0={spinfunc(-90),spinfunc(180),spinfunc(-90),spinfunc(90),spinfunc(0),spinfunc(90)};
-   am1index=[-2,4];
-   am2index=[-3,2];
+   parameters.spin0={spinfunc(0),spinfunc(180),spinfunc(240),spinfunc(60),spinfunc(-60),spinfunc(-240)};
+%    parameters.spin0={spinfunc(0),spinfunc(180),spinfunc(-90),spinfunc(90),spinfunc(-90),spinfunc(90)};
+   am1index=[-1,2];
+   am2index=[-4,0];
 end
-
 
 % For complimentary-stripe F
 % if parameters.nu==[18,24]
