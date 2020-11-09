@@ -1,4 +1,4 @@
-thetalist=3:0.2:5;
+thetalist=1:0.5:5;
 clear nulist emlist
 for i=1:length(thetalist)
     [nulist(:,:,i),emlist(:,:,i)]=effectivemass(thetalist(i));
