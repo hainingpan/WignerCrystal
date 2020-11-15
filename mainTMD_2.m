@@ -778,8 +778,65 @@ if parameters.nu==[6,7]
     am1index=[4,2];
     am2index=[-2,6];
 end
+%AF
+if parameters.nu==[5,12] 
+    ailist={[0,0];[-1,0];[1,-1];[0,1];[-2,2];
+        [0,-1];[1,0];[-1,1];[1,1];[0,2];[-1,2];[-2,1]};
+
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+
+    parameters.spin0={[0,0,0];[cos(pi/2),sin(pi/2),0];[cos(7/6*pi),sin(7/6*pi),0];[cos(-1/6*pi),sin(-1/6*pi),0];[cos(7/6*pi),sin(7/6*pi),0]};
+    am1index=[2,2];
+    am2index=[-2,4];
+end
+
+% FM
+if parameters.nu==[10,24] 
+    ailist={[0,0];[-1,0];[1,-1];[0,1];[-2,2];...
+        [0,-1];[1,0];[-1,1];[1,1];[0,2];[-1,2];[-2,1]};
+
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+
+    parameters.spin0={[0,0,1];[0,0,1];[0,0,1];[0,0,1];[0,0,1]};
+    am1index=[2,2];
+    am2index=[-2,4];
+end
+
+% no WC
+if parameters.nu==[15,36] 
+    ailist={[0,0];[-1,0];[1,-1];[0,1];[-2,2];...
+        [0,-1];[1,0];[-1,1];[1,1];[0,2];[-1,2];[-2,1]};
+
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+
+    parameters.spin0={[0,0,1]*5/12;[0,0,1]*5/12;[0,0,1]*5/12;[0,0,1]*5/12;[0,0,1]*5/12;[0,0,1]*5/12;[0,0,1]*5/12;[0,0,1]*5/12;[0,0,1]*5/12;[0,0,1]*5/12;[0,0,1]*5/12;[0,0,1]*5/12};
+    am1index=[2,2];
+    am2index=[-2,4];
+end
+
+%AF -- with sqrt(3)* sqrt(3) triangular
+if parameters.nu==[20,48] 
+    occupied={[0,0];[-1,0];[1,-1];[0,1];[-2,2]};
+    occupied1=cellfun(@(x) x+[2,2],occupied,'UniformOutput',false);
+    occupied2=cellfun(@(x) x+[-2,4],occupied,'UniformOutput',false);
+    unoccupied={[0,-1];[1,0];[-1,1];[1,1];[0,2];[-1,2];[-2,1]};
+    unccoupied1=cellfun(@(x) x+[2,2],unoccupied,'UniformOutput',false);
+    unccoupied2=cellfun(@(x) x+[-2,4],unoccupied,'UniformOutput',false);
+
+    ailist={occupied{:},occupied1{:},occupied2{:},unoccupied{:},unccoupied1{:},unccoupied2{:}};
+
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+
+    parameters.spin0=...
+        {[0,0,0];[cos(pi/2),sin(pi/2),0];[cos(-1/6*pi),sin(-1/6*pi),0];[cos(-5/6*pi),sin(-5/6*pi),0];[cos(-1/6*pi),sin(-1/6*pi),0];
+        [0,0,0];[cos(-1/6*pi),sin(-1/6*pi),0];[cos(-5/6*pi),sin(-5/6*pi),0];[cos(pi/2),sin(pi/2),0];[cos(-5/6*pi),sin(-5/6*pi),0];
+        [0,0,0];[cos(-5/6*pi),sin(-5/6*pi),0];[cos(pi/2),sin(pi/2),0];[cos(-1/6*pi),sin(-1/6*pi),0];[cos(pi/2),sin(pi/2),0]};
+    am1index=[0,6];
+    am2index=[-6,6];
+end
 
 
+%FM
 if parameters.nu==[1,1]
     ailist={[0,0],[-1,1],[-2,2]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);

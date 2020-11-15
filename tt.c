@@ -16,8 +16,8 @@ void readmatrix(char *str,int p[MSIZE][MSIZE] ,int dim)
 	{
 		for(int j=0;j<dim;j++)
 		{
-			if (!fscanf(fp, "%d", &p[i][j])) 
-			break;			
+			if (!fscanf(fp, "%d", &p[i][j]))
+			break;
 		}
 	}
 	fclose(fp);
@@ -41,15 +41,15 @@ void main()
     scanf("%d %d %d",&n,&den,&no);
 	//n=98;
 	//c=2*n/7;
-    c=den*n/no;
+    c=no*n/den;
 	int val;
 	readmatrix("p2.txt",p,n);
 	for (int i=0;i<n;i++)
-		w[i]=1;	
-	
+		w[i]=1;
+
 	//printmatrix(p,n);
 	val=quadknap(n,c,p,w,x);
-	
+
 	printf("val=%d\n",val);
 	for (int i=0;i<n;i++) printf("%d ",x[i]);
 }
