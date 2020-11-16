@@ -231,7 +231,7 @@ if parameters.nu==[4,6]
    am1index=[-1,2];
    am2index=[-2,1];
 end
-
+% AF 120
 if parameters.nu==[1,4]
     ailist={[0,0],[-2,2],[-4,4],[-1,2],[-2,3],[-3,4],[-1,1],[-3,3],[-5,5],[-2,1],[-3,2],[-4,3]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
@@ -615,21 +615,21 @@ end
 
 
 
-% if parameters.nu==[1,6] 
-% %     ailist={[0,0];[1,0];[2,0];[0,1];[1,1];[2,1]};
-% %     ailist={[0,0];[1,0];[2,0];[1,1];[2,1];[3,1]};
+if parameters.nu==[1,6] 
+    ailist={[0,0];[1,0];[2,0];[0,1];[1,1];[2,1]};
+%     ailist={[0,0];[1,0];[2,0];[1,1];[2,1];[3,1]};
 %     ailist={[0,0];[0,1];[1,1];[2,1];[1,2];[2,2]};
-%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     parameters.spin0={[0,0,1]};
-% %     am1index=[3,0];
-% %     am2index=[0,2];
-%     
-% %     am1index=[3,0];
-% %     am2index=[1,2];
-%     
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1]};
+    am1index=[3,0];
+    am2index=[0,2];
+    
+%     am1index=[3,0];
+%     am2index=[1,2];
+    
 %     am1index=[3,1];
 %     am2index=[0,2];
-% end
+end
 
 % if parameters.nu==[2,6] 
 % %     ailist={[0,0];[1,0];[2,0];[0,1];[1,1];[2,1]};
@@ -834,8 +834,33 @@ if parameters.nu==[20,48]
     am1index=[0,6];
     am2index=[-6,6];
 end
+% FM rectangular- akin to 1/2
+if parameters.nu==[5,12]*5
+    ailist={[0,0];[1,-1];[-2,2];[-1,1];[1,1];[0,2];
+        [-1,0];[0,1];[0,-1];[1,0];[-1,2];[-2,1]};
 
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
 
+    parameters.spin0={[0,0,1];[0,0,1];[0,0,1];[0,0,1];[0,0,1];[0,0,1]};
+    am1index=[2,2];
+    am2index=[-2,4];
+end
+
+%FM kagome- akin to 1/2
+if parameters.nu==[5,12]*6
+%     ailist={[0,0];[-1,0];[1,-1];[0,1];[-2,2];
+%         [0,-1];[1,0];[-1,1];[1,1];[-1,2];[-2,1]};
+%      ailist={[-1,0];[1,-1];[0,1];
+%         [0,-1];[1,0];[-1,1];[1,1];[0,2];[-1,2];[-2,1]};
+    ailist={[-1,0];[1,-1];[0,1];[0,-1];[1,0];[-1,1];[1,1];[-1,2];[-2,1];
+        [0,0];[-2,2];[0,2]};
+
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+
+    parameters.spin0={[0,0,1];[0,0,1];[0,0,1];[0,0,1];[0,0,1];[0,0,1];[0,0,1];[0,0,1];[0,0,1]};
+    am1index=[2,2];
+    am2index=[-2,4];
+end
 %FM
 if parameters.nu==[1,1]
     ailist={[0,0],[-1,1],[-2,2]};
