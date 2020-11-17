@@ -19,7 +19,7 @@ else
     end
 end
 
-for i=1:500
+for i=1:1000
    [en(i),ave,V2deltaave]=totalenergy_2(energyall,wfall,parameters);
 
     if length(en)>1    
