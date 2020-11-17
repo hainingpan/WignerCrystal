@@ -613,6 +613,14 @@ if parameters.nu==[12,15]
     am2index=[-1,2];
 end
 
+%No Wigner Crystal
+if parameters.nu==[16,20] 
+    ailist={[-1,1];[-2,1];[-2,2];[-3,2];[0,0]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1]*4/5,[0,0,1]*4/5,[0,0,1]*4/5,[0,0,1]*4/5,[0,0,1]*4/5};
+    am1index=[-1,2];
+    am2index=[-3,1];
+end
 
 
 if parameters.nu==[1,6] 
