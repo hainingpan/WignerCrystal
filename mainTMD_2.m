@@ -596,6 +596,10 @@ if parameters.nu==[8,10]
     spin0=[1,0,0];spin1=[cos(pi/3),sin(pi/3),0];spin2=[cos(2*pi/3),sin(2*pi/3),0];
     spin3=[cos(pi),sin(pi),0];spin4=[[cos(4*pi/3),sin(4*pi/3),0]];spin5=[cos(5*pi/3),sin(5*pi/3),0];
     parameters.spin0={spin2,spin5,spin3,spin0,spin0,spin3,spin1,spin4};
+%     spin=@(x) [cos(x),sin(x),0];
+%     theta1=119.8143/180*pi;
+%     theta2=179.7115/180*pi;
+%     parameters.spin0={spin(theta1),-spin(theta1),spin(theta2),-spin(theta2),spin(-theta2),-spin(-theta2),-spin(-theta1),spin(-theta1)};
     am1index=[-1,2];
     am2index=[5,0];
 end
@@ -687,21 +691,37 @@ end
 %     am2index=[0,2];
 % end
 
-% if parameters.nu==[5,6] 
-% %     ailist={[0,0];[1,0];[0,1];[1,1];[2,1];[2,0]};
-% %     ailist={[1,0];[2,0];[1,1];[2,1];[3,1];[0,0]};
+if parameters.nu==[5,6] 
+    ailist={[0,0];[1,0];[0,1];[1,1];[2,1];[2,0]};
+%     ailist={[1,0];[2,0];[1,1];[2,1];[3,1];[0,0]};
 %     ailist={[0,0];[0,1];[1,1];[2,1];[1,2];[2,2]};
-%     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     parameters.spin0={[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1]};
-% %     am1index=[3,0];
-% %     am2index=[0,2];
-%     
-% %     am1index=[3,0];
-% %     am2index=[1,2];
-%     
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1]};
+    am1index=[3,0];
+    am2index=[0,2];
+    
+%     am1index=[3,0];
+%     am2index=[1,2];
+    
 %     am1index=[3,1];
 %     am2index=[0,2];
-% end
+end
+% FM metalic
+if parameters.nu==[5,6]*2 
+    ailist={[0,0];[1,0];[0,1];[1,1];[2,1];[2,0]};
+%     ailist={[1,0];[2,0];[1,1];[2,1];[3,1];[0,0]};
+%     ailist={[0,0];[0,1];[1,1];[2,1];[1,2];[2,2]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6};
+    am1index=[3,0];
+    am2index=[0,2];
+    
+%     am1index=[3,0];
+%     am2index=[1,2];
+    
+%     am1index=[3,1];
+%     am2index=[0,2];
+end
 
 % % For Wigner Crystal
 % if parameters.nu==[1,7] 
