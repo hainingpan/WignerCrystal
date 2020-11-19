@@ -723,8 +723,7 @@ end
 if parameters.nu==[5,6]*2 
     ailist={[0,0];[1,0];[0,1];[1,1];[2,1];[2,0]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
-%     parameters.spin0={[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6};
-    parameters.spin0={[0,0,1]*0,[0,0,1]*0,[0,0,1]*(0),[0,0,1]*(0),[0,0,1]*0,[0,0,1]*(0)};
+    parameters.spin0={[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6};
     am1index=[3,0];
     am2index=[0,2];
 end
