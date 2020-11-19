@@ -723,6 +723,24 @@ if parameters.nu==[5,6]*2
 %     am2index=[0,2];
 end
 
+% AF (use the typical in-plane 120 AF)
+if parameters.nu==[5,6]*3 
+    ailist={[0,0];[0,1];[0,2];[0,3];[0,4];[0,5];
+            [-1,1];[-1,3];[-1,5];
+            [-2,2];[-2,3];[-2,4];[-2,5];[-2,6];[-2,7];
+            [-1,2];[-1,4];[-1,6]};
+    
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    s0=[1,0,0];
+    s1=[cos(2*pi/3),sin(2*pi/3),0];
+    s2=[cos(-2*pi/3),sin(-2*pi/3),0];
+    parameters.spin0={s1;s0;s2;s1;s0;s2;
+                    s2;s0;s1;
+                    s0;s2;s1;s0;s2;s1};
+    am1index=[-3,3];
+    am2index=[0,6];
+end
+
 % % For Wigner Crystal
 % if parameters.nu==[1,7] 
 %     ailist={[0,0];[-1,1];[-1,2];[-2,2];[-2,3];[-3,3];[-3,4]};
@@ -807,6 +825,7 @@ end
 %     am2index=[-2,6];
 % end
 
+%FM metallic
 if parameters.nu==[12,14] 
     ailist={[-1,1];[-1,2];[-2,2];[-2,3];[-3,3];[-3,4];[0,0]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
@@ -900,6 +919,26 @@ if parameters.nu==[5,12]*6
     am1index=[2,2];
     am2index=[-2,4];
 end
+
+% FM
+if parameters.nu==[6,5] 
+    ailist={[-1,1];[-2,1];[-2,2];[-3,2];[0,0]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1],[0,0,1],[0,0,1],[0,0,1]};
+    am1index=[-1,2];
+    am2index=[-3,1];
+end
+
+% AF
+if parameters.nu==[6,5]*2
+    ailist={[-1,1];[-2,1];[-2,2];[-3,2];[0,0]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1]*6/5,[0,0,1]*6/5,[0,0,1]*6/5,[0,0,1]*6/5,[0,0,1]*6/5};
+    am1index=[-1,2];
+    am2index=[-3,1];
+end
+
+
 %FM
 if parameters.nu==[1,1]
     ailist={[0,0],[-1,1],[-2,2]};
