@@ -11,6 +11,7 @@ addParameter(p,'Vz',0);
 addParameter(p,'Ez',0);
 addParameter(p,'d',inf);
 addParameter(p,'nu',[1,1]);%filling factor number(#1) per site(#2); no spin degeneracy considered
+addParameter(p,'hole',1); %1: hole-like energy band ; -1: particle-like energy band
 parse(p,varargin{:});
 parameters=struct('a',p.Results.a,'m',p.Results.m*0.511e6,'theta',p.Results.theta/360*2*pi,'V',p.Results.V*1e-3,'psi'...
     ,p.Results.psi/360*2*pi,'w',p.Results.w*1e-3,'Vz',p.Results.Vz*1e-3,'Nmax',p.Results.Nmax,'Ez',p.Results.Ez,'d',p.Results.d,'nu',p.Results.nu);
@@ -937,6 +938,7 @@ if parameters.nu==[6,5]*2
     am1index=[-1,2];
     am2index=[-3,1];
 end
+
 
 
 %FM
