@@ -693,6 +693,7 @@ end
 %     am2index=[0,2];
 % end
 
+% FM Insulator
 if parameters.nu==[5,6] 
     ailist={[0,0];[1,0];[0,1];[1,1];[2,1];[2,0]};
 %     ailist={[1,0];[2,0];[1,1];[2,1];[3,1];[0,0]};
@@ -708,23 +709,34 @@ if parameters.nu==[5,6]
 %     am1index=[3,1];
 %     am2index=[0,2];
 end
+
+%FM insulator
+if parameters.nu==[7,6] 
+    ailist={[0,0];[1,0];[0,1];[1,1];[2,1];[2,0]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1]};
+    am1index=[3,0];
+    am2index=[0,2];
+end
+
 % FM metalic
 if parameters.nu==[5,6]*2 
     ailist={[0,0];[1,0];[0,1];[1,1];[2,1];[2,0]};
-%     ailist={[1,0];[2,0];[1,1];[2,1];[3,1];[0,0]};
-%     ailist={[0,0];[0,1];[1,1];[2,1];[1,2];[2,2]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     parameters.spin0={[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6};
+    parameters.spin0={[0,0,1]*0,[0,0,1]*0,[0,0,1]*(0),[0,0,1]*(0),[0,0,1]*0,[0,0,1]*(0)};
+    am1index=[3,0];
+    am2index=[0,2];
+end
+
+% FM metalic
+if parameters.nu==[7,6]*2 
+    ailist={[0,0];[1,0];[0,1];[1,1];[2,1];[2,0]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
     parameters.spin0={[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6,[0,0,1]*5/6};
     am1index=[3,0];
     am2index=[0,2];
-    
-%     am1index=[3,0];
-%     am2index=[1,2];
-    
-%     am1index=[3,1];
-%     am2index=[0,2];
 end
-
 % AF (use the typical in-plane 120 AF)
 if parameters.nu==[5,6]*3 
     ailist={[0,0];[0,1];[0,2];[0,3];[0,4];[0,5];
@@ -742,6 +754,17 @@ if parameters.nu==[5,6]*3
     am1index=[-3,3];
     am2index=[0,6];
 end
+
+%normal metal
+if parameters.nu==[5,6]*4
+    ailist={[0,0];[1,0];[0,1];[1,1];[2,1];[2,0]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]};
+    am1index=[3,0];
+    am2index=[0,2];
+
+end
+
 
 % % For Wigner Crystal
 % if parameters.nu==[1,7] 
