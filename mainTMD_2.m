@@ -798,7 +798,7 @@ if parameters.nu==[2,7]
 %     am2index=[1,2];
 end
 
-% For Wigner Crystal
+% FMI
 if parameters.nu==[6,7] 
     ailist={[-1,1];[-1,2];[-2,2];[-2,3];[-3,3];[-3,4];[0,0]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
@@ -856,8 +856,15 @@ if parameters.nu==[12,14]
     parameters.spin0={[0,0,1]*6/7;[0,0,1]*6/7;[0,0,1]*6/7;[0,0,1]*6/7;[0,0,1]*6/7;[0,0,1]*6/7;[0,0,1]*6/7};
     am1index=[-1,3];
     am2index=[-3,2];
-%     am1index=[4,1];
-%     am2index=[1,2];
+end
+
+%Normal Metal
+if parameters.nu==[6,7]*3 
+    ailist={[-1,1];[-1,2];[-2,2];[-2,3];[-3,3];[-3,4];[0,0]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,0];[0,0,0];[0,0,0];[0,0,0];[0,0,0];[0,0,0];[0,0,0]};
+    am1index=[-1,3];
+    am2index=[-3,2];
 end
 
 %AF
