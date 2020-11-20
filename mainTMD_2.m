@@ -981,6 +981,14 @@ if parameters.nu==[1,1]
    am2index=[-2,1];
 end
 
+if parameters.nu==[3,3]
+    ailist={[0,0],[-1,1],[-2,2]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[1,0,0],[cos(-2*pi/3),sin(-2*pi/3),0],[cos(-4*pi/3),sin(-4*pi/3),0]};
+   am1index=[-1,2];
+   am2index=[-2,1];
+end
+
 %Kagome-C2
 if parameters.nu==[2,2] 
     ailist={[0,0],[-1,0],[-1,1],[-2,1]};
