@@ -12,10 +12,12 @@ addParameter(p,'Ez',0);
 addParameter(p,'d',inf);
 addParameter(p,'nu',[1,1]);%filling factor number(#1) per site(#2); no spin degeneracy considered
 addParameter(p,'hole',1); %1: hole-like energy band ; -1: particle-like energy band
+addParameter(p,'perturb',0); %1: hole-like energy band ; -1: particle-like energy band
+
 parse(p,varargin{:});
 parameters=struct('a',p.Results.a,'m',p.Results.m*0.511e6,'theta',p.Results.theta/360*2*pi,'V',p.Results.V*1e-3,'psi'...
     ,p.Results.psi/360*2*pi,'w',p.Results.w*1e-3,'Vz',p.Results.Vz*1e-3,'Nmax',p.Results.Nmax,'Ez'...
-    ,p.Results.Ez,'d',p.Results.d,'nu',p.Results.nu,'hole',p.Results.hole);
+    ,p.Results.Ez,'d',p.Results.d,'nu',p.Results.nu,'hole',p.Results.hole,'perturb',p.Results.perturb);
 %Unit vectors
 parameters.a1=parameters.a*[1,0];
 parameters.a2=parameters.a*[1/2,sqrt(3)/2];
@@ -59,6 +61,39 @@ parameters.Deltabmat=reshape(arrayfun(@(h1,h2) Deltal(h1,h2,1,parameters),h1mat(
 % parameters.Ez=Ez;
 
 rotate=@(x) [cos(x) -sin(x);sin(x) cos(x)]; %rotate anticlockwise
+
+if parameters.perturb==1
+    %AF
+if abs(parameters.nu(2)-parameters.nu(1))==1
+    ailist={[0,0],[-1,1],[-2,2]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    ratio=parameters.nu(1)/parameters.nu(2);
+    parameters.spin0={[1,0,0]*ratio,[cos(-2*pi/3),sin(-2*pi/3),0]*ratio,[cos(-4*pi/3),sin(-4*pi/3),0]*ratio};
+   am1index=[-1,2];
+   am2index=[-2,1];
+end
+
+%FM
+if abs(parameters.nu(2)-parameters.nu(1))==2
+    ailist={[0,0],[-1,1],[-2,2]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    ratio=parameters.nu(1)/parameters.nu(2);
+    parameters.spin0={[0,0,1]*ratio,[0,0,1]*ratio,[0,0,1]*ratio};
+   am1index=[-1,2];
+   am2index=[-2,1];
+end
+
+%Normal
+if abs(parameters.nu(2)-parameters.nu(1))==3
+    ailist={[0,0],[-1,1],[-2,2]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    ratio=parameters.nu(1)/parameters.nu(2);
+    parameters.spin0={[0,0,0],[0,0,0],[0,0,0]};
+   am1index=[-1,2];
+   am2index=[-2,1];
+end
+
+else
 %For AF
 if parameters.nu==[1,2] 
     ailist={[0,0],[-1,0],[-1,1],[-2,1]};
@@ -1019,6 +1054,8 @@ if parameters.nu==[6,6]
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
    am1index=[-1,2];
    am2index=[-2,1];
+end
+
 end
 
 am1=am1index*[parameters.aM1;parameters.aM2];

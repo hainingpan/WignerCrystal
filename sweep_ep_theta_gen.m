@@ -1,12 +1,13 @@
 %Sweep for Wigner Crystal as a function epsilon and theta
-function sweep_ep_theta_gen(nu,epsilonlist,thetalist,Vz,hole)
+function sweep_ep_theta_gen(nu,epsilonlist,thetalist,Vz,hole,perturb)
 
 Ntheta=length(thetalist);
 Nep=length(epsilonlist);
 
 % n=27;
-param=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'d',60e-9*5.076e6,'nu',nu,'Vz',Vz,'hole',hole);
-n=27*(length(param.Q)<8)+15*(length(param.Q)>=8)*(length(param.Q)<16)+9*(length(param.Q)>=16);
+param=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'d',60e-9*5.076e6,'nu',nu,'Vz',Vz,'hole',hole,'perturb',perturb);
+% n=27*(length(param.Q)<8)+15*(length(param.Q)>=8)*(length(param.Q)<16)+9*(length(param.Q)>=16);
+n=cm(abs(1/(1-nu(1)/nu(2))));
 tshell=3;
 Ushell=length(generate_neighbor(100));
 V1={};
