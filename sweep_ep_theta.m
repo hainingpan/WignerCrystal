@@ -51,6 +51,6 @@ for thetai=1:Ntheta
 %         disp(epi)
     end
 end
-save(sprintf('phase%d,%d_Vz(%0.1f)_h(%d).mat',nu(1),nu(2),Vz,hole),'nu','final','spin','epsilonlist','gap','innergap','thetalist','finali','ch');
+save(sprintf('phase%d,%d_h(%d).mat',nu(1),nu(2),hole),'nu','final','spin','epsilonlist','gap','innergap','thetalist','finali','ch');
 end
 
