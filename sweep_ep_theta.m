@@ -20,7 +20,7 @@ gap=zeros(Ntheta,Nep);
 innergap=zeros(Ntheta,Nep);
 finali=zeros(Ntheta,Nep);
 ch=zeros(Ntheta,Nep);
-for thetai=1:Ntheta
+parfor thetai=1:Ntheta
     parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',thetalist(thetai),'d',60e-9*5.076e6,'nu',nu,'Vz',Vz,'hole',hole,'perturb',perturb);
     kxlist=zeros(1,n^2);
     kylist=zeros(1,n^2);
@@ -49,7 +49,7 @@ for thetai=1:Ntheta
 
     parameters.V1=V1{thetai};
     parameters.V2=V2{thetai};
-    parfor epi=1:Nep
+    for epi=1:Nep
         [final(thetai,epi),spin(:,:,thetai,epi),gap(thetai,epi),innergap(thetai,epi),finali(thetai,epi),ch(thetai,epi)]=sweepepsilon(epsilonlist(epi),kxlist,kylist,parameters);
 %         disp(epi)
     end
