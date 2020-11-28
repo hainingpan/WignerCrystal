@@ -1,7 +1,7 @@
 function sum=V(nlist,Ulist,kx,ky,parameters)
 %assume the first element is U0
-% sum=Ulist(1)*ones(size(kx));
-sum=Ulist(1);
+sum=Ulist(1)*ones(size(kx));
+% sum=Ulist(1);
 % sum=0;
 for i=2:length(Ulist)
     n=nlist{i}(1)*parameters.aM1+nlist{i}(2)*parameters.aM2;
