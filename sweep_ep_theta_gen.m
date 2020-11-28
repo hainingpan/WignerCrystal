@@ -11,7 +11,7 @@ if perturb==1
 else
     n=27*(length(param.Q)<8)+15*(length(param.Q)>=8)*(length(param.Q)<16)+9*(length(param.Q)>=16);
 end
-tshell=1;
+tshell=3;
 Ushell=length(generate_neighbor(100));
 V1={};
 V2={};
