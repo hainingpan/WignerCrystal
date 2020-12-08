@@ -1038,7 +1038,27 @@ if parameters.nu==[6,5]*2
     am2index=[-3,1];
 end
 
+% FM
+if parameters.nu==[11,12]
+    ailist={[0,0];[-1,0];[0,-1];[1,-1];[1,0];[0,1];[-1,1];...
+    [1,1];[0,2];[-1,2];[-2,2];[-2,1]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],...
+                      [0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1]};
+    am1index=[2,2];
+    am2index=[-2,4];
+end
 
+% FM
+if parameters.nu==[11,12]*2
+    ailist={[0,0];[-1,0];[0,-1];[1,-1];[1,0];[0,1];[-1,1];...
+    [1,1];[0,2];[-1,2];[-2,2];[-2,1]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+    parameters.spin0={[0,0,1]*11/12,[0,0,1]*11/12,[0,0,1]*11/12,[0,0,1]*11/12,[0,0,1]*11/12,[0,0,1]*11/12,...
+                      [0,0,1]*11/12,[0,0,1]*11/12,[0,0,1]*11/12,[0,0,1]*11/12,[0,0,1]*11/12,[0,0,1]*11/12};
+    am1index=[2,2];
+    am2index=[-2,4];
+end
 
 %AF
 if parameters.nu==[1,1]
