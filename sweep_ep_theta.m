@@ -12,7 +12,7 @@ load(filename);
 param=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'d',60e-9*5.076e6,'nu',nu,'Vz',Vz,'hole',hole,'perturb',perturb,'perturbnear',perturbnear);
 if perturb==1
 %     n=cm(abs(1/(1-nu(1)/nu(2))));
-    n=cm(parameters.nu(2)/gcd(parameters.nu(1),parameters.nu(2)),parameters);
+    n=cm(param.nu(2)/gcd(param.nu(1),param.nu(2)),param);
 else
     n=27*(length(param.Q)<8)+15*(length(param.Q)>=8)*(length(param.Q)<16)+9*(length(param.Q)>=16);
 end
@@ -56,5 +56,7 @@ parfor thetai=1:Ntheta
     end
 end
 save(sprintf('phase%d,%d_h(%d).mat',nu(1),nu(2),hole),'nu','final','spin','epsilonlist','gap','innergap','thetalist','finali','ch');
+save(sprintf('phase%d,%d_h(%d)_bandstructure.mat',nu(1),nu(2),hole),'');
+
 end
 
