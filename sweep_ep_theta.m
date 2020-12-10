@@ -56,7 +56,6 @@ for thetai=1:Ntheta
     end
 end
 save(sprintf('phase%d,%d_h(%d).mat',nu(1),nu(2),hole),'nu','final','spin','epsilonlist','gap','innergap','thetalist','finali','ch');
-save(sprintf('phase%d,%d_h(%d)_bandstructure.mat',nu(1),nu(2),hole),'');
 
 end
 
