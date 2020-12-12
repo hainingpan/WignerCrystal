@@ -1,19 +1,20 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[3,3],...
-    'd',60e-9*5.076e6,'Vz',0,'Ez',0,'hole',1,'perturb',0);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[11,12]*1,...
+    'd',60e-9*5.076e6,'Vz',0,'Ez',0,'hole',1,'perturb',0,'perturbnear',[1,3]);
 tshell=3;
 % tshell=1;
 
 Ushell=length(generate_neighbor(100));
-% % Ushell=0;
-[t,neighborlist]=t_calc_func(tshell,parameters);
+% % % Ushell=0;
+% [t,neighborlist]=t_calc_func(tshell,parameters);
 % U=U_calc_func_2(Ushell,parameters);
-% % 
-% t=cellfun(@(x) mean(x)*ones(1,length(x)),t,'UniformOutput',false);
-% 
-epsilon=3;
 
-n=27;
-% n=cm(abs(1/(1-parameters.nu(1)/parameters.nu(2))));
+% t=cellfun(@(x) mean(x)*ones(1,length(x)),t,'UniformOutput',false);
+
+epsilon=1;
+
+n=15;
+% n=cm(abs(1/(1-parameters.nu(1)/parameters.nu(2))),parameters);
+% n=cm(parameters.nu(2)/gcd(parameters.nu(1),parameters.nu(2)),parameters);
 
 counter=1;
 clear kxlist kylist
@@ -30,11 +31,11 @@ end
 kxlist=kxlist';
 kylist=kylist';
 
-t_bond=[neighborlist{1:tshell+1}];
-U_bond=[neighborlist{1:Ushell+1}];
-hp=parameters.hole;
-tlist=-hp*[t{1:tshell+1}];  %(-) is for hole- like doping; (+) is for electron-like doping
-Ulist=real([U{1:Ushell+1}])/1;
+% t_bond=[neighborlist{1:tshell+1}];
+% U_bond=[neighborlist{1:Ushell+1}];
+% hp=parameters.hole;
+% tlist=-hp*[t{1:tshell+1}];  %(-) is for hole- like doping; (+) is for electron-like doping
+% Ulist=real([U{1:Ushell+1}])/1;
 
 parameters.N=length(kxlist);
 kxbasis=cell(1,length(parameters.Q));

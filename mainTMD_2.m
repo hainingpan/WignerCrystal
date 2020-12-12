@@ -98,7 +98,7 @@ if parameters.perturb==1
     
        if parameters.perturbnear==[1,3]
 
-            %AF
+            %AF Wigner crystal
         if abs(parameters.nu(2)/3-parameters.nu(1))/3==1
             ailist={[0,0],[-2,1],[-4,2],[-1,1],[-2,2],[-3,2],[-3,1],[-2,0],[-1,0]};    
             parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
@@ -106,7 +106,7 @@ if parameters.perturb==1
             am1index=[-3,3];
             am2index=[-3,0];
         end
-        
+            %FM Wigner crystal
         if abs(parameters.nu(2)/3-parameters.nu(1))/3==2
             ailist={[0,0],[-2,1],[-4,2],[-1,1],[-2,2],[-3,2],[-3,1],[-2,0],[-1,0]};    
             parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
@@ -114,7 +114,7 @@ if parameters.perturb==1
             am1index=[-3,3];
             am2index=[-3,0];
         end
-        
+            %NM
         if abs(parameters.nu(2)/3-parameters.nu(1))/3==3
             ailist={[0,0],[-2,1],[-4,2],[-1,1],[-2,2],[-3,2],[-3,1],[-2,0],[-1,0]};    
             parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
