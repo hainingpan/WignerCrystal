@@ -1,5 +1,5 @@
 %Sweep for Wigner Crystal as a function epsilon and theta
-function sweep_ep_theta(nu,epsilonlist,thetalist,Vz,hole,perturb,perturbnear,filename)
+function sweep_ep_theta(nu,epsilonlist,thetalist,Vz,hole,perturb,perturbnear,filename,Ushell)
 
 Ntheta=length(thetalist);
 Nep=length(epsilonlist);
@@ -55,7 +55,7 @@ for thetai=1:Ntheta
 %         disp(epi)
     end
 end
-save(sprintf('phase%d,%d_h(%d).mat',nu(1),nu(2),hole),'nu','final','spin','epsilonlist','gap','innergap','thetalist','finali','ch');
+save(sprintf('phase%d,%d_h(%d)_U%d.mat',nu(1),nu(2),hole,Ushell),'nu','final','spin','epsilonlist','gap','innergap','thetalist','finali','ch');
 
 end
 
