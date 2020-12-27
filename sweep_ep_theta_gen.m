@@ -13,7 +13,7 @@ else
     n=27*(length(param.Q)<8)+15*(length(param.Q)>=8)*(length(param.Q)<16)+9*(length(param.Q)>=16);
 end
 tshell=3;
-Ushell=length(generate_neighbor(100));
+Ushell=length(generate_neighbor(100))-1;
 V1={};
 V2={};
 energylist={};

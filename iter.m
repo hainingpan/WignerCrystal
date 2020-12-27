@@ -3,7 +3,7 @@ parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',
 tshell=3;
 % tshell=1;
 
-Ushell=length(generate_neighbor(100));
+Ushell=length(generate_neighbor(100))-1;
 % % Ushell=0;
 [t,neighborlist]=t_calc_func(tshell,parameters);
 U=U_calc_func_2(Ushell,parameters);
