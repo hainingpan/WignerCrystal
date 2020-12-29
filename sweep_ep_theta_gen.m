@@ -1,5 +1,5 @@
 %Sweep for Wigner Crystal as a function epsilon and theta
-function sweep_ep_theta_gen(nu,epsilonlist,thetalist,Vz,hole,perturb,perturbnear)
+function sweep_ep_theta_gen(nu,epsilonlist,thetalist,Vz,hole,perturb,perturbnear,U_sh)
 
 Ntheta=length(thetalist);
 Nep=length(epsilonlist);
@@ -13,7 +13,7 @@ else
     n=27*(length(param.Q)<8)+15*(length(param.Q)>=8)*(length(param.Q)<16)+9*(length(param.Q)>=16);
 end
 tshell=3;
-Ushell=length(generate_neighbor(100))-1;
+Ushell=length(generate_neighbor(U_sh))-1;
 V1={};
 V2={};
 energylist={};
@@ -64,6 +64,6 @@ for thetai=1:Ntheta
     V2{thetai}=V(U_bond,Ulist,k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters); %V2_{k_alpha,k_beta,q_alpha,q_delta}
 
 end
-save(sprintf('phase%d,%d_theta(%0.2f,%0.2f,%d)_h(%d).mat',nu(1),nu(2),thetalist(1),thetalist(end),Ntheta,hole),'V1','V2','energylist','t','U');
+save(sprintf('phase%d,%d_theta(%0.2f,%0.2f,%d)_h(%d)_U%d.mat',nu(1),nu(2),thetalist(1),thetalist(end),Ntheta,hole,U_sh),'V1','V2','energylist','t','U');
 end
 
