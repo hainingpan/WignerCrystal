@@ -269,7 +269,7 @@ end
 %    am1index=[-2,4];
 %    am2index=[-4,2];
 % end
-
+% For 2/3 AF
 if parameters.nu==[2,3]
     ailist={[0,0],[-2,2],[-1,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
