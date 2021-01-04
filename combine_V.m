@@ -1,3 +1,4 @@
+%combine V for theta
 thetalist=3:0.04:5;
 for thetai=1:length(thetalist)    
     load(sprintf('phase4,12_theta(%0.2f,%0.2f,1).mat',thetalist(thetai),thetalist(thetai)));
