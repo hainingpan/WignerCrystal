@@ -53,7 +53,7 @@ parfor thetai=1:Ntheta
         [final(thetai,di),spin(:,:,thetai,di),gap(thetai,di),innergap(thetai,di),finali(thetai,di),ch(thetai,di)]=sweepd(epsilon,kxlist,kylist,parameters);
     end
 end
-save(sprintf('phase%d,%d_h(%d)_d.mat',nu(1),nu(2),hole),'nu','final','spin','dlist','gap','innergap','thetalist','finali','ch');
+save(sprintf('phase%d,%d_h%d_d.mat',nu(1),nu(2),hole),'nu','final','spin','dlist','gap','innergap','thetalist','finali','ch');
 
 end
 
