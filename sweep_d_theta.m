@@ -1,4 +1,4 @@
-function sweep_d_theta(nu,dlist,thetalist,hole,perturb,perturbnear,filename)
+function sweep_d_theta(nu,dlist,thetalist,hole,perturb,perturbnear,filename,epsilon)
 
 Ntheta=length(thetalist);
 Nd=length(dlist);
@@ -50,7 +50,7 @@ parfor thetai=1:Ntheta
 
         parameters.V1=V1{thetai}{di};
         parameters.V2=V2{thetai}{di};
-        [final(thetai,di),spin(:,:,thetai,di),gap(thetai,di),innergap(thetai,di),finali(thetai,di),ch(thetai,di)]=sweepd(kxlist,kylist,parameters);
+        [final(thetai,di),spin(:,:,thetai,di),gap(thetai,di),innergap(thetai,di),finali(thetai,di),ch(thetai,di)]=sweepd(epsilon,kxlist,kylist,parameters);
     end
 end
 save(sprintf('phase%d,%d_h(%d)_d.mat',nu(1),nu(2),hole),'nu','final','spin','dlist','gap','innergap','thetalist','finali','ch');

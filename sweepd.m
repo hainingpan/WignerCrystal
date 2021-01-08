@@ -1,6 +1,6 @@
-function [final,spin,gap,innergap,i,ch]=sweepd(kxlist,kylist,parameters)
-% parameters.V1=parameters.V1/epsilon;
-% parameters.V2=parameters.V2/epsilon;
+function [final,spin,gap,innergap,i,ch]=sweepd(epsilon,kxlist,kylist,parameters)
+ parameters.V1=parameters.V1/epsilon;
+ parameters.V2=parameters.V2/epsilon;
 
 if ismember(parameters.nu,[[4,8];[5,10];[2,2];[4,4];[7,28];[8,32];[21,28];[24,32]],'row')
     [ave,V2ave]=average_kagome(parameters.phi,parameters.s1,kxlist,kylist,parameters);
