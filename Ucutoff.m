@@ -4,7 +4,7 @@ Ur=cellfun(@(x)real(x(1)),U);
 neighbor=arrayfun(@(i) norm(neighborlist{i}{1}*[0,-1;sqrt(3)/2,-1/2]),1:length(U));
 alpha=0.00729735;
 d=parameters.d;
-rlist=0.5:0.1:20;
+rlist=0.5:0.1:100;
 Ur2=alpha./(rlist*parameters.aM)-alpha./(sqrt((rlist*parameters.aM).^2+parameters.d.^2));
 
 figure;

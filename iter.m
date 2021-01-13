@@ -1,16 +1,18 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1]*1,...
-    'd',60e-9*5.076e6,'Vz',0,'Ez',0,'hole',1,'perturb',0,'perturbnear',[1,3]);
+% parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1]*1,...
+%     'd',60e-9*5.076e6,'Vz',0,'Ez',0,'hole',1,'perturb',0,'perturbnear',[1,3]);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3.36,'nu',[2,3]*1,...
+    'd',300e-9*5.076e6,'Vz',0,'Ez',0,'hole',1,'perturb',0,'perturbnear',[2,3]);
 tshell=3;
 % tshell=1;
 
 Ushell=length(generate_neighbor(100))-1;
-% % Ushell=0;
+% Ushell=0;
 [t,neighborlist]=t_calc_func(tshell,parameters);
 U=U_calc_func_2(Ushell,parameters);
 
 t=cellfun(@(x) mean(x)*ones(1,length(x)),t,'UniformOutput',false);
 
-epsilon=1;
+epsilon=10;
 
 n=15;
 % n=cm(abs(1/(1-parameters.nu(1)/parameters.nu(2))),parameters);
