@@ -34,12 +34,12 @@
 % sweep_nu([4,5],5,10);
 
 % sweep_nu([1,7],10,10);
-shelllist=10:100;
+shelllist=10:1:100;
 clear vv
 for i=1:length(shelllist)
     Ushell=length(generate_neighbor(shelllist(i)));
-    U_bond=[neighborlist{1:Ushell+1}];
-    Ulist=real([U{1:Ushell+1}]);
+    U_bond=[neighborlist{1:Ushell}];
+    Ulist=real([U{1:Ushell}]);
     vv(i)=V(U_bond,Ulist,0,0,parameters);
 end
 figure;plot(shelllist,vv)
