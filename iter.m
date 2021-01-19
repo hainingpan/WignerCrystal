@@ -1,7 +1,7 @@
 % parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1]*1,...
 %     'd',60e-9*5.076e6,'Vz',0,'Ez',0,'hole',1,'perturb',0,'perturbnear',[1,3]);
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3.36,'nu',[2,3]*1,...
-    'd',300e-9*5.076e6,'Vz',0,'Ez',0,'hole',1,'perturb',0,'perturbnear',[2,3]);
+parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',5,'nu',[1,3]*1,...
+    'd',300e-9*5.076e6,'Vz',0,'Ez',0,'hole',1,'perturb',0,'perturbnear',[1,3]);
 tshell=3;
 % tshell=1;
 

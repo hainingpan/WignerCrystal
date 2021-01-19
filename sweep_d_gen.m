@@ -1,4 +1,4 @@
-function sweep_d_gen(nu,theta,dlist,hole,perturb,perturbnear)
+function sweep_d_gen(nu,theta,dlist,hole,perturb,perturbnear,Ush)
 % dlist=30:10:300;
 V1={};
 V2={};
@@ -17,7 +17,7 @@ for dindex=1:length(dlist)
         n=27*(length(parameters{dindex}.Q)<8)+15*(length(parameters{dindex}.Q)>=8)*(length(parameters{dindex}.Q)<16)+9*(length(parameters{dindex}.Q)>=16);
     end
     tshell=3;
-    Ushell=length(generate_neighbor(100))-1;
+    Ushell=length(generate_neighbor(Ush))-1;
 
 
     [t,neighborlist]=t_calc_func(tshell,parameters{dindex});
@@ -68,5 +68,5 @@ parfor dindex=1:length(dlist)
     V2{dindex}=V(U_bond{dindex},Ulist{dindex},k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters{dindex}); %V2_{k_alpha,k_beta,q_alpha,q_delta}
 
 end
-save(sprintf('phase%d,%d_theta%0.2f_h%d_d%d,%d.mat',nu(1),nu(2),theta,hole,dlist(1),dlist(end)),'V1','V2','energylist','dlist');
+save(sprintf('phase%d,%d_theta%0.2f_h%d_d%d,%d_U%d.mat',nu(1),nu(2),theta,hole,dlist(1),dlist(end),Ush),'V1','V2','energylist','dlist');
 end
