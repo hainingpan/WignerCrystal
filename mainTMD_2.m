@@ -10,6 +10,7 @@ addParameter(p,'Nmax',5);
 addParameter(p,'Vz',0);
 addParameter(p,'Ez',0);
 addParameter(p,'d',inf);
+addParameter(p,'s',inf);
 addParameter(p,'nu',[1,1]);%filling factor number(#1) per site(#2); no spin degeneracy considered
 addParameter(p,'hole',1); %1: hole-like energy band ; -1: particle-like energy band
 addParameter(p,'perturb',0); %1: hole-like energy band ; -1: particle-like energy band
@@ -18,7 +19,7 @@ addParameter(p,'perturbnear',1);
 parse(p,varargin{:});
 parameters=struct('a',p.Results.a,'m',p.Results.m*0.511e6,'theta',p.Results.theta/360*2*pi,'V',p.Results.V*1e-3,'psi'...
     ,p.Results.psi/360*2*pi,'w',p.Results.w*1e-3,'Vz',p.Results.Vz*1e-3,'Nmax',p.Results.Nmax,'Ez'...
-    ,p.Results.Ez,'d',p.Results.d,'nu',p.Results.nu,'hole',p.Results.hole,'perturb',p.Results.perturb,'perturbnear',p.Results.perturbnear);
+    ,p.Results.Ez,'d',p.Results.d,'s',p.Results.s,'nu',p.Results.nu,'hole',p.Results.hole,'perturb',p.Results.perturb,'perturbnear',p.Results.perturbnear);
 %Unit vectors
 parameters.a1=parameters.a*[1,0];
 parameters.a2=parameters.a*[1/2,sqrt(3)/2];

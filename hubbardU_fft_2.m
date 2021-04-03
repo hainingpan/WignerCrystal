@@ -25,7 +25,7 @@ re=zeros(1,length(neighborlist));
 F=griddedInterpolant(kxmap',kymap',w2);
 parfor i=1:length(neighborlist)
     n=neighborlist{i}(1)*parameters.aM1+neighborlist{i}(2)*parameters.aM2;
-    func=@(x,y) alpha/(2*pi)*1./(sqrt(x.^2+y.^2)).*(F(x',y')').*(1-exp(-parameters.d*(sqrt(x.^2+y.^2)))).*exp(-1i*(x*n(1)+y*n(2)));
+    func=@(x,y) alpha/(2*pi)*1./(sqrt(x.^2+y.^2)).*(F(x',y')').*(1-exp(-parameters.d*(sqrt(x.^2+y.^2)))).*(screening(x,y,parameters)).*exp(-1i*(x*n(1)+y*n(2)));
     re(i)=quad2d(func,kxlist(1),kxlist(end),kylist(1),kylist(end),'FailurePlot',false,'MaxFunEvals',5000);
 end
 
