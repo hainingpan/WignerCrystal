@@ -68,5 +68,5 @@ parfor sindex=1:length(slist)
     V2{sindex}=V(U_bond{sindex},Ulist{sindex},k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters{sindex}); %V2_{k_alpha,k_beta,q_alpha,q_delta}
 
 end
-save(sprintf('phase%d,%d_theta%0.2f_h%d_d%d,%d_U%d.mat',nu(1),nu(2),theta,hole,slist(1),slist(end),Ush),'V1','V2','energylist','slist');
+save(sprintf('phase%d,%d_theta%0.2f_h%d_s%d,%d_U%d.mat',nu(1),nu(2),theta,hole,slist(1),slist(end),Ush),'V1','V2','energylist','slist');
 end
