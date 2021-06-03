@@ -1,6 +1,6 @@
 %combine V for theta
-% thetalist=3:0.04:5;
-thetalist=[4,5];
+thetalist=3:0.04:5;
+% thetalist=[4,5];
 slist=30:10:300;
 % slist=[30,60];
 V1store={};
