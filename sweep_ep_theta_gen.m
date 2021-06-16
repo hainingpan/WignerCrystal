@@ -3,9 +3,9 @@ function sweep_ep_theta_gen(nu,epsilonlist,thetalist,Vz,hole,perturb,perturbnear
 
 Ntheta=length(thetalist);
 Nep=length(epsilonlist);
-
+d=60; %nm
 % n=27;
-param=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'d',60e-9*5.076e6,'nu',nu,'Vz',Vz,'hole',hole,'perturb',perturb,'perturbnear',perturbnear);
+param=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3,'d',d*1e-9*5.076e6,'nu',nu,'Vz',Vz,'hole',hole,'perturb',perturb,'perturbnear',perturbnear);
 if perturb==1
 %     n=cm(abs(1/(1-nu(1)/nu(2))));
     n=cm(param.nu(2)/gcd(param.nu(1),param.nu(2)),param);
@@ -19,7 +19,7 @@ V2={};
 energylist={};
 for thetai=1:Ntheta
     disp(thetai);
-    parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',thetalist(thetai),'d',60e-9*5.076e6,'nu',nu,'Vz',Vz,'hole',hole,'perturb',perturb,'perturbnear',perturbnear);
+    parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',thetalist(thetai),'d',d*1e-9*5.076e6,'nu',nu,'Vz',Vz,'hole',hole,'perturb',perturb,'perturbnear',perturbnear);
     [t,neighborlist]=t_calc_func(tshell,parameters);
     U=U_calc_func_2(Ushell,parameters);
     
