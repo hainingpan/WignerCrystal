@@ -1,5 +1,4 @@
 function sweep_vz_gen(nu,theta,vzlist,hole,perturb,perturbnear,Ush)
-% vzlist=30:10:300;
 V1={};
 V2={};
 energylist={};   
@@ -68,5 +67,5 @@ parfor vzindex=1:length(vzlist)
     V2{vzindex}=V(U_bond{vzindex},Ulist{vzindex},k_alpha_x-k_beta_x+q_alpha_x-q_delta_x,k_alpha_y-k_beta_y+q_alpha_y-q_delta_y,parameters{vzindex}); %V2_{k_alpha,k_beta,q_alpha,q_delta}
 
 end
-save(sprintf('phase%d,%d_theta%0.2f_h%d_vz%d,%d_U%d.mat',nu(1),nu(2),theta,hole,vzlist(1),vzlist(end),Ush),'V1','V2','energylist','vzlist','t','U');
+save(sprintf('phase%d,%d_theta%0.2f_h%d_vz%d,%d_U%d.mat',nu(1),nu(2),theta,hole,vzlist(1),vzlist(end),Ush),'V1','V2','energylist','vzlist','t','U','-v7.3');
 end
