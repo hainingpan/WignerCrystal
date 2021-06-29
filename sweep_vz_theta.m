@@ -42,7 +42,7 @@ parfor thetai=1:Ntheta
         parameters.N=length(kxlist);
         kxbasis=cell(1,length(parameters.Q));
         kybasis=cell(1,length(parameters.Q));
-        for i=1:length(parameters.Q)sw
+        for i=1:length(parameters.Q)
             kxbasis{i}=kxlist+parameters.Q{i}(1);
             kybasis{i}=kylist+parameters.Q{i}(2);
         end
