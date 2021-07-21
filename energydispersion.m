@@ -1,5 +1,5 @@
-parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',5,'nu',[4,5]*2,'d',60e-9*5.076e6,'Vz',0,'Ez',0);
-
+% parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',5,'nu',[4,5]*2,'d',60e-9*5.076e6,'Vz',0,'Ez',0);
+parameters=mainTMD_2('m',0.45,'psi',108,'V',20,'w',20,'theta',3);
 parameters.kpp=[-parameters.kp(1),parameters.kp(2)];
 
 kpp_gamma_x=linspace(parameters.kpp(1),0,40);
