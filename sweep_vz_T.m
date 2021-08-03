@@ -11,7 +11,7 @@ function sweep_vz_T(nu,vzlist,Tlist,theta,hole,perturb,perturbnear,filename,epsi
     % filename='phase4,12_theta(3.00,5.00,51).mat';
     load(filename);
     % load(sprintf('phase1,2_theta(%.2f,%.2f,%d)_d60.mat',Tlist(1),Tlist(end),NT));
-    param=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',theta,'T',0,'d',inf*5.076e6,'nu',nu,'hole',hole,'perturb',perturb,'perturbnear',perturbnear,'T',T);
+    param=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',theta,'T',0,'d',inf*5.076e6,'nu',nu,'hole',hole,'perturb',perturb,'perturbnear',perturbnear);
     if perturb==1
     %     n=cm(abs(1/(1-nu(1)/nu(2))));
         n=cm(param.nu(2)/gcd(param.nu(1),param.nu(2)),param);
