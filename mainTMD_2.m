@@ -15,11 +15,12 @@ addParameter(p,'nu',[1,1]);%filling factor number(#1) per site(#2); no spin dege
 addParameter(p,'hole',1); %1: hole-like energy band ; -1: particle-like energy band
 addParameter(p,'perturb',0); %1: hole-like energy band ; -1: particle-like energy band
 addParameter(p,'perturbnear',1); 
+addParameter(p,'T',0);
 
 parse(p,varargin{:});
 parameters=struct('a',p.Results.a,'m',p.Results.m*0.511e6,'theta',p.Results.theta/360*2*pi,'V',p.Results.V*1e-3,'psi'...
     ,p.Results.psi/360*2*pi,'w',p.Results.w*1e-3,'Vz',p.Results.Vz*1e-3,'Nmax',p.Results.Nmax,'Ez'...
-    ,p.Results.Ez,'d',p.Results.d,'s',p.Results.s,'nu',p.Results.nu,'hole',p.Results.hole,'perturb',p.Results.perturb,'perturbnear',p.Results.perturbnear);
+    ,p.Results.Ez,'d',p.Results.d,'s',p.Results.s,'nu',p.Results.nu,'hole',p.Results.hole,'perturb',p.Results.perturb,'perturbnear',p.Results.perturbnear,'T',p.Results.T);
 %Unit vectors
 parameters.a1=parameters.a*[1,0];
 parameters.a2=parameters.a*[1/2,sqrt(3)/2];
@@ -1115,6 +1116,18 @@ end
 if parameters.nu==[6,6] 
     ailist={[0,0],[-2,2],[-1,1]};
     parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+   am1index=[-1,2];
+   am2index=[-2,1];
+end
+
+%random
+if parameters.nu==[7,7]
+    ailist={[0,0],[-1,1],[-2,2]};
+    parameters.inner=cellfun(@(x) x(1)*parameters.aM1+x(2)*parameters.aM2,ailist,'UniformOutput',0);
+%     parameters.spin0={[1,0,0],[cos(-2*pi/3),sin(-2*pi/3),0],[cos(-4*pi/3),sin(-4*pi/3),0]};
+    phi1=2*pi*rand();
+    phi2=2*pi*rand();
+    parameters.spin0={[1,0,0],[cos(phi1),sin(phi1),0],[cos(phi2),sin(phi2),0]};
    am1index=[-1,2];
    am2index=[-2,1];
 end

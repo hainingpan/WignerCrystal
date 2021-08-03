@@ -2,7 +2,11 @@ function ave=average(energyall,wfall,parameters)
 %calculate <c_{k1+q_1,sigma_1}^dagger c_{k1+q_2,sigma2}>
 energyall_sort=sort(energyall(:));
 mu=energyall_sort(end*parameters.nu(1)/(2*parameters.nu(2)));
-occupied=(energyall<=mu); %k,n
+if parameters.T==0
+    occupied=(energyall<=mu); %k,n
+else
+    occupied=1./(1+exp((energyall-mu)/(parameters.T)));
+end
 Q=parameters.Q;
 NQ=length(Q);
 N=size(energyall,1);
