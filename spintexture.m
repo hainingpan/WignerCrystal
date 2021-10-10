@@ -1,7 +1,18 @@
 function [spin,gap,innergap]=spintexture(energyall,wfall,parameters)
 energyall_sort=sort(energyall(:));
 mu=energyall_sort(end*parameters.nu(1)/(2*parameters.nu(2)));
-occupied=(energyall<=mu);
+% occupied=(energyall<=mu);
+if parameters.T==0
+    occupied=(energyall<=mu); %k,n
+else
+   occupiednum=numel(energyall)*parameters.nu(1)/(2*parameters.nu(2));
+    
+     occupied_func=@(x) sum(1./(1+exp((energyall-x)/(parameters.T))),'all')-occupiednum;
+     [mu,fval]=fzero(occupied_func,mu);
+     assert(abs(fval)<1e-6,'Mu not found')
+     
+    occupied=1./(1+exp((energyall-mu)/(parameters.T)));
+end
 gap=energyall_sort(end*parameters.nu(1)/(2*parameters.nu(2))+1)-energyall_sort(end*parameters.nu(1)/(2*parameters.nu(2)));
 innergap=diff(energyall_sort(end*parameters.nu(1)/(2*parameters.nu(2))-30:end*parameters.nu(1)/(2*parameters.nu(2))));
 innergap=innergap(innergap>1e-10);

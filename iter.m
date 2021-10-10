@@ -1,7 +1,7 @@
 % parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1]*1,...
 %     'd',60e-9*5.076e6,'Vz',0,'Ez',0,'hole',1,'perturb',0,'perturbnear',[1,3]);
 parameters=mainTMD_2('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',4,'nu',[1,1]*1,...
-    'd',inf,'s',inf,'Vz',0,'Ez',0,'hole',1,'perturb',0,'perturbnear',[1,3],'T',12.13e-3);
+    'd',inf,'s',inf,'Vz',0,'Ez',0,'hole',1,'perturb',0,'perturbnear',[1,3],'T',12.4e-3);
 tshell=3;
 % tshell=1;
 
@@ -82,7 +82,7 @@ end
 
 fig1=figure;
 % fig2=figure;
-for i=1:300
+for i=1:1000
 [spin,gap,innergap]=spintexture(energyall,wfall,parameters);
 [en(i),ave,V2deltaave]=totalenergy_2(energyall,wfall,parameters);
 chsav(i)=chern(wfall,parameters);
