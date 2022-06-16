@@ -12,8 +12,8 @@ neighborlist2=cellfun(@(x)x{1},neighborlist,'UniformOutput',false);
 [wbgrid,wtgrid]=w_rec(neighborlist2(1),rx,ry,parameters);
 neighbordist=cellfun(@(x)norm(x*[parameters.aM1;parameters.aM2]),neighborlist2);
 % k1=find(neighbordist>2*parameters.d,1);
-% k1=find(neighbordist>10*parameters.aM,1);
-k1=[];
+k1=find(neighbordist>10*parameters.aM,1);
+% k1=[];
 if isempty(k1)
     k1=k+1;
 end
