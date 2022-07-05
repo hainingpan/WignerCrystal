@@ -13,7 +13,7 @@ addParameter(p,'d',inf);
 addParameter(p,'s',inf);
 addParameter(p,'nu',[1,1]);%filling factor number(#1) per site(#2); no spin degeneracy considered
 addParameter(p,'hole',1); %1: hole-like energy band ; -1: particle-like energy band
-addParameter(p,'perturb',0); %1: hole-like energy band ; -1: particle-like energy band
+addParameter(p,'perturb',0); %1: turn on perturbation knob; 0: turn off
 addParameter(p,'perturbnear',1); 
 addParameter(p,'T',0);
 
